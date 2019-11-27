@@ -9,8 +9,7 @@ GET ALL PROJECT TICKETS
   SEND AS BODY
   
     {
-      projectId:#,
-      userId:#
+      projectId:#
     }
   
   
