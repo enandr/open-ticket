@@ -16,7 +16,8 @@ GET ONE TICKETS
   SQL QUERIES
   
     Get Single Ticket
-      SELECT `tickets`.`title`,`tickets`.`description`,`tickets`.`dueDate`,`priority`.`level` AS `priority`,`users`.`name` AS `assigneeName`,`files`.`fileUrl` FROM `tickets` INNER JOIN `priority` ON `priority`.`id` = `tickets`.`priority` INNER JOIN `files` ON `files`.`id` = `tickets`.`id` INNER JOIN `users` ON `users`.`id` = `tickets`.`assigneeId`
+      SELECT `tickets`.`id`, `tickets`.`title`, `tickets`.`description`, `tickets`.`createdAt`, `tickets`.`updateAt`, `tickets`.`dueDate`, `users`.`name` AS `assigneeName`, `priority`.`level` AS `priorityLevel`, `status`.`statusCode`, `files`.`fileUrl` FROM `tickets` INNER JOIN `users` ON `users`.`id` = `tickets`.`assigneeId` INNER JOIN `priority` ON `priority`.`id` = `tickets`.`priority` INNER JOIN `status` ON `status`.`id` = `tickets`.`statusCodeId` INNER JOIN `files` ON `files`.`id` = `tickets`.`id` WHERE `tickets`.`id` = 1
+
 
 
 
