@@ -1,4 +1,4 @@
-GET ALL PROJECTS
+GET ALL USERS PROJECTS
 
   SEND TO:
     '/api/projects'
