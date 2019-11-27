@@ -62,7 +62,82 @@ $link = get_db_link();
     }
 
     //POST
+    if ($request['method'] === 'POST') {
+        $body = getBodyInfoPost($request);
+        $user = get_user();
+        $createTicket = createTicket($link,$body,$user);
+        $createFile = createFile($link, $body, $createTicket);
+        $response['body'] = [
+            "ticket" => $createTicket,
+            "file" => $createFile
+        ];
+        send($response);
+    }
+
+    function getBodyInfoPost($request){
+        
+        if (!isset($request['body']['title'])) throw new ApiError("'title' not received", 400);
+        if (!isset($request['body']['description'])) throw new ApiError("'description' not received", 400);
+        if (!isset($request['body']['dueDate'])) throw new ApiError("'due date' not received", 400);
+        if (!isset($request['body']['projectId'])) throw new ApiError("'projectId' not received", 400);
+        if (!isset($request['body']['priority'])) throw new ApiError("'priority' not received", 400);
+        if (!isset($request['body']['typeId'])) throw new ApiError("'typeId' not received", 400);
+        if (!isset($request['body']['assigneeId'])) throw new ApiError("'assigneeId' not received", 400);
     
+        return [
+            'title' => $request['body']['title'],
+            'description' => $request['body']['description'],
+            'dueDate' => $request['body']['dueDate'],
+            'projectId' => $request['body']['projectId'],
+            'priority' => $request['body']['priority'],
+            'typeId' => $request['body']['typeId'],
+            'assigneeId' => $request['body']['assigneeId']
+        ];
+    }
+
+    function createTicket($link, $bodyData, $user) {
+        
+        $sql = "INSERT INTO `tickets` (`title`, `description`, `dueDate`, `projectId`, `priority`,`typeId`, `assigneeId`,`createdBy`) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ";
+
+        $statement = mysqli_prepare($link, $sql);
+        $title = $bodyData['title'];
+        $description = $bodyData['description'];
+        $dueDate = $bodyData['dueDate'];
+        $projectId = $bodyData['projectId'];
+        $priority = $bodyData['priority'];
+        $type = $bodyData['typeId'];
+        $assignee = $bodyData['assigneeId'];
+
+        mysqli_stmt_bind_param($statement, 'sssiiiii', $title, $description, $dueDate, $projectId, $priority, $type, $assignee, $user);
+        mysqli_stmt_execute($statement);    
+        $insertId = $link->insert_id;
+
+        if(empty($insertId)){
+            throw new ApiError ("Fail to insert", 400);
+        } else {
+            return $insertId;
+        }
+    }
+
+    function createFile($link, $bodyData, $createTicket) {
+        $sql = "INSERT INTO `files` (`ticketId`, `fileUrl`) VALUES (?, ?)";
+
+        $statement = mysqli_prepare($link, $sql);
+        $ticketId = $createTicket;
+        $fileUrl = $bodyData['fileUrl'];
+
+        mysqli_stmt_bind_param($statement, 'is', $ticketId, $fileUrl);
+        mysqli_stmt_execute($statement); 
+        $insertId = $link->insert_id;
+
+        if(empty($insertId)){
+            throw new ApiError ("Fail to insert", 400);
+        } else {
+            return $insertId;
+        }
+    }
 
 
 
