@@ -32,6 +32,5 @@ CREATE TICKETS
         description: text,
         createdBy: #,
         createdAt:YYYY-MM-DD hh:mm:ss,
-        createdBy: #,
-        } 
+        createdBy: #
        }
