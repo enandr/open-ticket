@@ -19,8 +19,8 @@ export default class MyDetailView extends React.Component {
   render() {
     return (
       <div>
-        <h1>MY DETAIL VIEW</h1>
-        <button onClick={() => this.props.setView('myTicketList')}>Go Back to My Ticket List</button>
+        <button onClick={() => this.props.setView('myTicketList')}>Back to My Ticket List</button>
+        <h1>Item Details Go Here</h1>
       </div>
     );
   }
