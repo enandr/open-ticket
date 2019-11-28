@@ -5,7 +5,8 @@
         $user = get_user();
         $body = getBodyInfoPost($request);
         $create = createProject($link, $body, $user);
-        $response['body'] = $user;
+        $linkUserToProject = linkUserToProject($link, $create, $user);
+        $response['body'] = $create;
         send($response);
     }
 
@@ -56,5 +57,21 @@
         } else {
             return $insertId;
         }
+    }
+
+    function linkUserToProject($link, $create, $user) {
+
+        $sql = "INSERT INTO `userProjects` (`projectId`, `userId`) VALUES ($create, $user)";
+        $respone = mysqli_query($link, $sql);
+        $output = mysqli_fetch_all($respone, MYSQLI_ASSOC);
+      
+        $insertId = $link->insert_id;
+
+        if(empty($insertId)){
+            throw new ApiError ("Fail to insert", 400);
+        } else {
+            return $output;
+        }
+
     }
 ?>
