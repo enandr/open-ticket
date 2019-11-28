@@ -1,7 +1,7 @@
 import React from 'react';
-import MyProject from './myProject';
+import TeamTicket from './teamTicket';
 
-export default class MyProjectList extends React.Component {
+export default class TeamTicketList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,14 +21,7 @@ export default class MyProjectList extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <MyProject setView={this.props.setView} />
-
-          <button onClick={() => this.props.setView('myProjectList')}>
-            My Projects
-          </button>
-          <button onClick={() => this.props.setView('teamProjectList')}>
-            Team Projects
-          </button>
+          <TeamTicket setView={this.props.setView} />
         </div>
       </div>
     );

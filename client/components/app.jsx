@@ -2,6 +2,9 @@ import React from 'react';
 import MyProjectList from './myProjectList';
 import MyTicketList from './myTicketList';
 import MyDetailView from './myDetailView';
+import TeamProjectList from './teamProjectList';
+import TeamTicketList from './teamTicketList';
+import TeamDetailView from './teamDetailView';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -30,7 +33,7 @@ export default class App extends React.Component {
     if (this.state.view === 'myProjectList') {
       return (
         <div>
-          <MyProjectList setView={this.setView}/>
+          <MyProjectList setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'myTicketList') {
@@ -43,6 +46,24 @@ export default class App extends React.Component {
       return (
         <div>
           <MyDetailView setView={this.setView} />
+        </div>
+      );
+    } else if (this.state.view === 'teamProjectList') {
+      return (
+        <div>
+          <TeamProjectList setView={this.setView} />
+        </div>
+      );
+    } else if (this.state.view === 'teamTicketList') {
+      return (
+        <div>
+          <TeamTicketList setView={this.setView} />
+        </div>
+      );
+    } else if (this.state.view === 'teamDetailView') {
+      return (
+        <div>
+          <TeamDetailView setView={this.setView} />
         </div>
       );
     }
