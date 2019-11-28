@@ -23,12 +23,7 @@ export default class TeamDetailView extends React.Component {
           Back
         </button>
         <h1>TEAM DETAIL VIEW</h1>
-        <button onClick={() => this.props.setView('myProjectList')}>
-          My Projects
-        </button>
-        <button onClick={() => this.props.setView('teamProjectList')}>
-          Team Projects
-        </button>
+
       </div>
     );
   }

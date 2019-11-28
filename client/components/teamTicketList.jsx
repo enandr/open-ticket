@@ -21,7 +21,14 @@ export default class TeamTicketList extends React.Component {
     return (
       <div className="container">
         <div className="row">
+          <button onClick={() => this.props.setView('teamProjectList')}>Back</button>
           <TeamTicket setView={this.props.setView} />
+          <button onClick={() => this.props.setView('myProjectList')}>
+            My Projects
+          </button>
+          <button onClick={() => this.props.setView('teamProjectList')}>
+            Team Projects
+          </button>
         </div>
       </div>
     );
