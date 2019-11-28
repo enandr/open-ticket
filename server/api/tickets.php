@@ -145,8 +145,12 @@ $link = get_db_link();
 
         $statement = mysqli_prepare($link, $sql);
         $ticketId = $createTicket;
-        $fileUrl = $bodyData['fileUrl'];
-
+        if(empty($bodyData['fileUrl'])){
+            $fileUrl = "NULL";
+        } else {
+            $fileUrl = $bodyData['fileUrl'];
+        }
+       
         mysqli_stmt_bind_param($statement, 'is', $ticketId, $fileUrl);
         mysqli_stmt_execute($statement);
         $insertId = $link->insert_id;
