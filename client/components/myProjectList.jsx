@@ -22,7 +22,6 @@ export default class MyProjectList extends React.Component {
       <div className="container">
         <div className="row">
           <MyProject setView={this.props.setView} />
-
           <button onClick={() => this.props.setView('myProjectList')}>
             My Projects
           </button>
