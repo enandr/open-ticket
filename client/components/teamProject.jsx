@@ -6,12 +6,7 @@ export default function TeamProject(props) {
       <h1 onClick={() => props.setView('teamTicketList')}>
         TEAM PROJECTS ---
       </h1>
-      <button onClick={() => props.setView('myProjectList')}>
-        My Projects
-      </button>
-      <button onClick={() => this.props.setView('teamProjectList')}>
-        Team Projects
-      </button>
+
     </div>
   );
 }
