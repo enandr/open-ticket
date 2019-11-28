@@ -4,7 +4,11 @@ $link = get_db_link();
     //GET
     if ($request['method'] === 'GET') {
         $bodyData = getBodyInfo($request);
-        if(!empty($bodyData['userId'])){
+        if (!empty($bodyData['ticketId'])){
+            $data = getSingleTicket($link, $bodyData);
+        }
+        else if(!empty($bodyData['userId'])){
+
             $data = getAllTicketsOfUserOfProject($link, $bodyData);
         }
         else {
@@ -24,9 +28,16 @@ $link = get_db_link();
 
     function getBodyInfo($request){
         $obj = [
-            projectId=>"",
-            userId=>""
+            "ticketId"=>"",
+            "projectId"=>"",
+            "userId"=>""
         ];
+        if (!isset($request['body']['ticketId'])) {
+            $obj['ticketId'] = "";
+        } else {
+            $obj['ticketId'] = $request['body']['ticketId'];
+            return $obj;
+        }
         if (!isset($request['body']['projectId'])){
             throw new ApiError("'projectId' not received", 400);
         }
@@ -38,10 +49,18 @@ $link = get_db_link();
         }
         else {
             $obj['userId'] = $request['body']['userId'];
-
         }
+
         return $obj;
 
+    }
+
+    function getSingleTicket($link, $bodyData){
+        $ticketId = $bodyData['ticketId'];
+        $query = "SELECT `tickets`.`id`,`tickets`.`title` AS `ticketTitle`,`tickets`.`dueDate`,`tickets`.`createdAt`,`users`.`name` AS `assigneeName`,`priority`.`level` AS `priorityLevel`,`status`.`statusCode`,`types`.`type` AS `ticketType`,`files`.`fileUrl` FROM `tickets` INNER JOIN `users` ON `users`.`id` = `tickets`.`assigneeId` INNER JOIN `priority` ON `priority`.`id` = `tickets`.`priority` INNER JOIN `status` ON `status`.`id` = `tickets`.`statusCodeId` INNER JOIN `types` ON `types`.`id` = `tickets`.`typeId` INNER JOIN `files` ON `files`.`id` = `tickets`.`id` WHERE `tickets`.`id`=$ticketId";
+        $res = mysqli_query($link, $query);
+        $output = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        return $output;
     }
 
     function getAllTicketsOfUserOfProject($link, $bodyData){
@@ -75,7 +94,7 @@ $link = get_db_link();
     }
 
     function getBodyInfoPost($request){
-        
+
         if (!isset($request['body']['title'])) throw new ApiError("'title' not received", 400);
         if (!isset($request['body']['description'])) throw new ApiError("'description' not received", 400);
         if (!isset($request['body']['dueDate'])) throw new ApiError("'due date' not received", 400);
@@ -83,7 +102,7 @@ $link = get_db_link();
         if (!isset($request['body']['priority'])) throw new ApiError("'priority' not received", 400);
         if (!isset($request['body']['typeId'])) throw new ApiError("'typeId' not received", 400);
         if (!isset($request['body']['assigneeId'])) throw new ApiError("'assigneeId' not received", 400);
-    
+
         return [
             'title' => $request['body']['title'],
             'description' => $request['body']['description'],
@@ -96,8 +115,8 @@ $link = get_db_link();
     }
 
     function createTicket($link, $bodyData, $user) {
-        
-        $sql = "INSERT INTO `tickets` (`title`, `description`, `dueDate`, `projectId`, `priority`,`typeId`, `assigneeId`,`createdBy`) 
+
+        $sql = "INSERT INTO `tickets` (`title`, `description`, `dueDate`, `projectId`, `priority`,`typeId`, `assigneeId`,`createdBy`)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ";
 
@@ -111,7 +130,7 @@ $link = get_db_link();
         $assignee = $bodyData['assigneeId'];
 
         mysqli_stmt_bind_param($statement, 'sssiiiii', $title, $description, $dueDate, $projectId, $priority, $type, $assignee, $user);
-        mysqli_stmt_execute($statement);    
+        mysqli_stmt_execute($statement);
         $insertId = $link->insert_id;
 
         if(empty($insertId)){
@@ -129,7 +148,7 @@ $link = get_db_link();
         $fileUrl = $bodyData['fileUrl'];
 
         mysqli_stmt_bind_param($statement, 'is', $ticketId, $fileUrl);
-        mysqli_stmt_execute($statement); 
+        mysqli_stmt_execute($statement);
         $insertId = $link->insert_id;
 
         if(empty($insertId)){
@@ -141,9 +160,9 @@ $link = get_db_link();
 
 
 
-    
 
-    
+
+
 
 
 ?>
