@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class MyDetailView extends React.Component {
+export default class TeamDetailView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,8 +19,11 @@ export default class MyDetailView extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.props.setView('myTicketList')}>Back to My Ticket List</button>
-        <h1>Item Details Go Here</h1>
+        <button onClick={() => this.props.setView('teamTicketList')}>
+          Back
+        </button>
+        <h1>TEAM DETAIL VIEW</h1>
+
       </div>
     );
   }
