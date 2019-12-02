@@ -25,7 +25,6 @@ $link = get_db_link();
         }
             throw new ApiError("No user exists", 404);
     }
-
     function getBodyInfo($request){
         $obj = [
             "ticketId"=>"",
@@ -57,7 +56,26 @@ $link = get_db_link();
 
     function getSingleTicket($link, $bodyData){
         $ticketId = $bodyData['ticketId'];
-        $query = "SELECT `tickets`.`id`,`tickets`.`title` AS `ticketTitle`,`tickets`.`dueDate`,`tickets`.`createdAt`,`users`.`name` AS `assigneeName`,`priority`.`level` AS `priorityLevel`,`status`.`statusCode`,`types`.`type` AS `ticketType`,`files`.`fileUrl` FROM `tickets` INNER JOIN `users` ON `users`.`id` = `tickets`.`assigneeId` INNER JOIN `priority` ON `priority`.`id` = `tickets`.`priority` INNER JOIN `status` ON `status`.`id` = `tickets`.`statusCodeId` INNER JOIN `types` ON `types`.`id` = `tickets`.`typeId` INNER JOIN `files` ON `files`.`id` = `tickets`.`id` WHERE `tickets`.`id`=$ticketId";
+        $query = "  SELECT  `tickets`.`id` ,
+                            `tickets`.`title` ,
+                            `tickets`.`description` ,
+                            `tickets`.`createdAt` ,
+                            `tickets`.`dueDate` ,
+                            `tickets`.`updateAt` ,
+                            `priority`.`level` AS `priorityLevel` ,
+                            `status`.`statusCode` ,
+                            `users`.`name` AS `assigneeName`,
+                            `files`.`fileUrl`
+                    FROM `tickets`
+                    INNER JOIN `priority`
+                        ON `priority`.`id` = `tickets`.`priority`
+                    INNER JOIN `status`
+                        ON `status`.`id` = `tickets`.`statusCodeId`
+                    INNER JOIN `users`
+                        ON `users`.`id` = `tickets`.`assigneeId`
+                    INNER JOIN `files`
+                        ON `files`.`ticketId` = `tickets`.`id`
+                    WHERE `tickets`.`id` = $ticketId";
         $res = mysqli_query($link, $query);
         $output = mysqli_fetch_all($res, MYSQLI_ASSOC);
         return $output;
@@ -66,7 +84,25 @@ $link = get_db_link();
     function getAllTicketsOfUserOfProject($link, $bodyData){
         $projectId = $bodyData['projectId'];
         $assigneeId = $bodyData['userId'];
-        $query = "SELECT `tickets`.`id`,`tickets`.`title` AS `ticketTitle`,`tickets`.`dueDate`,`tickets`.`createdAt`,`users`.`name` AS `assigneeName`,`priority`.`level` AS `priorityLevel`,`status`.`statusCode`,`types`.`type` AS `ticketType` FROM `tickets` INNER JOIN `users` ON `users`.`id` = `tickets`.`assigneeId` INNER JOIN `priority` ON `priority`.`id` = `tickets`.`priority` INNER JOIN `status` ON `status`.`id` = `tickets`.`statusCodeId` INNER JOIN `types` ON `types`.`id` = `tickets`.`typeId` WHERE `tickets`.`projectId` = $projectId AND `tickets`.`assigneeId`=$assigneeId";
+        $query =   "SELECT `ti`.`id`,
+                            `ti`.`title` AS `ticketTitle`,
+                            `ti`.`dueDate`,
+                            `ti`.`createdAt`,
+                            `u`.`name` AS `assigneeName`,
+                            `p`.`level` AS `priorityLevel`,
+                            `s`.`statusCode`,
+                            `ty`.`type` AS `ticketType`
+                    FROM `tickets` AS `ti`
+        JOIN `users` AS `u`
+            ON `u`.`id` = `ti`.`assigneeId`
+        JOIN `priority` AS `p`
+            ON `p`.`id` = `ti`.`priority`
+        JOIN `status` AS `s`
+            ON `s`.`id` = `ti`.`statusCodeId`
+        JOIN `types` AS `ty`
+            ON `ty`.`id` = `ti`.`typeId`
+        WHERE `ti`.`projectId` = $projectId
+            AND `ti`.`assigneeId`=$assigneeId";
         $res = mysqli_query($link, $query);
         $output = mysqli_fetch_all($res,MYSQLI_ASSOC);
         return $output;
@@ -150,7 +186,7 @@ $link = get_db_link();
         } else {
             $fileUrl = $bodyData['fileUrl'];
         }
-       
+
         mysqli_stmt_bind_param($statement, 'is', $ticketId, $fileUrl);
         mysqli_stmt_execute($statement);
         $insertId = $link->insert_id;
