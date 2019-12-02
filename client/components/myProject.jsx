@@ -2,8 +2,12 @@ import React from 'react';
 
 export default function MyProject(props) {
   return (
-    <div onClick={() => props.setView('myTicketList')}>
-      <h1>Project Item Goes Here </h1>
-    </div>
+    <tr onClick={() => props.setView('myTicketList')}>
+      <td><strong>Project 1</strong>
+        <p>
+          <small>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</small>
+        </p>
+      </td>
+    </tr>
   );
 }
