@@ -3,7 +3,7 @@ $link = get_db_link();
 
     //GET
     if ($request['method'] === 'GET') {
-/*         $bodyData = getBodyInfo($request);
+        $bodyData = getBodyInfo($request);
         if (!empty($bodyData['ticketId'])){
             $data = getSingleTicket($link, $bodyData);
         }
@@ -11,9 +11,9 @@ $link = get_db_link();
 
             $data = getAllTicketsOfUserOfProject($link, $bodyData);
         }
-        else { */
-            $data = getAllTicketsOfProject($link, $_GET['projectId']);
-        // }
+        else {
+            $data = getAllTicketsOfProject($link, $bodyData);
+        }
         $response['body'] = $data;
         send($response);
     }
@@ -31,23 +31,23 @@ $link = get_db_link();
             "projectId"=>"",
             "userId"=>""
         ];
-        if (!isset($request['body']['ticketId'])) {
+        if (!isset($_GET['ticketId'])) {
             $obj['ticketId'] = "";
         } else {
-            $obj['ticketId'] = $request['body']['ticketId'];
+            $obj['ticketId'] = $_GET['ticketId'];
             return $obj;
         }
-        if (!isset($request['body']['projectId'])){
+        if (!isset($_GET['projectId'])){
             throw new ApiError("'projectId' not received", 400);
         }
         else {
-            $obj['projectId'] = $request['body']['projectId'];
+            $obj['projectId'] = $_GET['projectId'];
         }
-        if (!isset($request['body']['userId'])){
+        if (!isset($_GET['userId'])){
             $obj['userId'] = "";
         }
         else {
-            $obj['userId'] = $request['body']['userId'];
+            $obj['userId'] = $_GET['userId'];
         }
 
         return $obj;
