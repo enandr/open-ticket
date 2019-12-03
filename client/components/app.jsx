@@ -37,7 +37,7 @@ export default class App extends React.Component {
         <div>
           <MyProjectListNav/>
           <MyProjectList setView={this.setView} />
-          <MyProjectListFooter/>
+          <MyProjectListFooter setView={this.setView}/>
         </div>
       );
     } else if (this.state.view === 'myTicketList') {
