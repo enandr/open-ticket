@@ -2,11 +2,12 @@ import React from 'react';
 
 export default function TeamProject(props) {
   return (
-    <div>
-      <h1 onClick={() => props.setView('teamTicketList')}>
-        TEAM PROJECTS ---
-      </h1>
-
-    </div>
+    <tr onClick={() => props.setView('teamTicketList')}>
+      <td><strong>{props.value.projectTitle}</strong>
+        <p>
+          <small>{props.value.description}</small>
+        </p>
+      </td>
+    </tr>
   );
 }

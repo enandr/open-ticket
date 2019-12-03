@@ -7,6 +7,8 @@ import TeamTicketList from './teamTicketList';
 import TeamDetailView from './teamDetailView';
 import MyProjectListNav from './myProjectListNav';
 import MyProjectListFooter from './myProjectListFooter';
+import TeamProjectListFooter from './teamProjectListFooter';
+import TeamProjectListNav from './teamProjectListNav';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -37,7 +39,7 @@ export default class App extends React.Component {
         <div>
           <MyProjectListNav/>
           <MyProjectList setView={this.setView} />
-          <MyProjectListFooter/>
+          <MyProjectListFooter setView={this.setView}/>
         </div>
       );
     } else if (this.state.view === 'myTicketList') {
@@ -55,7 +57,9 @@ export default class App extends React.Component {
     } else if (this.state.view === 'teamProjectList') {
       return (
         <div>
+          <TeamProjectListNav setView={this.setView} />
           <TeamProjectList setView={this.setView} />
+          <TeamProjectListFooter setView={this.setView}/>
         </div>
       );
     } else if (this.state.view === 'teamTicketList') {

@@ -3,20 +3,20 @@ import CheckIcon from './CheckIcon';
 import PlusCircleIcon from './PlusCircleIcon';
 import GridIcon from './GridIcon';
 
-export default function MyProjectListFooter(props) {
+export default function TeamProjectListFooter(props) {
   return (
     <footer className="footer">
       <div className="row h-100">
         <div className="col text-center" onClick={() => props.setView('myProjectList')}>
-          <CheckIcon/>
+          <CheckIcon />
           <p>My Tasks</p>
         </div>
         <div className="col text-center" onClick={() => props.setView('create')}>
-          <PlusCircleIcon/>
+          <PlusCircleIcon />
           <p>Create</p>
         </div>
         <div className="col text-center" onClick={() => props.setView('teamProjectList')}>
-          <GridIcon/>
+          <GridIcon />
           <p>Board</p>
         </div>
       </div>
