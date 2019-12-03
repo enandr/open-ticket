@@ -7,9 +7,8 @@
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 15vh;
   background: orange;
-  border-top: 3px solid white;
+
 }
 body{
   padding-top: 56px;
