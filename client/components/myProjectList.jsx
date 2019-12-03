@@ -26,7 +26,7 @@ export default class MyProjectList extends React.Component {
   }
 
   render() {
-    const array = this.state.projects.map((value, index) => <MyProject key={index} value={value} setView={this.props.setView} />);
+    const array = this.state.projects.map((value, index) => <MyProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId}/>);
     return (
       <table className="table table-bordered">
         <tbody>

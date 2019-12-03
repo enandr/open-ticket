@@ -5,7 +5,7 @@ export default class MyTicketList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: []
+      myTickets: []
     };
   }
 
@@ -15,6 +15,18 @@ export default class MyTicketList extends React.Component {
       .then(data => this.setState({ message: data.message || data.error }))
       .catch(err => this.setState({ message: err.message }))
       .finally(() => this.setState({ isTesting: false }));
+
+    this.getMyTickets();
+  }
+
+  getMyTickets() {
+
+    const request = `/api/tickets?projectId=${this.props.projectId}&userId=${this.props.userId}`;
+
+    fetch(request)
+      .then(res => res.json())
+      .then(data => this.setState({ myTickets: data }))
+      .catch(err => console.error('Fetch failed!', err));
   }
 
   render() {
