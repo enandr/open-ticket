@@ -1,11 +1,25 @@
 <?php
     $link = get_db_link();
+
     require 'slack.php';
+
+
+    /* if($request['method'] === 'PUT') {
+        $update = updateProjects($link, $request);
+        $response['body'] = $update;
+        send($response);
+    } */
+
     if($request['method'] === 'POST') {
         $user = get_user();
         $body = getBodyInfoPost($request);
         $create = createProject($link, $body, $user);
-        $linkUserToProject = linkUserToProject($link, $create, $user);
+        //terminal_log($request['body']['users']);
+        for($index = 0; $index < count($request['body']['users']); $index++ ) {
+            $users = $request['body']['users'][$index]; 
+            //terminal_log($users);
+            $linkUserToProject = linkUserToProject($link, $create, $users);
+        };
         $response['body'] = $create;
         send($response);
     }
@@ -34,10 +48,12 @@
 
         if (!isset($request['body']['title'])) throw new ApiError("'title' not received", 400);
         if (!isset($request['body']['description'])) throw new ApiError("'description' not received", 400);
+        if (!isset($request['body']['users'])) throw new ApiError("'users' not received", 400);
 
         return [
             'title' => $request['body']['title'],
-            'description' => $request['body']['description']
+            'description' => $request['body']['description'],
+            'users' => $request['body']['users']
         ];
     }
 
@@ -77,4 +93,31 @@
         }
 
     }
+
+    /* function updateProjects($link, $request) {
+        $updateQuery = "UPDATE `projects` SET ";
+        $valueDescription = $request['body']['description'];
+        $valueTitle = $request['body']['title'];
+        
+
+        if(!isset($request['body']['projectId'])) {
+            throw new ApiError ("No 'projectId' receive");
+        } else {
+            $valueId =  $request['body']['projectId'];
+        }
+        if (!isset($request['body']['title']) && !isset($request['body']['description'])) {
+            return "Nothing was updated";
+        }
+        if (isset($request['body']['description'])) {
+            $updateQuery = $updateQuery . "`description`='" . $valueDescription . "'";     
+        }
+        if (isset($request['body']['title'])) {
+            $updateQuery = $updateQuery . ", `title`='" . $valueTitle . "'";      
+        }
+        $updateQuery = $updateQuery . " WHERE `id`=$valueId" ; 
+        return $updateQuery;
+        $respone = mysqli_query($link, $updateQuery);
+        $output = mysqli_fetch_all($respone, MYSQLI_ASSOC);
+        return $output;
+    } */
 ?>

@@ -1,0 +1,18 @@
+.color {
+            background-color: #FFA800
+        }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  background: orange;
+
+}
+body{
+  padding-top: 56px;
+}
+.createProjectNavBarColor{
+  background-color: lightskyblue;
+}
