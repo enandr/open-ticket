@@ -1,6 +1,13 @@
 <?php
 $link = get_db_link();
 
+    //UPDATE    
+    if($request['method'] === 'PUT') {
+        $update = updateTicket($link, $request);
+        $response['body'] = $update;
+        send($response);
+    }
+
     //GET
     if ($request['method'] === 'GET') {
         $bodyData = getBodyInfo($request);
@@ -163,7 +170,30 @@ $link = get_db_link();
     }
 
 
+    function updateTicket($link, $request) {
 
+        if (!isset($request['body']['title'])) throw new ApiError("'title' not received", 400);
+        if (!isset($request['body']['description'])) throw new ApiError("'description' not received", 400);
+        if (!isset($request['body']['dueDate'])) throw new ApiError("'due date' not received", 400);
+        if (!isset($request['body']['priority'])) throw new ApiError("'priority' not received", 400);
+        if (!isset($request['body']['statusCodeId'])) throw new ApiError("'statusCodeId' not received", 400);
+        if (!isset($request['body']['ticketId'])) throw new ApiError("'ticketId' not received", 400);
+        //if (!isset($request['body']['assigneeId'])) throw new ApiError("'assigneeId' not received", 400);
+
+        $dueDate = $request['body']['dueDate'];
+        $valueDescription = $request['body']['description'];
+        $valueTitle = $request['body']['title'];
+        $priority = $request['body']['priority'];
+        $status = $request['body']['statusCodeId'];
+        $ticketId = $request['body']['ticketId'];
+
+
+
+        $updateQuery = "UPDATE `tickets` SET `dueDate`='$dueDate', `description`='$valueDescription', `title`='$valueTitle', `priority`='$priority', `statusCodeId`='$status' WHERE `id`=$ticketId";
+        $res = mysqli_query($link, $updateQuery);
+        $output = true;
+        return $output;
+    }
 
 
 
