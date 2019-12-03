@@ -35,7 +35,7 @@ $link = get_db_link();
             $obj['ticketId'] = "";
         } else {
             $obj['ticketId'] = $_GET['ticketId'];
-            return $obj;
+            // return $obj;
         }
         if (!isset($_GET['projectId'])){
             throw new ApiError("'projectId' not received", 400);

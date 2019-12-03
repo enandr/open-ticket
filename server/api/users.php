@@ -11,8 +11,8 @@
 
     if ($request['method'] === 'GET') {
         $bodyData = getBodyInfoGET($request);
-        if (!empty($bodyData['userId'])) {
-          $data = getUserInfo($link, $bodyData);
+        if (isset($_GET['userId'])) {
+          $data = getUserInfo($link, $_GET['userId']);
         } else {
           $data = getAllUsers($link, $bodyData);
         }
