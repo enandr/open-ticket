@@ -10,7 +10,7 @@ $link = get_db_link();
 
     //GET
     if ($request['method'] === 'GET') {
-        $bodyData = getBodyInfo($request);
+/*         $bodyData = getBodyInfo($request);
         if (!empty($bodyData['ticketId'])){
             $data = getSingleTicket($link, $bodyData);
         }
@@ -18,9 +18,9 @@ $link = get_db_link();
 
             $data = getAllTicketsOfUserOfProject($link, $bodyData);
         }
-        else {
-            $data = getAllTicketsOfProject($link, $bodyData);
-        }
+        else { */
+            $data = getAllTicketsOfProject($link, $_GET['projectId']);
+        // }
         $response['body'] = $data;
         send($response);
     }
@@ -179,6 +179,11 @@ $link = get_db_link();
         if(empty($insertId)){
             throw new ApiError ("Fail to insert", 400);
         } else {
+        postSlack('#general', "A New Ticket Has Been Created:
+    Title: $title
+    Description: $description
+    Due Date: $dueDate
+    ");
             return $insertId;
         }
     }

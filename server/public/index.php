@@ -7,6 +7,7 @@ switch ($request['path']) {
   case '/api/tickets':
   case '/api/users':
   case '/api/project':
+  case '/api/slack':
     require_once "..${request['path']}.php";
   default:
     throw new ApiError("Cannot ${request['method']} ${request['path']}", 404);

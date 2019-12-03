@@ -85,3 +85,23 @@ register_shutdown_function(function () {
   ];
   send($response);
 });
+  function postSlack($channel,$message,$user)
+    {
+      $url = "https://slack.com/api/chat.postMessage";
+      $fields = [
+        'token'      => "xoxb-842175790482-857167335398-kZE8Dt7EIHagseQivU2mbKX3",
+        'channel'    => $channel
+      ];
+      if (isset($user)) {
+        $fields->text = "<@$user> " . $message;
+      }
+      else {
+        $fields->text = $message;
+      }
+      $fields_string = http_build_query($fields);
+      $ch = curl_init($url);
+      curl_setopt($ch, CURLOPT_POST, count($fields));
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      $result = curl_exec($ch);
+}
