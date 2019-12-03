@@ -114,3 +114,7 @@ register_shutdown_function(function () {
   $result = curl_exec($ch);
   return $result;
   }
+
+  function terminal_log($value){
+    error_log(print_r($value,true));
+  }
