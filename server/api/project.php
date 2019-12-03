@@ -17,7 +17,7 @@
     }
 
     if ($request['method'] === 'GET') {
-        $user = get_user();
+        $user = $_GET['userId'];
         $data = getAllUsersProjects($link, $user);
         $response['body'] = $data;
         send($response);
