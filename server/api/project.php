@@ -1,6 +1,9 @@
 <?php
     $link = get_db_link();
 
+    require 'slack.php';
+
+
     /* if($request['method'] === 'PUT') {
         $update = updateProjects($link, $request);
         $response['body'] = $update;
