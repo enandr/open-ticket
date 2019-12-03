@@ -1,6 +1,12 @@
 <?php
     $link = get_db_link();
 
+    /* if($request['method'] === 'PUT') {
+        $update = updateProjects($link, $request);
+        $response['body'] = $update;
+        send($response);
+    } */
+
     if($request['method'] === 'POST') {
         $user = get_user();
         $body = getBodyInfoPost($request);
@@ -74,4 +80,31 @@
         }
 
     }
+
+    /* function updateProjects($link, $request) {
+        $updateQuery = "UPDATE `projects` SET ";
+        $valueDescription = $request['body']['description'];
+        $valueTitle = $request['body']['title'];
+        
+
+        if(!isset($request['body']['projectId'])) {
+            throw new ApiError ("No 'projectId' receive");
+        } else {
+            $valueId =  $request['body']['projectId'];
+        }
+        if (!isset($request['body']['title']) && !isset($request['body']['description'])) {
+            return "Nothing was updated";
+        }
+        if (isset($request['body']['description'])) {
+            $updateQuery = $updateQuery . "`description`='" . $valueDescription . "'";     
+        }
+        if (isset($request['body']['title'])) {
+            $updateQuery = $updateQuery . ", `title`='" . $valueTitle . "'";      
+        }
+        $updateQuery = $updateQuery . " WHERE `id`=$valueId" ; 
+        return $updateQuery;
+        $respone = mysqli_query($link, $updateQuery);
+        $output = mysqli_fetch_all($respone, MYSQLI_ASSOC);
+        return $output;
+    } */
 ?>
