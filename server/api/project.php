@@ -1,6 +1,6 @@
 <?php
     $link = get_db_link();
-
+    require 'slack.php';
     if($request['method'] === 'POST') {
         $user = get_user();
         $body = getBodyInfoPost($request);

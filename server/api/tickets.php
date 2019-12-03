@@ -1,6 +1,6 @@
 <?php
 $link = get_db_link();
-
+require 'slack.php';
     //GET
     if ($request['method'] === 'GET') {
         $bodyData = getBodyInfo($request);
