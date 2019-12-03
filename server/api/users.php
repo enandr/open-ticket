@@ -38,14 +38,14 @@
 
     function getUserInfo($link, $bodyData){
       $user = $bodyData['userId'];
-      $query = "SELECT `id`,`name`,`email` FROM `users` WHERE `id` = $user";
+      $query = "SELECT `id`,`name`,`email`,`slackId` FROM `users` WHERE `id` = $user";
       $res = mysqli_query($link, $query);
       $output = mysqli_fetch_all($res, MYSQLI_ASSOC);
       return $output;
     }
 
     function getAllUsers($link, $bodyData){
-      $query = "SELECT `id`,`name` FROM `users`";
+      $query = "SELECT `id`,`name`,`slackId` FROM `users`";
       $res = mysqli_query($link, $query);
       $output = mysqli_fetch_all($res, MYSQLI_ASSOC);
       return $output;
