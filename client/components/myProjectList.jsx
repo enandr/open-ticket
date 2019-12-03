@@ -33,17 +33,6 @@ export default class MyProjectList extends React.Component {
           {array}
         </tbody>
       </table>
-      // <div className="container">
-      //   <div className="row">
-      //     <MyProject setView={this.props.setView} />
-      //     <button onClick={() => this.props.setView('myProjectList')}>
-      //       My Projects
-      //     </button>
-      //     <button onClick={() => this.props.setView('teamProjectList')}>
-      //       Team Projects
-      //     </button>
-      //   </div>
-      // </div>
     );
   }
 }
