@@ -38,23 +38,23 @@ $link = get_db_link();
             "projectId"=>"",
             "userId"=>""
         ];
-        if (!isset($request['body']['ticketId'])) {
+        if (!isset($_GET['ticketId'])) {
             $obj['ticketId'] = "";
         } else {
-            $obj['ticketId'] = $request['body']['ticketId'];
-            return $obj;
+            $obj['ticketId'] = $_GET['ticketId'];
+            // return $obj;
         }
-        if (!isset($request['body']['projectId'])){
+        if (!isset($_GET['projectId'])){
             throw new ApiError("'projectId' not received", 400);
         }
         else {
-            $obj['projectId'] = $request['body']['projectId'];
+            $obj['projectId'] = $_GET['projectId'];
         }
-        if (!isset($request['body']['userId'])){
+        if (!isset($_GET['userId'])){
             $obj['userId'] = "";
         }
         else {
-            $obj['userId'] = $request['body']['userId'];
+            $obj['userId'] = $_GET['userId'];
         }
 
         return $obj;
@@ -179,6 +179,11 @@ $link = get_db_link();
         if(empty($insertId)){
             throw new ApiError ("Fail to insert", 400);
         } else {
+        postSlack('#general', "A New Ticket Has Been Created:
+    Title: $title
+    Description: $description
+    Due Date: $dueDate
+    ");
             return $insertId;
         }
     }

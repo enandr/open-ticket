@@ -17,7 +17,7 @@
     }
 
     if ($request['method'] === 'GET') {
-        $user = get_user();
+        $user = $_GET['userId'];
         $data = getAllUsersProjects($link, $user);
         $response['body'] = $data;
         send($response);
@@ -61,6 +61,9 @@
         if(empty($insertId)){
             throw new ApiError ("Fail to insert", 400);
         } else {
+        postSlack('#general', "Has Created A New Project:
+    Title: $title
+    Description: $description", 'UR4ER5WVA');
             return $insertId;
         }
     }
@@ -70,7 +73,7 @@
         $sql = "INSERT INTO `userProjects` (`projectId`, `userId`) VALUES ($create, $user)";
         $respone = mysqli_query($link, $sql);
         $output = mysqli_fetch_all($respone, MYSQLI_ASSOC);
-      
+
         $insertId = $link->insert_id;
 
         if(empty($insertId)){

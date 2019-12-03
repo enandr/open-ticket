@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 27, 2019 at 04:59 PM
+-- Generation Time: Dec 03, 2019 at 10:39 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -199,18 +199,19 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
+  `password` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slackId` varchar(9) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
-(1, 'Roger', 'a@b.com', '12345'),
-(2, 'Khoa', 'a@b.com', '12345'),
-(3, 'Jacob', 'a@b.com', '12345'),
-(4, 'Ziyaad', 'a@b.com', '12345');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `slackId`) VALUES
+(1, 'Roger', 'a@b.com', '12345', 'UR4ER5WVA'),
+(2, 'Khoa', 'a@b.com', '12345', 'UR6F7NUM6'),
+(3, 'Jacob', 'a@b.com', '12345', 'UQV1FDZ51'),
+(4, 'Ziyaad', 'a@b.com', '12345', 'UQYH6HCHF');
 
 --
 -- Indexes for dumped tables
