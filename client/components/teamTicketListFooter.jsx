@@ -5,17 +5,26 @@ import GridIcon from './GridIcon';
 
 export default function TeamProjectListFooter(props) {
   return (
-    <footer className="footer teamProject">
+    <footer className="footer teamProject whiteText">
       <div className="row h-100">
-        <div className="col text-center whiteText" onClick={() => props.setView('myProjectList')}>
+        <div
+          className="col text-center"
+          onClick={() => props.setView('myProjectList')}
+        >
           <CheckIcon />
           <p>My Tasks</p>
         </div>
-        <div className="col text-center whiteText" onClick={() => props.setView('create', 'teamProjectList')}>
+        <div
+          className="col text-center"
+          onClick={() => props.setView('createProject')}
+        >
           <PlusCircleIcon />
           <p>Create</p>
         </div>
-        <div className="col text-center whiteText" onClick={() => props.setView('teamProjectList')}>
+        <div
+          className="col text-center"
+          onClick={() => props.setView('teamProjectList')}
+        >
           <GridIcon />
           <p>Board</p>
         </div>

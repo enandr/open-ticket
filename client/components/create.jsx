@@ -8,16 +8,13 @@ export default class Create extends React.Component {
       description: '',
       users: ''
     };
+    this.backPage = this.props.backpage;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    fetch('/api/health-check')
-      .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isTesting: false }));
+
   }
 
   handleChange(event) {
@@ -29,6 +26,7 @@ export default class Create extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     alert('A new project was created: ' + this.state.value);
+    this.props.setView(this.backPage);
     // const newProject = {
     //   title: this.state.title,
     //   description: this.state.description,
@@ -39,24 +37,35 @@ export default class Create extends React.Component {
   render() {
     const titleValue = this.state.title;
     const descriptionValue = this.state.description;
-    const usersValue = this.state.users;
-
+    // const usersValue = this.state.users;
+    // if (1 === 1) {
     return (
       <form onSubmit={this.handleSubmit}>
+        <div className="form-group">
+          <label>
+              Title:
+            <input className="form-control" type="text" value={titleValue} onChange={this.handleChange} />
+          </label>
+        </div>
         <label>
-        Title:
-          <input type="text" value={titleValue} onChange={this.handleChange} />
+              Description:
+          <input className="form-control" type="text" value={descriptionValue} onChange={this.handleChange} />
         </label>
-        <label>
-        Description:
-          <input type="text" value={descriptionValue} onChange={this.handleChange} />
-        </label>
-        <label>
-        Users:
-          <input type="text" value={usersValue} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
+        <div className="form-group">
+          <label>
+              Users:
+            <select className="form-control clickable">
+              <option>Roger</option>
+              <option>Ziyaad</option>
+              <option>Jake</option>
+              <option>Khoa</option>
+            </select>
+          </label>
+        </div>
+        <button className="btn btn-success" type="submit">Submit</button>
       </form>
     );
+    // }
+
   }
 }

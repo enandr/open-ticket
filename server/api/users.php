@@ -54,7 +54,7 @@
       $output = mysqli_fetch_all($res, MYSQLI_ASSOC);
       return $output;
     }
-    
+
     function getBodyInfoPost($request){
 
         if (!isset($request['body']['name'])) throw new ApiError("'name' not received", 400);
@@ -74,7 +74,7 @@
         $statement = mysqli_prepare($link, $sql);
         $name = $bodyData['name'];
         $email = $bodyData['email'];
-        $pass = $bodyData['password'];
+        $pass = password_hash($bodyData['password'], PASSWORD_DEFAULT);
         mysqli_stmt_bind_param($statement, 'sss', $name, $email, $pass);
         mysqli_stmt_execute($statement);
         $insertId = $link->insert_id;

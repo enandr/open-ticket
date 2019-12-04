@@ -16,3 +16,12 @@ body{
 .createProjectNavBarColor{
   background-color: lightskyblue;
 }
+.teamProject{
+  background-color: purple;
+}
+.whiteText{
+  color: white !important;
+}
+.clickable{
+  cursor: pointer;
+}

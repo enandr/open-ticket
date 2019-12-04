@@ -4,7 +4,6 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: null,
       userName: '',
       pass: ''
     };
@@ -27,7 +26,12 @@ export default class Login extends React.Component {
     const newUrl = `/api/login?name=${this.state.userName}&password=${this.state.pass}`;
     fetch(newUrl)
       .then(response => response.json())
-      .then(data => this.setState({ id: data }))
+      .then(data => {
+        if (!isNaN(data)) {
+          this.props.setId(data);
+          this.props.setView('myProjectList');
+        }
+      })
       .catch(error => alert(error));
   }
 

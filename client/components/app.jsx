@@ -9,6 +9,10 @@ import MyProjectListNav from './myProjectListNav';
 import MyProjectListFooter from './myProjectListFooter';
 import TeamProjectListFooter from './teamProjectListFooter';
 import TeamProjectListNav from './teamProjectListNav';
+import MyTicketListNav from './myTicketListNav';
+import MyTicketListFooter from './myTicketListFooter';
+import TeamTicketListNav from './teamTicketListNav';
+import TeamTicketListFooter from './teamTicketListfooter';
 import CreateProjectNavBar from './createProjectNavBar';
 import Create from './create';
 import Login from './login';
@@ -19,42 +23,60 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isTesting: true,
-      view: 'logIn'
+      view: 'logIn',
+      projectId: null,
+      backPage: null,
+      userId: null
     };
+    // this.state.userId = ;
+    this.setProjectId = this.setProjectId.bind(this);
     this.setView = this.setView.bind(this);
+    this.setUserId = this.setUserId.bind(this);
   }
 
   componentDidMount() {
-    fetch('/api/health-check')
-      .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isTesting: false }));
+
   }
 
-  setView(newView) {
-    this.setState({ view: newView });
+  setUserId(id) {
+    this.setState({ userId: id });
+  }
+
+  setView(newView, backPage = null) {
+    this.setState({ view: newView, backPage: backPage });
+  }
+
+  setProjectId(id) {
+    // alert(id);
+    this.setState({ projectId: id });
   }
 
   render() {
     if (this.state.view === 'logIn') {
       return (
         <div>
-          <Login setView={this.setView} />
+          <Login setView={this.setView} setId={this.setUserId}/>
         </div>
       );
     } else if (this.state.view === 'myProjectList') {
       return (
         <div>
           <MyProjectListNav/>
-          <MyProjectList setView={this.setView} />
+          <MyProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.state.userId}/>
           <MyProjectListFooter setView={this.setView}/>
+
         </div>
       );
     } else if (this.state.view === 'myTicketList') {
       return (
         <div>
-          <MyTicketList setView={this.setView} />
+          <MyTicketListNav />
+          <MyTicketList
+            setView={this.setView}
+            projectId={this.state.projectId}
+            userId={this.state.userId}
+          />
+          <MyTicketListFooter setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'myDetailView') {
@@ -67,14 +89,16 @@ export default class App extends React.Component {
       return (
         <div>
           <TeamProjectListNav setView={this.setView} />
-          <TeamProjectList setView={this.setView} />
-          <TeamProjectListFooter setView={this.setView}/>
+          <TeamProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.state.userId}/>
+          <TeamProjectListFooter setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'teamTicketList') {
       return (
         <div>
-          <TeamTicketList setView={this.setView} />
+          <TeamTicketListNav setView={this.setView}/>
+          <TeamTicketList setView={this.setView} userId={this.state.userId} projectId={this.state.projectId} />
+          <TeamTicketListFooter setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'teamDetailView') {
@@ -83,11 +107,11 @@ export default class App extends React.Component {
           <TeamDetailView setView={this.setView} />
         </div>
       );
-    } else if (this.state.view === 'createProject') {
+    } else if (this.state.view === 'create') {
       return (
         <div>
-          <CreateProjectNavBar setView={this.setView} />
-          <Create setView={this.setView} />
+          <CreateProjectNavBar backpage={this.state.backPage} setView={this.setView} />
+          <Create backpage={this.state.backPage} setView={this.setView} />
         </div>
       );
     }
