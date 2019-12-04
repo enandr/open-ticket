@@ -11,6 +11,7 @@ import TeamProjectListFooter from './teamProjectListFooter';
 import TeamProjectListNav from './teamProjectListNav';
 import CreateProjectNavBar from './createProjectNavBar';
 import Create from './create';
+import Login from './login';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isTesting: true,
-      view: 'myProjectList'
+      view: 'logIn'
     };
     this.setView = this.setView.bind(this);
   }
@@ -36,7 +37,13 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.view === 'myProjectList') {
+    if (this.state.view === 'logIn') {
+      return (
+        <div>
+          <Login setView={this.setView} />
+        </div>
+      );
+    } else if (this.state.view === 'myProjectList') {
       return (
         <div>
           <MyProjectListNav/>

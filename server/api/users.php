@@ -2,7 +2,6 @@
     $link = get_db_link();
 
     if($request['method'] === 'POST') {
-        error_log('hi');
         $body = getBodyInfoPost($request);
         $create = createUser($link, $body);
         $response['body'] = $create;
