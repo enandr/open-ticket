@@ -6,10 +6,7 @@ GET ALL USERS
   METHOD:
     "GET"
 
-  SEND AS BODY (no body required)
-
-    {
-    }
+  SEND AS PARAMETERS
 
 
   SQL QUERIES
@@ -20,9 +17,9 @@ GET ALL USERS
 
   RESPONSE:
 
-    {
+    [
       {
          id:#,
          name:""
       }
-    }
+    ]

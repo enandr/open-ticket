@@ -10,11 +10,6 @@ export default class MyTicketList extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/health-check')
-      .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isTesting: false }));
 
     this.getMyTickets();
   }

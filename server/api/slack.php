@@ -1,5 +1,5 @@
 <?php
-
+    $link = get_db_link();
 function postSlack($channel, $message)
 {
   require '_config.php';
@@ -25,4 +25,12 @@ function slackGetUserInfo($user)
   $ch = curl_init($url);
   $result = curl_exec($ch);
   return $result;
+}
+
+function getSlackId($link,$user){
+  $getSlackId = "SELECT `slackId` FROM `users` WHERE `id`=$user";
+  $slackIdQuery = mysqli_query($link, $getSlackId);
+  $slackId = mysqli_fetch_row($slackIdQuery);
+  $slackId = $slackId[0];
+  return $slackId;
 }
