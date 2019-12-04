@@ -14,10 +14,8 @@
         $user = get_user();
         $body = getBodyInfoPost($request);
         $create = createProject($link, $body, $user);
-        //terminal_log($request['body']['users']);
         for($index = 0; $index < count($request['body']['users']); $index++ ) {
             $users = $request['body']['users'][$index];
-            //terminal_log($users);
             $linkUserToProject = linkUserToProject($link, $create, $users);
         };
         $response['body'] = $create;
