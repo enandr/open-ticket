@@ -1,12 +1,16 @@
 <?php
 $link = get_db_link();
 
+require 'slack.php';
+
+
     //UPDATE    
     if($request['method'] === 'PUT') {
         $update = updateTicket($link, $request);
         $response['body'] = $update;
         send($response);
     }
+
 
     //GET
     if ($request['method'] === 'GET') {

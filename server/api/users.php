@@ -41,7 +41,12 @@
       $query = "SELECT `id`,`name`,`email`,`slackId` FROM `users` WHERE `id` = $user";
       $res = mysqli_query($link, $query);
       $output = mysqli_fetch_all($res, MYSQLI_ASSOC);
-      return $output;
+      $_SESSION['user_id'] = $user;
+      if(empty($_SESSION['user_id'] )){
+        throw new ApiError ("No user", 400);
+      } else {
+        return $output;
+      }
     }
 
     function getAllUsers($link, $bodyData){
@@ -50,6 +55,7 @@
       $output = mysqli_fetch_all($res, MYSQLI_ASSOC);
       return $output;
     }
+    
     function getBodyInfoPost($request){
 
         if (!isset($request['body']['name'])) throw new ApiError("'name' not received", 400);

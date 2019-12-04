@@ -11,6 +11,8 @@ import TeamProjectListFooter from './teamProjectListFooter';
 import TeamProjectListNav from './teamProjectListNav';
 import MyTicketListNav from './myTicketListNav';
 import MyTicketListFooter from './myTicketListFooter';
+import CreateProjectNavBar from './createProjectNavBar';
+import Create from './create';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -89,6 +91,13 @@ export default class App extends React.Component {
       return (
         <div>
           <TeamDetailView setView={this.setView} />
+        </div>
+      );
+    } else if (this.state.view === 'createProject') {
+      return (
+        <div>
+          <CreateProjectNavBar setView={this.setView} />
+          <Create setView={this.setView} />
         </div>
       );
     }
