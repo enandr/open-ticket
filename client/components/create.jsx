@@ -6,7 +6,7 @@ export default class Create extends React.Component {
     this.state = {
       title: '',
       description: '',
-      users: ''
+      users: ['No Data Received']
     };
     this.backPage = this.props.backpage;
     this.handleChange = this.handleChange.bind(this);
@@ -14,7 +14,10 @@ export default class Create extends React.Component {
   }
 
   componentDidMount() {
-
+    fetch('/api/users')
+      .then(res => res.json())
+      .then(data => this.setState({ users: data }))
+      .catch(err => console.error('Fetch failed!', err));
   }
 
   handleChange(event) {
@@ -37,8 +40,8 @@ export default class Create extends React.Component {
   render() {
     const titleValue = this.state.title;
     const descriptionValue = this.state.description;
-    // const usersValue = this.state.users;
-    // if (1 === 1) {
+    const userList = this.state.users.map((value, index) => (<option key={index} value={value.name}>{value.name}</option>));
+
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
@@ -55,17 +58,12 @@ export default class Create extends React.Component {
           <label>
               Users:
             <select className="form-control clickable">
-              <option>Roger</option>
-              <option>Ziyaad</option>
-              <option>Jake</option>
-              <option>Khoa</option>
+              {userList}
             </select>
           </label>
         </div>
         <button className="btn btn-success" type="submit">Submit</button>
       </form>
     );
-    // }
-
   }
 }
