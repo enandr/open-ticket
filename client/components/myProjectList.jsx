@@ -10,11 +10,7 @@ export default class MyProjectList extends React.Component {
   }
 
   componentDidMount() {
-    /*     fetch('/api/health-check')
-      .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isTesting: false })); */
+
     this.getProjects();
   }
 
@@ -30,7 +26,7 @@ export default class MyProjectList extends React.Component {
   render() {
     const array = this.state.projects.map((value, index) => <MyProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId}/>);
     return (
-      <table className="table table-bordered">
+      <table className="table table-bordered clickable">
         <tbody>
           {array}
         </tbody>

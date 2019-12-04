@@ -35,7 +35,7 @@ export default class MyTicketList extends React.Component {
     ));
 
     return (
-      <table className="table table-bordered">
+      <table className="table table-bordered clickable">
         <tbody>{ticketArray}</tbody>
       </table>
     );

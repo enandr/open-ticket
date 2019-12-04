@@ -11,7 +11,7 @@ export default function TeamProjectListFooter(props) {
           <CheckIcon />
           <p>My Tasks</p>
         </div>
-        <div className="col text-center whiteText" onClick={() => props.setView('create')}>
+        <div className="col text-center whiteText" onClick={() => props.setView('create', 'teamProjectList')}>
           <PlusCircleIcon />
           <p>Create</p>
         </div>
