@@ -19,7 +19,7 @@ export default class TeamProjectList extends React.Component {
   }
 
   getTeamProjects() {
-    fetch('/api/project?userId=1')
+    fetch(`/api/project?userId=${this.props.userId}`)
       .then(res => res.json())
       .then(data => this.setState({ projects: data }))
       .catch(err => console.error('Fetch failed!', err));
