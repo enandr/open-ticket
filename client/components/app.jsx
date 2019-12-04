@@ -23,7 +23,8 @@ export default class App extends React.Component {
       message: null,
       isTesting: true,
       view: 'myProjectList',
-      projectId: null
+      projectId: null,
+      backPage: null
     };
     this.userId = 2;
     this.setProjectId = this.setProjectId.bind(this);
@@ -31,15 +32,11 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    /*     fetch('/api/health-check')
-      .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isTesting: false })); */
+
   }
 
-  setView(newView) {
-    this.setState({ view: newView });
+  setView(newView, backPage = null) {
+    this.setState({ view: newView, backPage: backPage });
   }
 
   setProjectId(id) {
@@ -97,11 +94,11 @@ export default class App extends React.Component {
           <TeamDetailView setView={this.setView} />
         </div>
       );
-    } else if (this.state.view === 'createProject') {
+    } else if (this.state.view === 'create') {
       return (
         <div>
-          <CreateProjectNavBar setView={this.setView} />
-          <Create setView={this.setView} />
+          <CreateProjectNavBar backpage={this.state.backPage} setView={this.setView} />
+          <Create backpage={this.state.backPage} setView={this.setView} />
         </div>
       );
     }

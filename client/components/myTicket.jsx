@@ -2,7 +2,10 @@ import React from 'react';
 
 export default function MyTicket(props) {
   return (
-    <tr>
+    <tr onClick={() => {
+      props.setView('myTicketList');
+      props.setProjectId(props.value.projectId);
+    }}>
       <td>
         <strong>{props.value.ticketTitle}</strong>
         <p>
