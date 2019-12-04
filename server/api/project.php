@@ -16,7 +16,7 @@
         $create = createProject($link, $body, $user);
         //terminal_log($request['body']['users']);
         for($index = 0; $index < count($request['body']['users']); $index++ ) {
-            $users = $request['body']['users'][$index]; 
+            $users = $request['body']['users'][$index];
             //terminal_log($users);
             $linkUserToProject = linkUserToProject($link, $create, $users);
         };
@@ -71,7 +71,8 @@
         if(empty($insertId)){
             throw new ApiError ("Fail to insert", 400);
         } else {
-        postSlack('#general', "Has Created A New Project:
+        $slackId = getSlackId($link, $user);
+        postSlack('#general', "<@$slackId> Has Created A New Project:
     Title: $title
     Description: $description", 'UR4ER5WVA');
             return $insertId;
@@ -81,16 +82,17 @@
     function linkUserToProject($link, $create, $user) {
 
         $sql = "INSERT INTO `userProjects` (`projectId`, `userId`) VALUES ($create, $user)";
-        $respone = mysqli_query($link, $sql);
-        $output = mysqli_fetch_all($respone, MYSQLI_ASSOC);
-
+        $response = mysqli_query($link, $sql);
+        $output = mysqli_fetch_all($response, MYSQLI_ASSOC);
         $insertId = $link->insert_id;
-
+        $slackId = getSlackId($link,$user);
+        postSlack($slackId, "<@$slackId>: you have just been linked to a project. View the project tickets at http://localhost:3000/api/tickets?projectId=$create&userId=$user");
         if(empty($insertId)){
-            throw new ApiError ("Fail to insert", 400);
+            throw new ApiError ("Failed to insert", 400);
         } else {
             return $output;
         }
+
 
     }
 
@@ -98,7 +100,7 @@
         $updateQuery = "UPDATE `projects` SET ";
         $valueDescription = $request['body']['description'];
         $valueTitle = $request['body']['title'];
-        
+
 
         if(!isset($request['body']['projectId'])) {
             throw new ApiError ("No 'projectId' receive");
@@ -109,12 +111,12 @@
             return "Nothing was updated";
         }
         if (isset($request['body']['description'])) {
-            $updateQuery = $updateQuery . "`description`='" . $valueDescription . "'";     
+            $updateQuery = $updateQuery . "`description`='" . $valueDescription . "'";
         }
         if (isset($request['body']['title'])) {
-            $updateQuery = $updateQuery . ", `title`='" . $valueTitle . "'";      
+            $updateQuery = $updateQuery . ", `title`='" . $valueTitle . "'";
         }
-        $updateQuery = $updateQuery . " WHERE `id`=$valueId" ; 
+        $updateQuery = $updateQuery . " WHERE `id`=$valueId" ;
         return $updateQuery;
         $respone = mysqli_query($link, $updateQuery);
         $output = mysqli_fetch_all($respone, MYSQLI_ASSOC);

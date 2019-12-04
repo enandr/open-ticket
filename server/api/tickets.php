@@ -4,7 +4,7 @@ $link = get_db_link();
 require 'slack.php';
 
 
-    //UPDATE    
+    //UPDATE
     if($request['method'] === 'PUT') {
         $update = updateTicket($link, $request);
         $response['body'] = $update;
@@ -183,11 +183,14 @@ require 'slack.php';
         if(empty($insertId)){
             throw new ApiError ("Fail to insert", 400);
         } else {
-        postSlack('#general', "A New Ticket Has Been Created:
+        $creatorId = getSlackId($link, $user);
+        $assigneeId = getSlackId($link, $assignee);
+        postSlack('#general', "<@$creatorId> Has Created A New Ticket:
     Title: $title
     Description: $description
     Due Date: $dueDate
     ");
+        postSlack($assigneeId,"<@$assigneeId>: You have been assigneed to a new ticket. See it at http://localhost:3000/api/tickets?projectId=$projectId&ticketId=$insertId");
             return $insertId;
         }
     }
