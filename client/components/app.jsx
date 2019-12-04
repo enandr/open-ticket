@@ -9,6 +9,8 @@ import MyProjectListNav from './myProjectListNav';
 import MyProjectListFooter from './myProjectListFooter';
 import TeamProjectListFooter from './teamProjectListFooter';
 import TeamProjectListNav from './teamProjectListNav';
+import MyTicketListNav from './myTicketListNav';
+import MyTicketListFooter from './myTicketListFooter';
 import CreateProjectNavBar from './createProjectNavBar';
 import Create from './create';
 
@@ -18,8 +20,11 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isTesting: true,
-      view: 'myProjectList'
+      view: 'myProjectList',
+      projectId: null
     };
+    this.userId = 2;
+    this.setProjectId = this.setProjectId.bind(this);
     this.setView = this.setView.bind(this);
   }
 
@@ -35,19 +40,31 @@ export default class App extends React.Component {
     this.setState({ view: newView });
   }
 
+  setProjectId(id) {
+    // alert(id);
+    this.setState({ projectId: id });
+  }
+
   render() {
     if (this.state.view === 'myProjectList') {
       return (
         <div>
           <MyProjectListNav/>
-          <MyProjectList setView={this.setView} />
+          <MyProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.userId}/>
           <MyProjectListFooter setView={this.setView}/>
+
         </div>
       );
     } else if (this.state.view === 'myTicketList') {
       return (
         <div>
-          <MyTicketList setView={this.setView} />
+          <MyTicketListNav />
+          <MyTicketList
+            setView={this.setView}
+            projectId={this.state.projectId}
+            userId={this.userId}
+          />
+          <MyTicketListFooter setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'myDetailView') {
