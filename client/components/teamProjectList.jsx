@@ -19,14 +19,14 @@ export default class TeamProjectList extends React.Component {
   }
 
   getTeamProjects() {
-    fetch('/api/project')
+    fetch(`/api/project?userId=${this.props.userId}`)
       .then(res => res.json())
       .then(data => this.setState({ projects: data }))
       .catch(err => console.error('Fetch failed!', err));
   }
 
   render() {
-    const teamArray = this.state.projects.map((value, index) => <TeamProject key={index} value={value} setView={this.props.setView} />);
+    const teamArray = this.state.projects.map((value, index) => <TeamProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId}/>);
     return (
       <table className="table table-bordered">
         <tbody>
