@@ -11,6 +11,8 @@ import TeamProjectListFooter from './teamProjectListFooter';
 import TeamProjectListNav from './teamProjectListNav';
 import MyTicketListNav from './myTicketListNav';
 import MyTicketListFooter from './myTicketListFooter';
+import TeamTicketListNav from './teamTicketListNav';
+import TeamTicketListFooter from './teamTicketListfooter';
 import CreateProjectNavBar from './createProjectNavBar';
 import Create from './create';
 
@@ -77,14 +79,16 @@ export default class App extends React.Component {
       return (
         <div>
           <TeamProjectListNav setView={this.setView} />
-          <TeamProjectList setView={this.setView} userId={this.userId}/>
+          <TeamProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.userId}/>
           <TeamProjectListFooter setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'teamTicketList') {
       return (
         <div>
-          <TeamTicketList setView={this.setView} />
+          <TeamTicketListNav setView={this.setView}/>
+          <TeamTicketList setView={this.setView} userId={this.userId} projectId={this.state.projectId} />
+          <TeamTicketListFooter setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'teamDetailView') {
