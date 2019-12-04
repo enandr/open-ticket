@@ -1,18 +1,16 @@
 GET ALL PROJECT TICKETS FOR USER
 
   SEND TO:
-    '/api/tickets'
+    '/api/tickets?'
 
   METHOD:
     "GET"
 
-  SEND AS BODY
+  SEND AS PARAMETERS
 
-    {
-      projectId:#,
-      userId:#
-    }
-
+      projectId:#,(used to get all tickets of that project)
+      userId:#,(optional. Used to get all tickets of a project assigned to a user)
+      ticketId#(optional. Used to get data on one ticket)
 
   SQL QUERIES
 
@@ -24,14 +22,25 @@ GET ALL PROJECT TICKETS FOR USER
   RESPONSE:
 
     {
-      {
-         id:#,
-         ticketTitle:"",
-         dueDate:"",
-         createdAt:"",
-         assigneeName:"",
-         priorityLevel:"",
-         statusCode:"",
-         ticketType:""
-        }
+        id:#,
+        ticketTitle:"",
+        dueDate:"",
+        createdAt:"",
+        assigneeName:"",
+        priorityLevel:"",
+        statusCode:"",
+        ticketType:""
+    }
+    OR IF A SINGLE TICKET
+    {
+        "id": #,
+        "title": "",
+        "description": "",
+        "createdAt": "YYYY-MM-DD HH:MM:SS",
+        "dueDate": "YYYY-MM-DD",
+        "updateAt": "YYYY-MM-DD HH:MM:SS",
+        "priorityLevel": "",
+        "statusCode": "",
+        "assigneeName": "",
+        "fileUrl": ""
     }

@@ -23,7 +23,12 @@
     }
 
     if ($request['method'] === 'GET') {
+        if (isset($_GET['userId'])){
         $user = $_GET['userId'];
+        }
+        else {
+        $user = $_SESSION['user_id'];
+        }
         $data = getAllUsersProjects($link, $user);
         $response['body'] = $data;
         send($response);
