@@ -1,6 +1,9 @@
 <?php
     $link = get_db_link();
 
+    require 'slack.php';
+
+
     /* if($request['method'] === 'PUT') {
         $update = updateProjects($link, $request);
         $response['body'] = $update;
@@ -11,7 +14,12 @@
         $user = get_user();
         $body = getBodyInfoPost($request);
         $create = createProject($link, $body, $user);
-        $linkUserToProject = linkUserToProject($link, $create, $user);
+        //terminal_log($request['body']['users']);
+        for($index = 0; $index < count($request['body']['users']); $index++ ) {
+            $users = $request['body']['users'][$index]; 
+            //terminal_log($users);
+            $linkUserToProject = linkUserToProject($link, $create, $users);
+        };
         $response['body'] = $create;
         send($response);
     }
@@ -40,10 +48,12 @@
 
         if (!isset($request['body']['title'])) throw new ApiError("'title' not received", 400);
         if (!isset($request['body']['description'])) throw new ApiError("'description' not received", 400);
+        if (!isset($request['body']['users'])) throw new ApiError("'users' not received", 400);
 
         return [
             'title' => $request['body']['title'],
-            'description' => $request['body']['description']
+            'description' => $request['body']['description'],
+            'users' => $request['body']['users']
         ];
     }
 
