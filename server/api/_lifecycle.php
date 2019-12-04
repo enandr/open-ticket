@@ -87,16 +87,17 @@ register_shutdown_function(function () {
 });
   function postSlack($channel,$message,$user)
     {
+      require '_config.php';
       $url = "https://slack.com/api/chat.postMessage";
       $fields = [
-        'token'      => "xoxb-842175790482-857167335398-kZE8Dt7EIHagseQivU2mbKX3",
+        'token'      => $slack_token,
         'channel'    => $channel
       ];
       if (isset($user)) {
-        $fields->text = "<@$user> " . $message;
+        $fields['text'] = "<@$user> " . $message;
       }
       else {
-        $fields->text = $message;
+        $fields['text'] = $message;
       }
       $fields_string = http_build_query($fields);
       $ch = curl_init($url);
@@ -104,4 +105,12 @@ register_shutdown_function(function () {
       curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
       $result = curl_exec($ch);
+      return $result;
 }
+  function slackGetUserInfo($user){
+  require '_config.php';
+  $url = "https://slack.com/api/users.info?token=$slack_token&user=$user&pretty=1";
+  $ch = curl_init($url);
+  $result = curl_exec($ch);
+  return $result;
+  }

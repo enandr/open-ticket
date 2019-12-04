@@ -19,7 +19,7 @@ export default class MyProjectList extends React.Component {
   }
 
   getProjects() {
-    fetch('/api/project')
+    fetch(`/api/project?userId=${this.props.userId}`)
       .then(res => res.json())
       .then(data => this.setState({ projects: data }))
       .catch(err => console.error('Fetch failed!', err));
@@ -33,17 +33,6 @@ export default class MyProjectList extends React.Component {
           {array}
         </tbody>
       </table>
-      // <div className="container">
-      //   <div className="row">
-      //     <MyProject setView={this.props.setView} />
-      //     <button onClick={() => this.props.setView('myProjectList')}>
-      //       My Projects
-      //     </button>
-      //     <button onClick={() => this.props.setView('teamProjectList')}>
-      //       Team Projects
-      //     </button>
-      //   </div>
-      // </div>
     );
   }
 }

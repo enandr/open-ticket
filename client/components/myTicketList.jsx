@@ -30,19 +30,19 @@ export default class MyTicketList extends React.Component {
   }
 
   render() {
+    const ticketArray = this.state.myTickets.map((value, index) => (
+      <MyTicket
+        key={index}
+        value={value}
+        setView={this.props.setView}
+
+      />
+    ));
+
     return (
-      <div className="container">
-        <div className="row">
-          <button onClick={() => this.props.setView('myProjectList')}>Back to My Project List</button>
-          <MyTicket setView={this.props.setView}/>
-        </div>
-        <button onClick={() => this.props.setView('myProjectList')}>
-          My Projects
-        </button>
-        <button onClick={() => this.props.setView('teamProjectList')}>
-          Team Projects
-        </button>
-      </div>
+      <table className="table table-bordered">
+        <tbody>{ticketArray}</tbody>
+      </table>
     );
   }
 }

@@ -7,6 +7,10 @@ import TeamTicketList from './teamTicketList';
 import TeamDetailView from './teamDetailView';
 import MyProjectListNav from './myProjectListNav';
 import MyProjectListFooter from './myProjectListFooter';
+import TeamProjectListFooter from './teamProjectListFooter';
+import TeamProjectListNav from './teamProjectListNav';
+import MyTicketListNav from './myTicketListNav';
+import MyTicketListFooter from './myTicketListFooter';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,7 +21,7 @@ export default class App extends React.Component {
       view: 'myProjectList',
       projectId: null
     };
-    this.userId = 1;
+    this.userId = 2;
     this.setProjectId = this.setProjectId.bind(this);
     this.setView = this.setView.bind(this);
   }
@@ -44,14 +48,21 @@ export default class App extends React.Component {
       return (
         <div>
           <MyProjectListNav/>
-          <MyProjectList setView={this.setView} setProjectId={this.setProjectId}/>
-          <MyProjectListFooter/>
+          <MyProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.userId}/>
+          <MyProjectListFooter setView={this.setView}/>
+
         </div>
       );
     } else if (this.state.view === 'myTicketList') {
       return (
         <div>
-          <MyTicketList setView={this.setView} projectId={this.state.projectId} userId={this.userId}/>
+          <MyTicketListNav />
+          <MyTicketList
+            setView={this.setView}
+            projectId={this.state.projectId}
+            userId={this.userId}
+          />
+          <MyTicketListFooter setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'myDetailView') {
@@ -63,7 +74,9 @@ export default class App extends React.Component {
     } else if (this.state.view === 'teamProjectList') {
       return (
         <div>
+          <TeamProjectListNav setView={this.setView} />
           <TeamProjectList setView={this.setView} />
+          <TeamProjectListFooter setView={this.setView}/>
         </div>
       );
     } else if (this.state.view === 'teamTicketList') {
