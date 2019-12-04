@@ -77,8 +77,8 @@ export default class App extends React.Component {
       return (
         <div>
           <TeamProjectListNav setView={this.setView} />
-          <TeamProjectList setView={this.setView} />
-          <TeamProjectListFooter setView={this.setView}/>
+          <TeamProjectList setView={this.setView} userId={this.userId}/>
+          <TeamProjectListFooter setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'teamTicketList') {
