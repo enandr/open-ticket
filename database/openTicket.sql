@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 03, 2019 at 10:39 PM
+-- Generation Time: Dec 04, 2019 at 07:02 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -88,7 +88,8 @@ INSERT INTO `projects` (`id`, `title`, `description`, `createdAt`, `createdBy`) 
 (1, 'SGT', 'A Student Grade Table to display a list of students, courses and their grades in that course.', '2019-11-27 21:44:35', 1),
 (2, 'Wicked Sales', 'An ecommerce platform that sells some of the worst products tv has to offer.', '2019-11-27 22:04:23', 2),
 (3, 'Memory Match', 'A Memory Match Card Game', '2019-11-27 22:05:10', 3),
-(4, 'Open Ticket', 'An issue and feature tracking system for projects', '2019-11-27 22:05:43', 4);
+(4, 'Open Ticket', 'An issue and feature tracking system for projects', '2019-11-27 22:05:43', 4),
+(5, 'Hackathon', '48 hour project usinf four separate Apis.', '2019-12-04 01:01:16', 2);
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,14 @@ INSERT INTO `tickets` (`id`, `title`, `description`, `dueDate`, `projectId`, `pr
 (4, 'View All Projects', 'Make it so the user can view all of their projects', NULL, 4, 4, 1, 2, 3, '2019-11-27 22:22:41', 4, '2019-11-27 22:22:41'),
 (5, 'Edit a student', 'Make is so that a user can edit a student', '2019-11-30', 1, 2, 1, 2, 1, '2019-11-27 22:26:38', 4, '2019-11-27 22:26:38'),
 (6, 'Error viewing cart', 'The wrong data is showing up in the cart', '2019-11-28', 2, 1, 1, 1, 2, '2019-11-27 22:26:38', 3, '2019-11-27 22:26:38'),
-(7, 'Sound play when cards clicked', 'Make it so that sounds will play when cards are clicked', '2019-11-21', 3, 4, 1, 2, 3, '2019-11-27 22:28:40', 2, '2019-11-27 22:28:40');
+(7, 'Sound play when cards clicked', 'Make it so that sounds will play when cards are clicked', '2019-11-21', 3, 4, 1, 2, 3, '2019-11-27 22:28:40', 2, '2019-11-27 22:28:40'),
+(8, 'Planning', 'Plan for the whole project.', '2019-12-06', 5, 1, 2, 2, 2, '2019-12-04 01:02:56', 2, '2019-12-04 01:02:56'),
+(9, 'Break Into Component', 'Look over pieces of project and break down into components.', '2019-12-07', 5, 1, 1, 1, 2, '2019-12-04 01:04:33', 2, '2019-12-04 01:04:33'),
+(10, 'Finish the Project', 'Complete the project and turn into teacher.', '2019-12-11', 5, 3, 3, 2, 2, '2019-12-04 01:05:35', 2, '2019-12-04 01:05:35'),
+(11, 'Create Cards Dynamically', 'Create the cards using javascript and jQuery.', '2019-12-06', 3, 2, 2, 1, 2, '2019-12-04 01:07:40', 2, '2019-12-04 01:07:40'),
+(12, 'Change Image on Cards', 'Change the image on the cards to fit the theme.', '2019-12-09', 3, 2, 2, 2, 2, '2019-12-04 01:09:38', 2, '2019-12-04 01:09:38'),
+(13, 'Finish Back End', 'Finish PHP for the back end of Wicked Sales.', '2019-12-05', 2, 2, 2, 2, 2, '2019-12-04 01:10:59', 2, '2019-12-04 01:10:59'),
+(14, 'Create Detail View', 'Allow user to view products full details.', '2019-12-13', 2, 1, 1, 2, 2, '2019-12-04 01:12:00', 2, '2019-12-04 01:12:00');
 
 -- --------------------------------------------------------
 
@@ -187,7 +195,8 @@ INSERT INTO `userProjects` (`id`, `projectId`, `userId`) VALUES
 (4, 3, 2),
 (5, 3, 3),
 (6, 4, 3),
-(7, 1, 4);
+(7, 1, 4),
+(8, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -199,7 +208,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slackId` varchar(9) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -208,10 +217,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `slackId`) VALUES
-(1, 'Roger', 'a@b.com', '12345', 'UR4ER5WVA'),
-(2, 'Khoa', 'a@b.com', '12345', 'UR6F7NUM6'),
-(3, 'Jacob', 'a@b.com', '12345', 'UQV1FDZ51'),
-(4, 'Ziyaad', 'a@b.com', '12345', 'UQYH6HCHF');
+(1, 'Roger', 'a@b.com', '$2y$10$RYFLAsrs5uG9w9QyPs6PhOeQ8abPCZMyQ4SdWt63OGhd43kMvWuuq', 'UR4ER5WVA'),
+(2, 'Khoa', 'a@b.com', '$2y$10$RYFLAsrs5uG9w9QyPs6PhOeQ8abPCZMyQ4SdWt63OGhd43kMvWuuq', 'UR6F7NUM6'),
+(3, 'Jacob', 'a@b.com', '$2y$10$RYFLAsrs5uG9w9QyPs6PhOeQ8abPCZMyQ4SdWt63OGhd43kMvWuuq', 'UQV1FDZ51'),
+(4, 'Ziyaad', 'a@b.com', '$2y$10$RYFLAsrs5uG9w9QyPs6PhOeQ8abPCZMyQ4SdWt63OGhd43kMvWuuq', 'UQYH6HCHF');
 
 --
 -- Indexes for dumped tables
@@ -283,7 +292,7 @@ ALTER TABLE `priority`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `status`
 --
@@ -293,7 +302,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `types`
 --
@@ -303,7 +312,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT for table `userProjects`
 --
 ALTER TABLE `userProjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `users`
 --
