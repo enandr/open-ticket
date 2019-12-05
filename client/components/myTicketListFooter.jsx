@@ -16,7 +16,7 @@ export default function MyProjectListFooter(props) {
         </div>
         <div
           className="col text-center"
-          onClick={() => props.setView('createProject')}
+          onClick={() => props.setView('create', 'myTicketList')}
         >
           <PlusCircleIcon />
           <p>Create</p>
