@@ -22,15 +22,23 @@ export default class Create extends React.Component {
   }
 
   handleChange(event) {
-    const newState = {};
-    newState[event.target.name] = event.target.value;
-    this.setState(newState);
+    if (event.target.name === 'select') {
+      if (event.target.value !== '0') {
+        const tempArr = [parseInt(event.target.value)];
+        const newArr = this.state.linkedUsers.concat(tempArr);
+        this.setState({ linkedUsers: newArr });
+      }
+    } else {
+      const newState = {};
+      newState[event.target.name] = event.target.value;
+      this.setState(newState);
+    }
+
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.props.setView(this.backPage);
-    alert('A new project was created: ' + this.state.title);
     const body = {};
     body.title = this.state.title;
     body.description = this.state.description;
@@ -46,11 +54,11 @@ export default class Create extends React.Component {
       .catch(err => console.error('Fetch failed!', err));
   }
 
-  render() {
+  renderProject() {
     const titleValue = this.state.title;
     const descriptionValue = this.state.description;
     const userList = this.state.users.map((value, index) => {
-      if (value.id !== this.props.userId) {
+      if (!this.state.linkedUsers.includes(value.id)) {
         return (
           <option key={index} value={value.id}>{value.name}</option>
         );
@@ -58,12 +66,14 @@ export default class Create extends React.Component {
     }
     );
     const linkedList = this.state.linkedUsers.map((value, index) => {
-      // console.log(this.state.users[value]);
-      /*       return (
-        <tr key={index}>
-          <td>{this.state.users[index].name}</td>
-        </tr>
-      ); */
+      if (this.state.users[0] !== 'No Data Received') {
+        return (
+          <tr key={index}>
+            <td>{this.state.users[value - 1].name}</td>
+          </tr>
+        );
+      }
+
     });
 
     return (
@@ -76,17 +86,22 @@ export default class Create extends React.Component {
         </div>
         <label>
               Description:
-          <input className="form-control" name='description' type="text" value={descriptionValue} onChange={this.handleChange} />
+          <textarea className="form-control" name='description' value={descriptionValue} onChange={this.handleChange} />
         </label>
         <div className="form-group">
           <label>
-              Users:
-            <select className="form-control clickable">
+              Add A User To The Project:
+            <select className="form-control clickable" name="select" onChange={this.handleChange}>
+              <option value='0' >Add User</option>
               {userList}
             </select>
           </label>
           <table>
-            <thead></thead>
+            <thead>
+              <tr>
+                <th>Linked Users</th>
+              </tr>
+            </thead>
             <tbody>
               {linkedList}
             </tbody>
@@ -95,5 +110,17 @@ export default class Create extends React.Component {
         <button className="btn btn-success" type="submit">Submit</button>
       </form>
     );
+  }
+
+  renderTicket() {
+    return (<h1>Tickets</h1>);
+  }
+
+  render() {
+    if (this.backPage.match(/(project)/i)) {
+      return this.renderProject();
+    } else if (this.backPage.match(/(ticket)/i)) {
+      return this.renderTicket();
+    }
   }
 }
