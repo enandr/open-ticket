@@ -7,7 +7,7 @@ export default class Create extends React.Component {
       title: '',
       description: '',
       users: ['No Data Received'],
-      linkedUsers: [this.props.userId, 2, 3, 4]
+      linkedUsers: [this.props.userId]
     };
     this.backPage = this.props.backpage;
     this.handleChange = this.handleChange.bind(this);
@@ -57,6 +57,14 @@ export default class Create extends React.Component {
       }
     }
     );
+    const linkedList = this.state.linkedUsers.map((value, index) => {
+      // console.log(this.state.users[value]);
+      /*       return (
+        <tr key={index}>
+          <td>{this.state.users[index].name}</td>
+        </tr>
+      ); */
+    });
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -77,6 +85,12 @@ export default class Create extends React.Component {
               {userList}
             </select>
           </label>
+          <table>
+            <thead></thead>
+            <tbody>
+              {linkedList}
+            </tbody>
+          </table>
         </div>
         <button className="btn btn-success" type="submit">Submit</button>
       </form>

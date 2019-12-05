@@ -124,7 +124,7 @@ export default class App extends React.Component {
       return (
         <div>
           <CreateProjectNavBar backpage={this.state.backPage} setView={this.setView} />
-          <Create backpage={this.state.backPage} setView={this.setView} userId={this.userId}/>
+          <Create backpage={this.state.backPage} setView={this.setView} userId={this.state.userId}/>
         </div>
       );
     }
