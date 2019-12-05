@@ -110,14 +110,14 @@ export default class App extends React.Component {
       return (
         <div>
           <TeamTicketListNav setView={this.setView}/>
-          <TeamTicketList setView={this.setView} userId={this.state.userId} projectId={this.state.projectId} />
+          <TeamTicketList setView={this.setView} userId={this.state.userId} projectId={this.state.projectId} setTicketId={this.setTicketId}/>
           <TeamTicketListFooter setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'teamDetailView') {
       return (
         <div>
-          <TeamDetailView setView={this.setView} />
+          <TeamDetailView setView={this.setView} ticketId={this.state.ticketId}/>
         </div>
       );
     } else if (this.state.view === 'create') {
