@@ -7,7 +7,9 @@ GET ALL USERS
     "GET"
 
   SEND AS PARAMETERS
-
+  {
+    projectId:#
+  }
 
   SQL QUERIES
 

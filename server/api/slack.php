@@ -3,6 +3,11 @@
 function postSlack($channel, $message)
 {
   require '_config.php';
+  if (isset($_GET['notify'])){
+    if($_GET['notify'] === 'off'){
+      return;
+    }
+  }
   $url = "https://slack.com/api/chat.postMessage";
   $fields = [
     'token'      => $slack_token,
