@@ -28,7 +28,6 @@ export default class App extends React.Component {
       backPage: null,
       userId: null
     };
-    // this.state.userId = ;
     this.setProjectId = this.setProjectId.bind(this);
     this.setView = this.setView.bind(this);
     this.setUserId = this.setUserId.bind(this);
@@ -111,7 +110,7 @@ export default class App extends React.Component {
       return (
         <div>
           <CreateProjectNavBar backpage={this.state.backPage} setView={this.setView} />
-          <Create backpage={this.state.backPage} setView={this.setView} />
+          <Create backpage={this.state.backPage} setView={this.setView} userId={this.userId}/>
         </div>
       );
     }
