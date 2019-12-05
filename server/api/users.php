@@ -12,13 +12,21 @@
         $bodyData = getBodyInfoGET($request);
         if (isset($_GET['userId'])) {
           $data = getUserInfo($link, $_GET['userId']);
-        } else {
+        } else if (isset($_GET['projectId'])) {
+          $data = getAllUsersOfProject($link, $bodyData);
+        }else{
           $data = getAllUsers($link, $bodyData);
         }
         $response['body'] = $data;
         send($response);
     }
-
+    function getAllUsersOfProject($link,$bodyData){
+    $project = $bodyData['projectId'];
+    $query = "SELECT `userProjects`.`userId`,`users`.name FROM `userProjects` JOIN `users` ON `users`.id = `userProjects`.`userId` WHERE `userProjects`.`projectId` = $project";
+    $res = mysqli_query($link, $query);
+    $output = mysqli_fetch_all($res, MYSQLI_ASSOC);
+    return $output;
+    }
     function get_user(){
       if (isset($_SESSION['user_id'])) {
         $userId  = $_SESSION['user_id'];
@@ -29,12 +37,13 @@
 
     function getBodyInfoGET($request){
         $obj = [
-          "userId" => ""
+          "userId" => "",
+          "projectId"=>""
         ];
-        if (isset($request['body']['userId'])) $obj['userId']= $request['body']['userId'];
+        if (isset($_GET['userId'])) $obj['userId']= $_GET['userId'];
+        if (isset($_GET['projectId'])) $obj['projectId'] = $_GET['projectId'];
         return $obj;
     }
-
     function getUserInfo($link, $bodyData){
       $user = $bodyData['userId'];
       $query = "SELECT `id`,`name`,`email`,`slackId` FROM `users` WHERE `id` = $user";
