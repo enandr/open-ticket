@@ -18,7 +18,6 @@ import Create from './create';
 import MyDetailNav from './myDetailNav';
 import Login from './login';
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +25,7 @@ export default class App extends React.Component {
       message: null,
       isTesting: true,
       projectId: null,
-      ticketId: null
+      ticketId: null,
       view: 'logIn',
       backPage: null,
       userId: null
@@ -84,7 +83,6 @@ export default class App extends React.Component {
             setView={this.setView}
             projectId={this.state.projectId}
 
-            
             setTicketId={this.setTicketId}
 
             userId={this.state.userId}
