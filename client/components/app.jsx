@@ -16,6 +16,8 @@ import TeamTicketListFooter from './teamTicketListfooter';
 import CreateProjectNavBar from './createProjectNavBar';
 import Create from './create';
 import MyDetailNav from './myDetailNav';
+import Login from './login';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -23,26 +25,29 @@ export default class App extends React.Component {
     this.state = {
       message: null,
       isTesting: true,
-      view: 'myProjectList',
       projectId: null,
       ticketId: null
+      view: 'logIn',
+      backPage: null,
+      userId: null
+
     };
-    this.userId = 2;
     this.setProjectId = this.setProjectId.bind(this);
     this.setTicketId = this.setTicketId.bind(this);
     this.setView = this.setView.bind(this);
+    this.setUserId = this.setUserId.bind(this);
   }
 
   componentDidMount() {
-    /*     fetch('/api/health-check')
-      .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isTesting: false })); */
+
   }
 
-  setView(newView) {
-    this.setState({ view: newView });
+  setUserId(id) {
+    this.setState({ userId: id });
+  }
+
+  setView(newView, backPage = null) {
+    this.setState({ view: newView, backPage: backPage });
   }
 
   setProjectId(id) {
@@ -56,11 +61,17 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.view === 'myProjectList') {
+    if (this.state.view === 'logIn') {
+      return (
+        <div>
+          <Login setView={this.setView} setId={this.setUserId}/>
+        </div>
+      );
+    } else if (this.state.view === 'myProjectList') {
       return (
         <div>
           <MyProjectListNav/>
-          <MyProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.userId}/>
+          <MyProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.state.userId}/>
           <MyProjectListFooter setView={this.setView}/>
 
         </div>
@@ -72,8 +83,12 @@ export default class App extends React.Component {
           <MyTicketList
             setView={this.setView}
             projectId={this.state.projectId}
-            userId={this.userId}
+
+            
             setTicketId={this.setTicketId}
+
+            userId={this.state.userId}
+
           />
           <MyTicketListFooter setView={this.setView} />
         </div>
@@ -89,7 +104,7 @@ export default class App extends React.Component {
       return (
         <div>
           <TeamProjectListNav setView={this.setView} />
-          <TeamProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.userId}/>
+          <TeamProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.state.userId}/>
           <TeamProjectListFooter setView={this.setView} />
         </div>
       );
@@ -97,7 +112,7 @@ export default class App extends React.Component {
       return (
         <div>
           <TeamTicketListNav setView={this.setView}/>
-          <TeamTicketList setView={this.setView} userId={this.userId} projectId={this.state.projectId} />
+          <TeamTicketList setView={this.setView} userId={this.state.userId} projectId={this.state.projectId} />
           <TeamTicketListFooter setView={this.setView} />
         </div>
       );
@@ -107,11 +122,11 @@ export default class App extends React.Component {
           <TeamDetailView setView={this.setView} />
         </div>
       );
-    } else if (this.state.view === 'createProject') {
+    } else if (this.state.view === 'create') {
       return (
         <div>
-          <CreateProjectNavBar setView={this.setView} />
-          <Create setView={this.setView} />
+          <CreateProjectNavBar backpage={this.state.backPage} setView={this.setView} />
+          <Create backpage={this.state.backPage} setView={this.setView} userId={this.userId}/>
         </div>
       );
     }

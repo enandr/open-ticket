@@ -4,8 +4,10 @@ export default function MyTicket(props) {
 
   return (
     <tr onClick={() => {
+
       props.setView('myDetailView');
       props.setTicketId(props.value.id);
+
 
     }}>
       <td>

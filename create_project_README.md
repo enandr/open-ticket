@@ -10,7 +10,8 @@ CREATE TICKETS
   
     {
       title: string,
-      description: text
+      description: text,
+      users: []
     }
   
   

@@ -6,18 +6,19 @@ export default class Create extends React.Component {
     this.state = {
       title: '',
       description: '',
-      users: ''
+      users: ['No Data Received'],
+      linkedUsers: [this.props.userId, 2, 3, 4]
     };
+    this.backPage = this.props.backpage;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    /*     fetch('/api/health-check')
+    fetch('/api/users')
       .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isTesting: false })); */
+      .then(data => this.setState({ users: data }))
+      .catch(err => console.error('Fetch failed!', err));
   }
 
   handleChange(event) {
@@ -28,34 +29,56 @@ export default class Create extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    alert('A new project was created: ' + this.state.value);
-    // const newProject = {
-    //   title: this.state.title,
-    //   description: this.state.description,
-    //   users: this.state.users
-    // };
+    this.props.setView(this.backPage);
+    alert('A new project was created: ' + this.state.title);
+    const body = {};
+    body.title = this.state.title;
+    body.description = this.state.description;
+    body.users = this.state.linkedUsers;
+    const settings = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    };
+    fetch('/api/project', settings)
+      .then(res => res.json())
+      .then(data => this.props.setView(this.backPage))
+      .catch(err => console.error('Fetch failed!', err));
   }
 
   render() {
     const titleValue = this.state.title;
     const descriptionValue = this.state.description;
-    const usersValue = this.state.users;
+    const userList = this.state.users.map((value, index) => {
+      if (value.id !== this.props.userId) {
+        return (
+          <option key={index} value={value.id}>{value.name}</option>
+        );
+      }
+    }
+    );
 
     return (
       <form onSubmit={this.handleSubmit}>
+        <div className="form-group">
+          <label>
+              Title:
+            <input className="form-control" name='title' type="text" value={titleValue} onChange={this.handleChange} />
+          </label>
+        </div>
         <label>
-        Title:
-          <input type="text" value={titleValue} onChange={this.handleChange} />
+              Description:
+          <input className="form-control" name='description' type="text" value={descriptionValue} onChange={this.handleChange} />
         </label>
-        <label>
-        Description:
-          <input type="text" value={descriptionValue} onChange={this.handleChange} />
-        </label>
-        <label>
-        Users:
-          <input type="text" value={usersValue} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
+        <div className="form-group">
+          <label>
+              Users:
+            <select className="form-control clickable">
+              {userList}
+            </select>
+          </label>
+        </div>
+        <button className="btn btn-success" type="submit">Submit</button>
       </form>
     );
   }

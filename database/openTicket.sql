@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 04, 2019 at 07:02 PM
+-- Generation Time: Dec 04, 2019 at 10:25 PM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
@@ -43,7 +43,14 @@ INSERT INTO `files` (`id`, `ticketId`, `fileUrl`) VALUES
 (4, 4, 'null'),
 (5, 5, 'null'),
 (6, 6, 'null'),
-(7, 7, 'null');
+(7, 7, 'null'),
+(8, 8, 'null'),
+(9, 9, 'null'),
+(10, 10, 'null'),
+(11, 11, 'null'),
+(12, 12, 'null'),
+(13, 13, 'null'),
+(14, 14, 'null');
 
 -- --------------------------------------------------------
 
@@ -282,7 +289,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `priority`
 --

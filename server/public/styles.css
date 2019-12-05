@@ -22,3 +22,6 @@ body{
 .whiteText{
   color: white !important;
 }
+.clickable{
+  cursor: pointer;
+}

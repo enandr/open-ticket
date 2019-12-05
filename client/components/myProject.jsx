@@ -7,7 +7,6 @@ export default function MyProject(props) {
       onClick={() => {
         props.setView('myTicketList');
         props.setProjectId(props.value.projectId);
-
       }}
     >
       <td>
