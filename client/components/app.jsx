@@ -17,6 +17,7 @@ import CreateProjectNavBar from './createProjectNavBar';
 import Create from './create';
 import MyDetailNav from './myDetailNav';
 import Login from './login';
+import CreateUsers from './createUsers';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -64,6 +65,12 @@ export default class App extends React.Component {
       return (
         <div>
           <Login setView={this.setView} setId={this.setUserId}/>
+        </div>
+      );
+    } else if (this.state.view === 'createUser') {
+      return (
+        <div>
+          <CreateUsers/>
         </div>
       );
     } else if (this.state.view === 'myProjectList') {
