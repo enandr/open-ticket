@@ -15,10 +15,17 @@ export default class Create extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/users')
-      .then(res => res.json())
-      .then(data => this.setState({ users: data }))
-      .catch(err => console.error('Fetch failed!', err));
+    if (this.backPage.match(/(project)/i)) {
+      fetch('/api/users')
+        .then(res => res.json())
+        .then(data => this.setState({ users: data }))
+        .catch(err => console.error('Fetch failed!', err));
+    } else if (this.backPage.match(/(ticket)/i)) {
+      fetch('/api/usersProjects')
+        .then(res => res.json())
+        .then(data => this.setState({ users: data }))
+        .catch(err => console.error('Fetch failed!', err));
+    }
   }
 
   handleChange(event) {
@@ -114,6 +121,40 @@ export default class Create extends React.Component {
 
   renderTicket() {
     return (<h1>Tickets</h1>);
+    /*     return (
+      <form onSubmit={this.handleSubmit}>
+        <div className="form-group">
+          <label>
+            Title:
+            <input className="form-control" name='title' type="text" value={titleValue} onChange={this.handleChange} />
+          </label>
+        </div>
+        <label>
+          Description:
+          <textarea className="form-control" name='description' value={descriptionValue} onChange={this.handleChange} />
+        </label>
+        <div className="form-group">
+          <label>
+            Add A User To The Project:
+            <select className="form-control clickable" name="select" onChange={this.handleChange}>
+              <option value='0' >Add User</option>
+              {userList}
+            </select>
+          </label>
+          <table>
+            <thead>
+              <tr>
+                <th>Linked Users</th>
+              </tr>
+            </thead>
+            <tbody>
+              {linkedList}
+            </tbody>
+          </table>
+        </div>
+        <button className="btn btn-success" type="submit">Submit</button>
+      </form>
+    ); */
   }
 
   render() {
