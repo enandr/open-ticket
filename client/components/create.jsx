@@ -10,7 +10,7 @@ export default class Create extends React.Component {
       linkedUsers: [this.props.userId],
       projects: ['No Data Received'],
       projectId: null,
-      disabledBtn: false,
+      disabledBtn: true,
       dueDate: ''
     };
     this.assigneeId = 0;
@@ -75,7 +75,35 @@ export default class Create extends React.Component {
         this.setState(newState);
         break;
     }
+    if (this.backPage.match(/(project)/i)) {
+      this.checkReadySendProject();
+    } else if (this.backPage.match(/(ticket)/i)) {
+      this.checkReadySendTicket();
+    }
+  }
 
+  checkReadySendTicket() {
+    if (
+      this.state.title.length > 4 &&
+      this.state.description.length > 4 &&
+      this.state.dueDate.length === 10 &&
+      this.assigneeId !== 0
+    ) {
+      this.setState({ disabledBtn: false });
+    } else {
+      this.setState({ disabledBtn: true });
+    }
+
+  }
+
+  checkReadySendProject() {
+    if (
+      this.state.title.length >= 5 &&
+      this.state.description.length > 5
+    ) {
+      this.setState({ disabledBtn: false });
+    }
+    this.setState({ disabledBtn: true });
   }
 
   handleSubmit(event) {
@@ -94,7 +122,7 @@ export default class Create extends React.Component {
       body.typeId = this.typeId;
       body.projectId = this.state.projectId;
       body.dueDate = this.state.dueDate;
-      request = '/api/tickets';
+      request = '/api/tickets?notify=off';
     }
 
     const settings = {
@@ -213,8 +241,8 @@ export default class Create extends React.Component {
           </label>
           <div className="form-group">
             <label>
-              Due Date yyyy-mm-dd:
-              <input className="form-control" name='dueDate' type="text" value={dueDateValue} onChange={this.handleChange} />
+              Due Date:
+              <input placeholder="yyyy-mm-dd" maxLength="10" className="form-control" name='dueDate' type="text" value={dueDateValue} onChange={this.handleChange} />
             </label>
           </div>
           <div className="form-group">
@@ -253,7 +281,7 @@ export default class Create extends React.Component {
               </select>
             </label>
           </div>
-          <button className="btn btn-success" disabled={this.state.disabledBtn} type="submit">Submit (disabled)</button>
+          <button className="btn btn-success" disabled={this.state.disabledBtn} type="submit">Submit</button>
         </div>
       );
     } else {
