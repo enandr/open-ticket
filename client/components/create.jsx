@@ -58,12 +58,14 @@ export default class Create extends React.Component {
     }
     );
     const linkedList = this.state.linkedUsers.map((value, index) => {
-      // console.log(this.state.users[value]);
-      /*       return (
-        <tr key={index}>
-          <td>{this.state.users[index].name}</td>
-        </tr>
-      ); */
+      if (this.state.users[0] !== 'No Data Received') {
+        return (
+          <tr key={index}>
+            <td>{this.state.users[value - 1].name}</td>
+          </tr>
+        );
+      }
+
     });
 
     return (
@@ -76,7 +78,7 @@ export default class Create extends React.Component {
         </div>
         <label>
               Description:
-          <input className="form-control" name='description' type="text" value={descriptionValue} onChange={this.handleChange} />
+          <textarea className="form-control" name='description' value={descriptionValue} onChange={this.handleChange} />
         </label>
         <div className="form-group">
           <label>
@@ -86,7 +88,11 @@ export default class Create extends React.Component {
             </select>
           </label>
           <table>
-            <thead></thead>
+            <thead>
+              <tr>
+                <th>Linked Users</th>
+              </tr>
+            </thead>
             <tbody>
               {linkedList}
             </tbody>
