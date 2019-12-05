@@ -36,6 +36,7 @@ export default class MyDetailView extends React.Component {
         <p>{details.assigneeName}</p>
         <p>Due Date: {details.dueDate}</p>
         <p>Created At: {details.createdAt}</p>
+        <img src={details.fileUrl}></img>
       </div>
     );
   }
