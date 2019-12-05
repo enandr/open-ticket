@@ -9,12 +9,14 @@ export default class Create extends React.Component {
       users: ['No Data Received'],
       linkedUsers: [this.props.userId],
       projects: ['No Data Received'],
-      projectId: null
+      projectId: null,
+      disabledBtn: false,
+      dueDate: ''
     };
-    this.assigneeId = null;
-    this.priorityId = null;
-    this.typeId = null;
-    this.dueDate = null;
+    this.assigneeId = 0;
+    this.priorityId = 4;
+    this.statusId = 1;
+    this.typeId = 1;
     this.backPage = this.props.backpage;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,6 +58,18 @@ export default class Create extends React.Component {
           });
         }
         break;
+      case 'assigneeSelect':
+        this.assigneeId = event.target.value;
+        break;
+      case 'statusSelect':
+        this.statusId = event.target.value;
+        break;
+      case 'prioritySelect':
+        this.priorityId = event.target.value;
+        break;
+      case 'typeSelect':
+        this.typeId = event.target.value;
+        break;
       default:
         newState[event.target.name] = event.target.value;
         this.setState(newState);
@@ -79,7 +93,7 @@ export default class Create extends React.Component {
       body.priority = this.priorityId;
       body.typeId = this.typeId;
       body.projectId = this.state.projectId;
-      body.dueDate = this.dueDate;
+      body.dueDate = this.state.dueDate;
       request = '/api/tickets';
     }
 
@@ -147,7 +161,7 @@ export default class Create extends React.Component {
             </tbody>
           </table>
         </div>
-        <button className="btn btn-success" type="submit">Submit</button>
+        <button className="btn btn-success" disabled={this.state.disabledBtn} type="submit">Submit</button>
       </form>
     );
   }
@@ -179,6 +193,7 @@ export default class Create extends React.Component {
   renderTicketChosenProject() {
     const titleValue = this.state.title;
     const descriptionValue = this.state.description;
+    const dueDateValue = this.state.dueDate;
     if (this.state.users[0] !== 'No Data Received') {
       const userList = this.state.users.map((value, index) => {
         return (<option key={index} value={value.userId}>{value.name}</option>);
@@ -198,14 +213,47 @@ export default class Create extends React.Component {
           </label>
           <div className="form-group">
             <label>
+              Due Date yyyy-mm-dd:
+              <input className="form-control" name='dueDate' type="text" value={dueDateValue} onChange={this.handleChange} />
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
               Assign A User To The Ticket:
-              <select className="form-control clickable" name="select" /* onChange={this.handleChange} */>
+              <select className="form-control clickable" name="assigneeSelect" onChange={this.handleChange}>
                 <option value='0' >Assign User</option>
                 {userList}
               </select>
             </label>
           </div>
-          <button className="btn btn-success" disabled={true} type="submit">Submit (disabled)</button>
+          <div className="form-group">
+            <label>
+              Status Code:
+              <select className="form-control clickable" name="statusSelect" onChange={this.handleChange}>
+                <option value='1' >Open</option>
+                <option value='2' >In-Progress</option>
+                <option value='3' >Closed</option>
+              </select>
+            </label>
+
+            <label>
+              Priority Level:
+              <select className="form-control clickable" name="prioritySelect" onChange={this.handleChange}>
+                <option value='4' >Low</option>
+                <option value='3' >Medium</option>
+                <option value='2' >High</option>
+                <option value='1' >Urgent</option>
+              </select>
+            </label>
+            <label>
+              Type:
+              <select className="form-control clickable" name="statusSelect" onChange={this.handleChange}>
+                <option value='1' >Issue</option>
+                <option value='2' >Feature</option>
+              </select>
+            </label>
+          </div>
+          <button className="btn btn-success" disabled={this.state.disabledBtn} type="submit">Submit (disabled)</button>
         </div>
       );
     } else {
