@@ -29,7 +29,7 @@ export default class TeamTicketList extends React.Component {
         key={index}
         value={value}
         setView={this.props.setView}
-
+        setTicketId={this.props.setTicketId}
       />
     ));
 
