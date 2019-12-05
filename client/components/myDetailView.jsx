@@ -4,23 +4,38 @@ export default class MyDetailView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: []
+      ticketDetails: ['']
     };
+    this.getMyTickets = this.getMyTickets.bind(this);
   }
 
   componentDidMount() {
-    /*     fetch('/api/health-check')
+    this.getMyTickets();
+  }
+
+  getMyTickets() {
+
+    const request = `/api/tickets?projectId=0&ticketId=${this.props.ticketId}`;
+
+    fetch(request)
       .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isTesting: false })); */
+      .then(data => this.setState({ ticketDetails: data }))
+      .catch(err => console.error('Fetch failed!', err));
   }
 
   render() {
+    const details = this.state.ticketDetails[0];
+
     return (
       <div>
         <button onClick={() => this.props.setView('myTicketList')}>Back to My Ticket List</button>
-        <h1>Item Details Go Here</h1>
+        <h1>{details.title}</h1>
+        <p>{details.description}</p>
+        <p>{details.statusCode}</p>
+        <p>{details.priorityLevel}</p>
+        <p>{details.assigneeName}</p>
+        <p>Due Date: {details.dueDate}</p>
+        <p>Created At: {details.createdAt}</p>
       </div>
     );
   }

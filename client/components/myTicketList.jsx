@@ -25,14 +25,21 @@ export default class MyTicketList extends React.Component {
   }
 
   render() {
-    const ticketArray = this.state.myTickets.map((value, index) => (
-      <MyTicket
-        key={index}
-        value={value}
-        setView={this.props.setView}
+    const ticketArray = this.state.myTickets.map((value, index) => {
 
-      />
-    ));
+      return (
+
+        <MyTicket
+          key={index}
+          value={value}
+          setView={this.props.setView}
+          setTicketId={this.props.setTicketId}
+
+        />
+
+      );
+
+    });
 
     return (
       <table className="table table-bordered clickable">
