@@ -1,5 +1,6 @@
 import React from 'react';
 import Chevron from './chevronRight';
+import Circle from './circleIcon';
 export default function MyTicket(props) {
 
   return (
@@ -43,6 +44,7 @@ export default function MyTicket(props) {
           </div>
 
         </div>
+        <Circle/>
         <Chevron/>
       </td>
     </tr>

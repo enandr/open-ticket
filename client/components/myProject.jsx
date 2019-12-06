@@ -10,9 +10,9 @@ export default function MyProject(props) {
       }}
     >
       <td>
-        <strong>{props.value.projectTitle}</strong>
+        <strong className="projecTitleFont">{props.value.projectTitle}</strong>
         <p>
-          <small>{props.value.description}</small>
+          <small className="projectDescriptionFont">{props.value.description}</small>
         </p>
       </td>
     </tr>
