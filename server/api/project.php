@@ -52,7 +52,6 @@
         if (!isset($request['body']['title'])) throw new ApiError("'title' not received", 400);
         if (!isset($request['body']['description'])) throw new ApiError("'description' not received", 400);
         if (!isset($request['body']['users'])) throw new ApiError("'users' not received", 400);
-
         return [
             'title' => $request['body']['title'],
             'description' => $request['body']['description'],
