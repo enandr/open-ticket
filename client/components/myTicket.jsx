@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Chevron from './chevronRight';
 export default function MyTicket(props) {
 
   return (
@@ -33,7 +33,9 @@ export default function MyTicket(props) {
 
           <div className="row">
             <div className="col-sm">
+
               <small>Due Date: {props.value.dueDate}</small>
+
             </div>
             <div className="col-sm">
               <small>Created At: {props.value.createdAt}</small>
@@ -41,7 +43,7 @@ export default function MyTicket(props) {
           </div>
 
         </div>
-
+        <Chevron/>
       </td>
     </tr>
   );
