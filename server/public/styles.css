@@ -87,3 +87,15 @@ label{
 .projectDescriptionFont{
   font-size: 17px;
 }
+
+.projectRows{
+  height: 120px;
+}
+
+.ticketTitle{
+  font-size: 20px;
+}
+
+.ticketInfo{
+  font-size: 17px;
+}
