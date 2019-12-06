@@ -70,3 +70,12 @@ body{
 label{
   display: block;
 }
+
+.navbar{
+  margin: auto !important;
+  width: 100% !important;
+}
+
+.navText{
+  margin-bottom: 0 !important;
+}
