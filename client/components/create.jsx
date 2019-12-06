@@ -94,7 +94,7 @@ export default class Create extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-
+    formData.append('users', this.state.linkedUsers);
     let request = '';
     if (this.backPage.match(/(project)/i)) {
       request = '/api/project?notify=off';

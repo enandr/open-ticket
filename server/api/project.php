@@ -14,8 +14,8 @@
         $user = get_user();
         $body = getBodyInfoPost($request);
         $create = createProject($link, $body, $user);
-        for($index = 0; $index < count($request['body']['users']); $index++ ) {
-            $users = $request['body']['users'][$index];
+        for($index = 0; $index < count($body['users']); $index++ ) {
+            $users = intval($body['users'][$index]);
             $linkUserToProject = linkUserToProject($link, $create, $users);
         };
         $response['body'] = $create;
@@ -49,13 +49,14 @@
     }
     function getBodyInfoPost($request){
 
-        if (!isset($request['body']['title'])) throw new ApiError("'title' not received", 400);
-        if (!isset($request['body']['description'])) throw new ApiError("'description' not received", 400);
-        if (!isset($request['body']['users'])) throw new ApiError("'users' not received", 400);
+        if (!isset($request['form']['title'])) throw new ApiError("'title' not received", 400);
+        if (!isset($request['form']['description'])) throw new ApiError("'description' not received", 400);
+        if (!isset($request['form']['users'])) throw new ApiError("'users' not received", 400);
+        $users = explode(',', $request['form']['users']);
         return [
-            'title' => $request['body']['title'],
-            'description' => $request['body']['description'],
-            'users' => $request['body']['users']
+            'title' => $request['form']['title'],
+            'description' => $request['form']['description'],
+            'users' => $users
         ];
     }
 
