@@ -70,7 +70,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'createUser') {
       return (
         <div>
-          <CreateUsers/>
+          <CreateUsers setView={this.setView}/>
         </div>
       );
     } else if (this.state.view === 'myProjectList') {

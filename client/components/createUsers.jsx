@@ -6,7 +6,8 @@ export default class CreateUsers extends React.Component {
     this.state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      status: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.checkEmpty = this.checkEmpty.bind(this);
@@ -19,32 +20,38 @@ export default class CreateUsers extends React.Component {
     this.setState(newState);
   }
 
-  checkEmpty() {
-
+  checkEmpty(event) {
+    event.preventDefault();
+    if (!this.state.name || !this.state.password || !this.state.email) {
+      this.setState({ status: 'Please enter all the require *' });
+    } else {
+      this.createUser();
+    }
   }
 
-  createUser(event) {
-    event.preventDefault();
+  createUser() {
     const sendObject = this.state;
     fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sendObject)
     })
+      .then(this.props.setView('logIn'))
       .catch(error => console.error(error));
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.createUser}>
+        <form onSubmit={this.checkEmpty}>
           <h3>Sign Up</h3>
-          <label>Username: </label>
+          <label>* Username: </label>
           <input placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}></input>
-          <label>Password: </label>
+          <label>* Password: </label>
           <input placeholder="Password" name="password" value={this.state.pass} onChange={this.handleChange}></input>
-          <label>Email: </label>
+          <label>* Email: </label>
           <input placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange}></input>
+          {this.state.status}
           <button className="btn btn-success" type="submit">Sign Up</button>
         </form>
       </div>
