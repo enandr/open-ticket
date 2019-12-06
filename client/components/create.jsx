@@ -10,7 +10,7 @@ export default class Create extends React.Component {
       linkedUsers: [this.props.userId],
       projects: ['No Data Received'],
       projectId: null,
-      disabledBtn: false,
+      disabledBtn: true,
       dueDate: ''
     };
     this.backPage = this.props.backpage;
@@ -59,18 +59,18 @@ export default class Create extends React.Component {
         this.setState(newState);
         break;
     }
-    /*     if (this.backPage.match(/(project)/i)) {
+    if (this.backPage.match(/(project)/i)) {
       this.checkReadySendProject();
     } else if (this.backPage.match(/(ticket)/i)) {
       this.checkReadySendTicket();
-    } */
+    }
   }
 
   checkReadySendTicket() {
     if (
       this.state.title.length > 4 &&
       this.state.description.length > 4 &&
-      this.state.dueDate.length === 10
+      this.state.dueDate.length === 9
     ) {
       this.setState({ disabledBtn: false });
     } else {
