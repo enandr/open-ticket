@@ -18,6 +18,7 @@ import Create from './create';
 import MyDetailNav from './myDetailNav';
 import Login from './login';
 import CreateUsers from './createUsers';
+import TeamDetailNav from './teamDetailNav';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -124,6 +125,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'teamDetailView') {
       return (
         <div>
+          <TeamDetailNav/>
           <TeamDetailView setView={this.setView} ticketId={this.state.ticketId}/>
         </div>
       );
