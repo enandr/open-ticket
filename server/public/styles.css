@@ -79,3 +79,11 @@ label{
 .navText{
   margin-bottom: 0 !important;
 }
+
+.projecTitleFont{
+  font-size: 20px;
+}
+
+.projectDescriptionFont{
+  font-size: 17px;
+}
