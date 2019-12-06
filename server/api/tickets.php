@@ -129,42 +129,46 @@ require 'slack.php';
 
     //POST
     if ($request['method'] === 'POST') {
-        require 'uploads.php';
-        $body = getBodyInfoPost($request);
+        terminal_log($_POST);
+        $ticketInfo = getBodyInfoPost($request);
+        $fileName = getFile($request);
         $user = get_user();
-        $createTicket = createTicket($link,$body,$user);
-        $createFile = createFile($link, $body, $createTicket);
+        $createTicket = createTicket($link, $ticketInfo,$user);
+        $createFile = createFile($link, $fileName , $createTicket);
         $response['body'] = [
             "ticket" => $createTicket,
             "file" => $createFile
         ];
         send($response);
     }
-
+    function getFile($request){
+        if (!isset($request['files']['image'])) throw new ApiError("'image' not received", 400);
+        $tempPath = $request['files']["image"]["tmp_name"];
+        $realName = $request['files']["image"]["name"];
+        $imageFileType = strtolower(pathinfo($realName, PATHINFO_EXTENSION));
+        $newName = hash_file('md5',$tempPath).'.'. $imageFileType;
+        $filePath = "../public/images/".$newName;
+        move_uploaded_file($tempPath, $filePath);
+        return '/images/'. $newName;
+    }
     function getBodyInfoPost($request){
 
-        if (!isset($request['body']['title'])) throw new ApiError("'title' not received", 400);
-        if (!isset($request['body']['description'])) throw new ApiError("'description' not received", 400);
-        if (!isset($request['body']['dueDate'])) throw new ApiError("'due date' not received", 400);
-        if (!isset($request['body']['projectId'])) throw new ApiError("'projectId' not received", 400);
-        if (!isset($request['body']['priority'])) throw new ApiError("'priority' not received", 400);
-        if (!isset($request['body']['typeId'])) throw new ApiError("'typeId' not received", 400);
-        if (!isset($request['body']['assigneeId'])) throw new ApiError("'assigneeId' not received", 400);
-        if (!isset($request['body']['file'])) {
-            $file = 'null';
-        } else {
-            $file = $request['body']['file'];
-        }
+        if (!isset($request['form']['title'])) throw new ApiError("'title' not received", 400);
+        if (!isset($request['form']['description'])) throw new ApiError("'description' not received", 400);
+        if (!isset($request['form']['dueDate'])) throw new ApiError("'due date' not received", 400);
+        if (!isset($request['form']['projectId'])) throw new ApiError("'projectId' not received", 400);
+        if (!isset($request['form']['priority'])) throw new ApiError("'priority' not received", 400);
+        if (!isset($request['form']['typeId'])) throw new ApiError("'typeId' not received", 400);
+        if (!isset($request['form']['assigneeId'])) throw new ApiError("'assigneeId' not received", 400);
 
         return [
-            'title' => $request['body']['title'],
-            'description' => $request['body']['description'],
-            'dueDate' => $request['body']['dueDate'],
-            'projectId' => $request['body']['projectId'],
-            'priority' => $request['body']['priority'],
-            'typeId' => $request['body']['typeId'],
-            'assigneeId' => $request['body']['assigneeId'],
-            'file' => $file
+            'title' => $request['form']['title'],
+            'description' => $request['form']['description'],
+            'dueDate' => $request['form']['dueDate'],
+            'projectId' => $request['form']['projectId'],
+            'priority' => $request['form']['priority'],
+            'typeId' => $request['form']['typeId'],
+            'assigneeId' => $request['form']['assigneeId']
         ];
     }
 
@@ -193,27 +197,22 @@ require 'slack.php';
         $creatorId = getSlackId($link, $user);
         $assigneeId = getSlackId($link, $assignee);
         postSlack('#general', "<@$creatorId> Has Created A New Ticket:
-    Title: $title
-    Description: $description
-    Due Date: $dueDate
-    ");
+        Title: $title
+        Description: $description
+        Due Date: $dueDate
+        ");
         postSlack($assigneeId,"<@$creatorId> has assigneed you to a new ticket. See it at http://localhost:3000/api/tickets?projectId=$projectId&ticketId=$insertId");
             return $insertId;
         }
     }
 
-    function createFile($link, $bodyData, $createTicket) {
+    function createFile($link, $fileName, $createTicket) {
         $sql = "INSERT INTO `files` (`ticketId`, `fileUrl`) VALUES (?, ?)";
 
         $statement = mysqli_prepare($link, $sql);
         $ticketId = $createTicket;
-/*         if(empty($bodyData['file'])){
-            $fileUrl = "null";
-        } else {
-            $fileUrl = $bodyData['file'];
-        } */
 
-        mysqli_stmt_bind_param($statement, 'is', $ticketId, $bodyData['file']);
+        mysqli_stmt_bind_param($statement, 'is', $ticketId, $fileName);
         mysqli_stmt_execute($statement);
         $insertId = $link->insert_id;
 
