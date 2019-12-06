@@ -36,7 +36,7 @@ CREATE TABLE `files` (
 
 LOCK TABLES `files` WRITE;
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
-INSERT INTO `files` VALUES (1,1,'null'),(2,2,'null'),(3,3,'null'),(4,4,'null'),(5,5,'null'),(6,6,'null'),(7,7,'null'),(8,8,'null'),(9,9,'null'),(10,10,'null'),(11,11,'null'),(12,12,'null'),(13,13,'null'),(14,14,'null');
+INSERT INTO `files` VALUES (1,1,'/images/spotify.png'),(2,2,'/images/spotify.png'),(3,3,'/images/spotify.png'),(4,4,'/images/spotify.png'),(5,5,'/images/spotify.png'),(6,6,'/images/spotify.png'),(7,7,'/images/spotify.png'),(8,8,'/images/spotify.png'),(9,9,'/images/spotify.png'),(10,10,'/images/spotify.png'),(11,11,'/images/spotify.png'),(12,12,'/images/spotify.png'),(13,13,'/images/spotify.png'),(14,14,'/images/spotify.png');
 /*!40000 ALTER TABLE `files` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,4 +234,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-04 22:26:25
+-- Dump completed on 2019-12-06  0:01:10
