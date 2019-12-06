@@ -11,7 +11,8 @@ export default class Create extends React.Component {
       projects: ['No Data Received'],
       projectId: null,
       disabledBtn: true,
-      dueDate: ''
+      dueDate: '',
+      file: ''
     };
     this.assigneeId = 0;
     this.priorityId = 4;
@@ -70,6 +71,9 @@ export default class Create extends React.Component {
       case 'typeSelect':
         this.typeId = event.target.value;
         break;
+      case 'fileToUpload':
+        this.setState({ file: event.target.value });
+        break;
       default:
         newState[event.target.name] = event.target.value;
         this.setState(newState);
@@ -102,8 +106,10 @@ export default class Create extends React.Component {
       this.state.description.length > 5
     ) {
       this.setState({ disabledBtn: false });
+    } else {
+      this.setState({ disabledBtn: true });
     }
-    this.setState({ disabledBtn: true });
+
   }
 
   handleSubmit(event) {
@@ -122,6 +128,7 @@ export default class Create extends React.Component {
       body.typeId = this.typeId;
       body.projectId = this.state.projectId;
       body.dueDate = this.state.dueDate;
+      body.file = this.state.file;
       request = '/api/tickets?notify=off';
     }
 
@@ -281,6 +288,7 @@ export default class Create extends React.Component {
               </select>
             </label>
           </div>
+          <input type="file" name="fileToUpload" id="fileToUpload" onChange={this.handleChange}></input>
           <button className="btn btn-success" disabled={this.state.disabledBtn} type="submit">Submit</button>
         </div>
       );

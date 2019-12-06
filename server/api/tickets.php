@@ -129,6 +129,7 @@ require 'slack.php';
 
     //POST
     if ($request['method'] === 'POST') {
+        require 'uploads.php';
         $body = getBodyInfoPost($request);
         $user = get_user();
         $createTicket = createTicket($link,$body,$user);
@@ -149,6 +150,11 @@ require 'slack.php';
         if (!isset($request['body']['priority'])) throw new ApiError("'priority' not received", 400);
         if (!isset($request['body']['typeId'])) throw new ApiError("'typeId' not received", 400);
         if (!isset($request['body']['assigneeId'])) throw new ApiError("'assigneeId' not received", 400);
+        if (!isset($request['body']['file'])) {
+            $file = 'null';
+        } else {
+            $file = $request['body']['file'];
+        }
 
         return [
             'title' => $request['body']['title'],
@@ -157,7 +163,8 @@ require 'slack.php';
             'projectId' => $request['body']['projectId'],
             'priority' => $request['body']['priority'],
             'typeId' => $request['body']['typeId'],
-            'assigneeId' => $request['body']['assigneeId']
+            'assigneeId' => $request['body']['assigneeId'],
+            'file' => $file
         ];
     }
 
@@ -200,13 +207,13 @@ require 'slack.php';
 
         $statement = mysqli_prepare($link, $sql);
         $ticketId = $createTicket;
-        if(empty($bodyData['fileUrl'])){
-            $fileUrl = "NULL";
+/*         if(empty($bodyData['file'])){
+            $fileUrl = "null";
         } else {
-            $fileUrl = $bodyData['fileUrl'];
-        }
+            $fileUrl = $bodyData['file'];
+        } */
 
-        mysqli_stmt_bind_param($statement, 'is', $ticketId, $fileUrl);
+        mysqli_stmt_bind_param($statement, 'is', $ticketId, $bodyData['file']);
         mysqli_stmt_execute($statement);
         $insertId = $link->insert_id;
 
