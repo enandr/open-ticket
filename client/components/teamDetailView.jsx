@@ -28,7 +28,6 @@ export default class TeamDetailView extends React.Component {
 
     return (
       <div>
-        <button onClick={() => this.props.setView('teamTicketList')}>Back to Team Ticket List</button>
         <h1>{details.title}</h1>
         <p>{details.description}</p>
         <p>{details.statusCode}</p>

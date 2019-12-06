@@ -102,7 +102,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'myDetailView') {
       return (
         <div>
-          <MyDetailNav/>
+          <MyDetailNav setView={this.setView}/>
           <MyDetailView setView={this.setView} ticketId={this.state.ticketId}/>
         </div>
       );
@@ -125,7 +125,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'teamDetailView') {
       return (
         <div>
-          <TeamDetailNav/>
+          <TeamDetailNav setView={this.setView}/>
           <TeamDetailView setView={this.setView} ticketId={this.state.ticketId}/>
         </div>
       );

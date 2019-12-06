@@ -28,7 +28,6 @@ export default class MyDetailView extends React.Component {
 
     return (
       <div>
-        <button onClick={() => this.props.setView('myTicketList')}>Back to My Ticket List</button>
         <h1 className="text-center">{details.title}</h1>
         <div className="container text-center">
           <div className="row">
