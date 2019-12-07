@@ -29,7 +29,7 @@ export default class MyDetailView extends React.Component {
     return (
       <div>
         <h1 className="text-center">{details.title}</h1>
-        <div className="container text-center">
+        <div className="container text-center detailText">
           <div className="row">
             <div className="col-sm">
               <small>Assignee: {details.assigneeName}</small>
