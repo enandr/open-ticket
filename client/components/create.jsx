@@ -137,38 +137,45 @@ export default class Create extends React.Component {
     });
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-group col-sm-6">
-          <label>
+      <div className="container pt-2">
+        <form onSubmit={this.handleSubmit} className="card pt-2">
+          <div className="d-flex justify-content-center align-items-center flex-column">
+            <div className="form-group w-75">
+              <label>
               Title:
-            <input className="form-control" name='title' type="text" value={titleValue} onChange={this.handleChange} />
-          </label>
-        </div>
-        <label>
+                <input className="form-control" name='title' type="text" value={titleValue} onChange={this.handleChange} />
+              </label>
+            </div>
+            <div className="form-group w-75">
+              <label>
               Description:
-          <textarea className="form-control" name='description' value={descriptionValue} onChange={this.handleChange} />
-        </label>
-        <div className="form-group col-sm-6">
-          <label>
+                <textarea className="form-control" name='description' value={descriptionValue} onChange={this.handleChange} />
+              </label>
+            </div>
+            <div className="form-group w-75">
+              <label>
               Add A User To The Project:
-            <select className="form-control clickable" name="select" onChange={this.handleChange}>
-              <option value='0' >Add User</option>
-              {userList}
-            </select>
-          </label>
-          <table>
-            <thead>
-              <tr>
-                <th>Linked Users</th>
-              </tr>
-            </thead>
-            <tbody>
-              {linkedList}
-            </tbody>
-          </table>
-        </div>
-        <button className="btn btn-success" disabled={this.state.disabledBtn} type="submit">Submit</button>
-      </form>
+                <select className="form-control clickable" name="select" onChange={this.handleChange}>
+                  <option value='0' >Add User</option>
+                  {userList}
+                </select>
+              </label>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Linked Users</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {linkedList}
+                </tbody>
+              </table>
+            </div>
+            <button className="btn btn-primary w-75" disabled={this.state.disabledBtn} type="submit">Submit</button>
+          </div>
+        </form>
+
+      </div>
     );
   }
 
