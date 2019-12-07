@@ -5,8 +5,10 @@ export default class MyProjectList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: []
+      projects: [],
+      search: ''
     };
+    this.searchInput = this.searchInput.bind(this);
   }
 
   componentDidMount() {
@@ -19,19 +21,41 @@ export default class MyProjectList extends React.Component {
     fetch(`/api/project?userId=${this.props.userId}`)
 
       .then(res => res.json())
-      .then(data => this.setState({ projects: data }))
+      .then(data => {
+        const reverseData = data.reverse();
+        this.setState({ projects: reverseData });
+
+      })
       .catch(err => console.error('Fetch failed!', err));
+
+  }
+
+  searchInput(event) {
+    const searchVal = event.target.value;
+
+    this.setState({ search: searchVal });
+
   }
 
   render() {
-    const reverseArray = this.state.projects.reverse();
-    const array = reverseArray.map((value, index) => <MyProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId}/>);
+
+    const array = this.state.projects.map((value, index) => {
+
+      if (value.projectTitle.toLowerCase().includes(this.state.search.toLowerCase())) {
+        return (<MyProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId}/>);
+      }
+
+    });
+
     return (
-      <table className="table table-bordered clickable">
-        <tbody>
-          {array}
-        </tbody>
-      </table>
+      <div>
+        <input className="form-control " type="text" placeholder="Search" aria-label="Search" onChange={this.searchInput}></input>
+        <table className="table table-bordered clickable">
+          <tbody>
+            {array}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
