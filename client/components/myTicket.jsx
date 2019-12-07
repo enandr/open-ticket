@@ -13,8 +13,8 @@ export default function MyTicket(props) {
       <td>
 
         <div className="container">
-          <div className="row">
-            <div className="col">
+          <div className="">
+            <div className="">
               <strong className="ticketTitle">{props.value.ticketTitle}</strong>
               <div className="row">
 
@@ -47,7 +47,7 @@ export default function MyTicket(props) {
                 </div>
               </div>
             </div>
-            <div className="col">
+            <div className="">
               <Circle />
               <Chevron />
 
