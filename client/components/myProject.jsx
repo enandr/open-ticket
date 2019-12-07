@@ -11,8 +11,8 @@ export default function MyProject(props) {
     >
       <td className="projectData align-middle">
         <strong className="projecTitleFont">{props.value.projectTitle}</strong>
-        <p>
-          <small className="projectDescriptionFont my-0">{props.value.description}</small>
+        <p className="projectDescriptionFont my-0">
+          {props.value.description}
         </p>
       </td>
     </tr>
