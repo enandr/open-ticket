@@ -7,6 +7,7 @@ export default class CreateUsers extends React.Component {
       name: '',
       email: '',
       password: '',
+      slackId: '',
       status: ''
     };
     this.handleChange = this.handleChange.bind(this);
@@ -48,9 +49,11 @@ export default class CreateUsers extends React.Component {
           <label>* Username: </label>
           <input placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}></input>
           <label>* Password: </label>
-          <input placeholder="Password" name="password" value={this.state.pass} onChange={this.handleChange}></input>
+          <input type="password" placeholder="Password" name="password" value={this.state.pass} onChange={this.handleChange}></input>
           <label>* Email: </label>
           <input placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange}></input>
+          <label>SlackID: </label>
+          <input placeholder="SlackID" name="slackId" value={this.state.slackId} onChange={this.handleChange}></input>
           {this.state.status}
           <button className="btn btn-success" type="submit">Sign Up</button>
         </form>

@@ -65,26 +65,31 @@
     }
 
     function getBodyInfoPost($request){
-
+         
         if (!isset($request['body']['name'])) throw new ApiError("'name' not received", 400);
         if (!isset($request['body']['email'])) throw new ApiError("'email' not received", 400);
         if (!isset($request['body']['password'])) throw new ApiError("'password' not received", 400);
+        if (!isset($request['body']['slackId'])) throw new ApiError("'password' not received", 400);
+
+        
 
         return [
             'name' => $request['body']['name'],
             'email' => $request['body']['email'],
-            'password' => $request['body']['password']
+            'password' => $request['body']['password'],
+            'slackId' => $request['body']['slackId']
         ];
     }
 
     function createUser($link, $bodyData) {
 
-        $sql = "INSERT INTO `users` (`name`, `email`, `password`) VALUES (?,?,?)";
+        $sql = "INSERT INTO `users` (`name`, `email`, `password`, `slackId`) VALUES (?,?,?,?)";
         $statement = mysqli_prepare($link, $sql);
         $name = $bodyData['name'];
         $email = $bodyData['email'];
+        $slackId = $bodyData['slackId'];
         $pass = password_hash($bodyData['password'], PASSWORD_DEFAULT);
-        mysqli_stmt_bind_param($statement, 'sss', $name, $email, $pass);
+        mysqli_stmt_bind_param($statement, 'ssss', $name, $email, $pass,$slackId);
         mysqli_stmt_execute($statement);
         $insertId = $link->insert_id;
 
