@@ -1,4 +1,5 @@
 import React from 'react';
+import BackIcon from './backIcon';
 
 export default class CreateUsers extends React.Component {
   constructor(props) {
@@ -44,6 +45,9 @@ export default class CreateUsers extends React.Component {
   render() {
     return (
       <div>
+        <div onClick={() => this.props.setView('logIn')}>
+          <BackIcon/>
+        </div>
         <form onSubmit={this.checkEmpty}>
           <h3>Sign Up</h3>
           <label>* Username: </label>

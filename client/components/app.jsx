@@ -77,7 +77,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'myProjectList') {
       return (
         <div>
-          <MyProjectListNav/>
+          <MyProjectListNav setView={this.setView}/>
           <MyProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.state.userId}/>
           <MyProjectListFooter setView={this.setView}/>
 
