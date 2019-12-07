@@ -44,21 +44,25 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div className="logInContainer">
-        <h1>OpenTickets</h1>
-        <form onSubmit={this.handleSubmit}>
-          <p>{this.state.status}</p>
-          <div className="username">
-            <label>Username: </label>
-            <input type="text" placeholder="Name" value={this.state.name} onChange={this.handleChangeUserName}></input>
-          </div>
-          <div className="password">
-            <label>Password: </label>
-            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handleChangePass}></input>
-          </div>
-          <p onClick={this.handleChangeView}>Create Account ?</p>
-          <button className="btn btn-success" type="submit">Login</button>
-        </form>
+      <div>
+        <div className="appName">
+          <h1>OpenTicket</h1>
+        </div>
+        <div className="logInContainer">
+          <form onSubmit={this.handleSubmit}>
+            <p>{this.state.status}</p>
+            <div className="username">
+              <label>Username: </label>
+              <input type="text" className="form-control" placeholder="Name" value={this.state.name} onChange={this.handleChangeUserName}></input>
+            </div>
+            <div className="password">
+              <label>Password: </label>
+              <input type="password" className="form-control" placeholder="Password" value={this.state.password} onChange={this.handleChangePass}></input>
+            </div>
+            <p onClick={this.handleChangeView}>Create Account ?</p>
+            <button className="btn btn-success" type="submit">Login</button>
+          </form>
+        </div>
       </div>
     );
   }

@@ -23,8 +23,6 @@
         } 
     }
 
-
-
     function getUserInfos($link, $user, $password, $getHash) {
         //error_log($getHash);
         if (password_verify($password, $getHash)) {

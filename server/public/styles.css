@@ -28,16 +28,11 @@ body{
 }
 
 /*Log In Page*/
-/* .logInContainer {
+.appName h1 {
+  top: 11%;
   position: absolute;
-  top: 30%;
-  left: 25%;
-}
-.logInContainer button {
-  position: absolute;
-  left: 30%;
-} */
-.logInContainer h1 {
+  left: 6%;
+  font-size: 69px;
   text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
@@ -51,20 +46,20 @@ body{
                0 10px 10px rgba(0,0,0,.2),
                0 20px 20px rgba(0,0,0,.15);
 }
-/* .username label, .password label{
-  display: block;
+.logInContainer {
+  position: absolute;
+    background-color: #EDE9E8;
+    width: 81%;
+    top: 35%;
+    left: 11%;
+    border: 1px solid black;
+    border-radius: 5%;
+    box-shadow: 2px 2px 31px grey;
 }
-.username input, .password input {
-  border: 1px solid black;
-  box-shadow: 3px 2px 2px grey;
-  border-radius: 4%;
+.logInContainer label{
+  margin-left: 35%;
+  font-weight: 600;
 }
-.username {
-  margin-top: 18%;
-}
-.password, .logInContainer p{
-  margin-top: 3%;
-} */
 
 /*Create User*/
 label{
