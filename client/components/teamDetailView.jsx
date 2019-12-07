@@ -28,13 +28,38 @@ export default class TeamDetailView extends React.Component {
 
     return (
       <div>
-        <h1>{details.title}</h1>
-        <p>{details.description}</p>
-        <p>{details.statusCode}</p>
-        <p>{details.priorityLevel}</p>
-        <p>{details.assigneeName}</p>
-        <p>Due Date: {details.dueDate}</p>
-        <p>Created At: {details.createdAt}</p>
+        <h1 className="text-center">{details.title}</h1>
+        <div className="container text-center">
+          <div className="row">
+            <div className="col-sm">
+              <small>Created At: {details.createdAt}</small>
+            </div>
+            <div className="col-sm">
+              <small>Priority: {details.priorityLevel}</small>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-sm">
+              <small>Due Date: {details.dueDate}</small>
+            </div>
+            <div className="col-sm">
+              <small>Assignee: {details.assigneeName}</small>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-sm">
+              <small>Status: {details.statusCode}</small>
+            </div>
+
+          </div>
+
+        </div>
+        <br></br>
+        <p className="text-center">{details.description}</p>
+        <img src={details.fileUrl} className="img-fluid" alt="Responsive image"></img>
+
       </div>
     );
   }

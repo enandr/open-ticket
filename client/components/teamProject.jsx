@@ -6,9 +6,9 @@ export default function TeamProject(props) {
       props.setView('teamTicketList');
       props.setProjectId(props.value.projectId);
     }}>
-      <td><strong>{props.value.projectTitle}</strong>
+      <td><strong className="projecTitleFont">{props.value.projectTitle}</strong>
         <p>
-          <small>{props.value.description}</small>
+          <small className="projectDescriptionFont">{props.value.description}</small>
         </p>
       </td>
     </tr>
