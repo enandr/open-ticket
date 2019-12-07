@@ -1,11 +1,13 @@
 import React from 'react';
 import TeamTicket from './teamTicket';
+import NoTickets from '../../server/public/images/NoTickets.png';
 
 export default class TeamTicketList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      teamTickets: []
+      teamTickets: [],
+      loaded: 'false'
     };
   }
 
@@ -19,7 +21,7 @@ export default class TeamTicketList extends React.Component {
 
     fetch(request)
       .then(res => res.json())
-      .then(data => this.setState({ teamTickets: data }))
+      .then(data => this.setState({ teamTickets: data, loaded: 'true' }))
       .catch(err => console.error('Fetch failed!', err));
   }
 
@@ -33,10 +35,16 @@ export default class TeamTicketList extends React.Component {
       />
     ));
 
-    return (
-      <table className="table table-bordered">
-        <tbody>{teamTicketArray}</tbody>
-      </table>
-    );
+    if (!this.state.teamTickets[0] && this.state.loaded === 'true') {
+      return (
+        <img src={NoTickets} width='350' height='600' />
+      );
+    } else {
+      return (
+        <table className="table table-bordered">
+          <tbody>{teamTicketArray}</tbody>
+        </table>
+      );
+    }
   }
 }
