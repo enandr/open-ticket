@@ -26,7 +26,8 @@ export default class TeamProjectList extends React.Component {
   }
 
   render() {
-    const teamArray = this.state.projects.map((value, index) => <TeamProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId}/>);
+    const reverseArray = this.state.projects.reverse();
+    const teamArray = reverseArray.map((value, index) => <TeamProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId} />);
     return (
       <table className="table table-bordered">
         <tbody>
