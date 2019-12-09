@@ -48,7 +48,7 @@ export default function MyTicket(props) {
               </div>
             </div>
             <div className="">
-              <Circle />
+              <Circle fill={props.value.statusCode}/>
               <Chevron />
 
             </div>

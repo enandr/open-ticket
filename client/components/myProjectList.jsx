@@ -6,9 +6,10 @@ export default class MyProjectList extends React.Component {
     super(props);
     this.state = {
       projects: [],
-      search: ''
+      search: '',
+      searchType: 'projectTitle'
     };
-    this.searchInput = this.searchInput.bind(this);
+    this.searchOrFilter = this.searchOrFilter.bind(this);
   }
 
   componentDidMount() {
@@ -30,26 +31,27 @@ export default class MyProjectList extends React.Component {
 
   }
 
-  searchInput(event) {
-    const searchVal = event.target.value;
+  searchOrFilter(event) {
+    const newState = {};
+    newState.search = event.target.value;
+    newState.searchType = event.target.name;
 
-    this.setState({ search: searchVal });
+    this.setState(newState);
 
   }
 
   render() {
-
     const array = this.state.projects.map((value, index) => {
 
-      if (value.projectTitle.toLowerCase().includes(this.state.search.toLowerCase())) {
-        return (<MyProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId}/>);
+      if (value[this.state.searchType].toLowerCase().includes(this.state.search.toLowerCase())) {
+        return (<MyProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId} />);
       }
 
     });
 
     return (
       <div>
-        <input className="form-control " type="text" placeholder="Search" aria-label="Search" onChange={this.searchInput}></input>
+        <input className="form-control " name="projectTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
         <table className="table table-bordered clickable">
           <tbody>
             {array}
