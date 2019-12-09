@@ -3,8 +3,10 @@
 
     if($request['method'] === 'POST') {
         $body = getBodyInfoPost($request);
-        $create = createUser($link, $body);
+        $checkName = checkName($link,$body);
+        $create = createUser($link, $body, $checkName);
         $response['body'] = $create;
+        terminal_log($response);
         send($response);
     }
 
@@ -81,24 +83,34 @@
         ];
     }
 
-    function createUser($link, $bodyData) {
-
-        $sql = "INSERT INTO `users` (`name`, `email`, `password`, `slackId`) VALUES (?,?,?,?)";
-        $statement = mysqli_prepare($link, $sql);
-        $name = $bodyData['name'];
-        $email = $bodyData['email'];
-        $slackId = $bodyData['slackId'];
-        $pass = password_hash($bodyData['password'], PASSWORD_DEFAULT);
-        mysqli_stmt_bind_param($statement, 'ssss', $name, $email, $pass,$slackId);
-        mysqli_stmt_execute($statement);
-        $insertId = $link->insert_id;
-
-        if(empty($insertId)){
-            throw new ApiError ("Fail to insert", 400);
-        } else {
-            return $insertId;
-        }
-
-
+    function checkName($link, $bodyData) {
+      $sqlCheck = "SELECT `name` FROM `users` WHERE `name`='{$bodyData['name']}' ";
+      $res = mysqli_query($link, $sqlCheck);
+      $output = mysqli_fetch_all($res, MYSQLI_ASSOC);
+      $output = $output[0]['name'];
+      return $output;
     }
+
+    function createUser($link, $bodyData, $checkName) {
+      if($checkName) {
+        return "Already Exits";
+      } else {
+        $sql = "INSERT INTO `users` (`name`, `email`, `password`, `slackId`) VALUES (?,?,?,?)";
+          $statement = mysqli_prepare($link, $sql);
+          $name = $bodyData['name'];
+          $email = $bodyData['email'];
+          $slackId = $bodyData['slackId'];
+          $pass = password_hash($bodyData['password'], PASSWORD_DEFAULT);
+          mysqli_stmt_bind_param($statement, 'ssss', $name, $email, $pass,$slackId);
+          mysqli_stmt_execute($statement);
+          $insertId = $link->insert_id;
+
+          if(empty($insertId)){
+              throw new ApiError ("Fail to insert", 400);
+          } else {
+              return $insertId;
+          }
+      } 
+    }
+          
 ?>

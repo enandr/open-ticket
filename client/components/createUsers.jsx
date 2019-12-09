@@ -25,20 +25,32 @@ export default class CreateUsers extends React.Component {
   checkEmpty(event) {
     event.preventDefault();
     if (!this.state.name || !this.state.password || !this.state.email) {
-      this.setState({ status: 'Please enter all the require *' });
+      return this.setState({ status: 'Please enter all the require *' });
     } else {
       this.createUser();
     }
   }
 
   createUser() {
-    const sendObject = this.state;
+    const sendObject = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      slackId: this.state.slackId
+    };
     fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sendObject)
     })
-      .then(this.props.setView('logIn'))
+      .then(response => response.json())
+      .then(data => {
+        if (data === 'Already Exits') {
+          this.setState({ status: 'Username Already Exits' });
+        } else {
+          this.props.setView('logIn');
+        }
+      })
       .catch(error => console.error(error));
   }
 
@@ -48,19 +60,37 @@ export default class CreateUsers extends React.Component {
         <div onClick={() => this.props.setView('logIn')}>
           <BackIcon/>
         </div>
-        <form onSubmit={this.checkEmpty}>
-          <h3>Sign Up</h3>
-          <label>* Username: </label>
-          <input placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}></input>
-          <label>* Password: </label>
-          <input type="password" placeholder="Password" name="password" value={this.state.pass} onChange={this.handleChange}></input>
-          <label>* Email: </label>
-          <input placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange}></input>
-          <label>SlackID: </label>
-          <input placeholder="SlackID" name="slackId" value={this.state.slackId} onChange={this.handleChange}></input>
-          {this.state.status}
-          <button className="btn btn-success" type="submit">Sign Up</button>
-        </form>
+
+        <div className="d-flex justify-content-center">
+          <div className="card card col-sm-3 col-lg-3 col-9">
+            <article className="card-body">
+              <h4 className="card-title mb-4 mt-1">Sign Up</h4>
+              <form onSubmit={this.checkEmpty}>
+                <div className="form-group">
+                  <label>*Username:</label>
+                  <input className="form-control col-sm" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                  <label>*Your password:</label>
+                  <input className="form-control" type="password" placeholder="Password" name="password" value={this.state.pass} onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                  <label>*Email:</label>
+                  <input className="form-control" placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                  <label>SlackID:</label>
+                  <input className="form-control" placeholder="SlackID" name="slackId" value={this.state.slackId} onChange={this.handleChange}/>
+                </div>
+                <p className="text-danger">* require</p>
+                <p className="text-danger">{this.state.status}</p>
+                <div className="form-group">
+                  <button type="submit" className="btn btn-primary btn-block"> Sign Up</button>
+                </div>
+              </form>
+            </article>
+          </div>
+        </div>
       </div>
     );
   }
