@@ -63,12 +63,9 @@ export default class App extends React.Component {
     this.setState({ ticketId: id });
   }
 
-  edit() {
-    if (this.state.editTicketMode === false) {
-      this.setState({ editTicketMode: true });
-    } else {
-      this.setState({ editTicketMode: false });
-    }
+  edit(editMode) {
+    this.setState({ editTicketMode: editMode });
+
   }
 
   render() {
