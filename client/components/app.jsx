@@ -30,13 +30,15 @@ export default class App extends React.Component {
       ticketId: null,
       view: 'logIn',
       backPage: null,
-      userId: null
+      userId: null,
+      editTicketMode: false
 
     };
     this.setProjectId = this.setProjectId.bind(this);
     this.setTicketId = this.setTicketId.bind(this);
     this.setView = this.setView.bind(this);
     this.setUserId = this.setUserId.bind(this);
+    this.edit = this.edit.bind(this);
   }
 
   componentDidMount() {
@@ -59,6 +61,14 @@ export default class App extends React.Component {
   setTicketId(id) {
     // alert(id);
     this.setState({ ticketId: id });
+  }
+
+  edit() {
+    if (this.state.editTicketMode === false) {
+      this.setState({ editTicketMode: true });
+    } else {
+      this.setState({ editTicketMode: false });
+    }
   }
 
   render() {
@@ -102,8 +112,8 @@ export default class App extends React.Component {
     } else if (this.state.view === 'myDetailView') {
       return (
         <div>
-          <MyDetailNav setView={this.setView}/>
-          <MyDetailView setView={this.setView} ticketId={this.state.ticketId}/>
+          <MyDetailNav setView={this.setView} edit={this.edit}/>
+          <MyDetailView setView={this.setView} edit={this.state.editTicketMode} ticketId={this.state.ticketId}/>
         </div>
       );
     } else if (this.state.view === 'teamProjectList') {

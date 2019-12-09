@@ -8,6 +8,7 @@ export default function MyDetailNav(props) {
         props.setView('myTicketList');
       }}><BackIcon /></div>
       <a className="navbar-brand">Ticket Details</a>
+      <a className="navbar-brand clickable" onClick={props.edit}>Edit</a>
     </nav>
   );
 }
