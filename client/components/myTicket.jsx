@@ -43,7 +43,7 @@ export default function MyTicket(props) {
 
                 </div>
                 <div className="col-sm">
-                  <small className="ticketInfo">Created At: {props.value.createdAt}</small>
+                  <small className="ticketInfo">Created At: {props.value.createdAt.slice(0, 10)}</small>
                 </div>
               </div>
             </div>
