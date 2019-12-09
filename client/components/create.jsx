@@ -70,7 +70,7 @@ export default class Create extends React.Component {
     if (
       this.state.title.length > 4 &&
       this.state.description.length > 4 &&
-      this.state.dueDate.length === 9
+      this.state.dueDate.length >= 9
     ) {
       this.setState({ disabledBtn: false });
     } else {
@@ -82,7 +82,7 @@ export default class Create extends React.Component {
   checkReadySendProject() {
     if (
       this.state.title.length >= 5 &&
-      this.state.description.length > 5
+      this.state.description.length >= 5
     ) {
       this.setState({ disabledBtn: false });
     } else {
@@ -97,9 +97,9 @@ export default class Create extends React.Component {
     formData.append('users', this.state.linkedUsers);
     let request = '';
     if (this.backPage.match(/(project)/i)) {
-      request = '/api/project?notify=off';
+      request = '/api/project?notify=on';
     } else if (this.backPage.match(/(ticket)/i)) {
-      request = '/api/tickets?notify=off';
+      request = '/api/tickets?notify=on';
     }
 
     const settings = {
