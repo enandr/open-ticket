@@ -54,6 +54,11 @@ export default class TeamTicketList extends React.Component {
             <option value="In-Progress" >In-Progress</option>
             <option value="Closed" >Closed</option>
           </select>
+          <select name="ticketType" onChange={this.searchOrFilter}>
+            <option value="">All</option>
+            <option value="Feature">Feature</option>
+            <option value="Issue" >Issue</option>
+          </select>
           <input className="form-control " name="ticketTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
           <table className="table table-bordered">
             <tbody>{teamTicketArray}</tbody>
