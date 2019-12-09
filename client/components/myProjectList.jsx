@@ -44,7 +44,9 @@ export default class MyProjectList extends React.Component {
     const array = this.state.projects.map((value, index) => {
 
       if (value[this.state.searchType].toLowerCase().includes(this.state.search.toLowerCase())) {
+
         return (<MyProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId}/>);
+
       }
 
     });

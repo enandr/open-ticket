@@ -5,8 +5,11 @@ export default class MyTicketList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      myTickets: []
+      myTickets: [],
+      search: '',
+      searchType: 'ticketTitle'
     };
+    this.searchOrFilter = this.searchOrFilter.bind(this);
   }
 
   componentDidMount() {
@@ -24,27 +27,37 @@ export default class MyTicketList extends React.Component {
       .catch(err => console.error('Fetch failed!', err));
   }
 
+  searchOrFilter(event) {
+    const newState = {};
+    newState.search = event.target.value;
+    newState.searchType = event.target.name;
+
+    this.setState(newState);
+
+  }
+
   render() {
     const ticketArray = this.state.myTickets.map((value, index) => {
+      if (value[this.state.searchType].toLowerCase().includes(this.state.search.toLowerCase())) {
+        return (
 
-      return (
-
-        <MyTicket
-          key={index}
-          value={value}
-          setView={this.props.setView}
-          setTicketId={this.props.setTicketId}
-
-        />
-
-      );
+          <MyTicket
+            key={index}
+            value={value}
+            setView={this.props.setView}
+            setTicketId={this.props.setTicketId}/>);
+      }
 
     });
 
     return (
-      <table className="table table-bordered clickable">
-        <tbody>{ticketArray}</tbody>
-      </table>
+      <div>
+        <input className="form-control" name="ticketTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
+        <table className="table table-bordered clickable">
+
+          <tbody>{ticketArray}</tbody>
+        </table>
+      </div>
     );
   }
 }
