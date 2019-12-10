@@ -27,7 +27,7 @@ CREATE TABLE `files` (
   `ticketId` int(11) NOT NULL,
   `fileUrl` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,6 @@ CREATE TABLE `files` (
 
 LOCK TABLES `files` WRITE;
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
-INSERT INTO `files` VALUES (1,1,'/images/spotify.png'),(2,2,'/images/spotify.png'),(3,3,'/images/spotify.png'),(4,4,'/images/spotify.png'),(5,5,'/images/spotify.png'),(6,6,'/images/spotify.png'),(7,7,'/images/spotify.png'),(8,8,'/images/spotify.png'),(9,9,'/images/spotify.png'),(10,10,'/images/spotify.png'),(11,11,'/images/spotify.png'),(12,12,'/images/spotify.png'),(13,13,'/images/spotify.png'),(14,14,'/images/spotify.png');
 /*!40000 ALTER TABLE `files` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +77,7 @@ CREATE TABLE `projects` (
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `createdBy` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +86,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` VALUES (1,'SGT','A Student Grade Table to display a list of students, courses and their grades in that course.','2019-11-27 21:44:35',1),(2,'Wicked Sales','An ecommerce platform that sells some of the worst products tv has to offer.','2019-11-27 22:04:23',2),(3,'Memory Match','A Memory Match Card Game','2019-11-27 22:05:10',3),(4,'Open Ticket','An issue and feature tracking system for projects','2019-11-27 22:05:43',4),(5,'Hackathon','48 hour project usinf four separate Apis.','2019-12-04 01:01:16',2);
+INSERT INTO `projects` VALUES (1,'Student Grade Table','An app to display a list of students courses, and their grades','2019-12-09 23:50:48',1),(2,'Star Wars Memory Match','A card memory match game with a Star Wars Theme','2019-12-09 23:52:18',1),(3,'Stay In Go Out','SI/GO is an app that, based on the weather, recommends indoor or outdoor activities.','2019-12-09 23:55:48',1),(4,'Terraforming Mars','A digitalized board game where you terraform mars to make it livable','2019-12-09 23:57:32',1),(5,'Events Near You','A simple project implementing EventBrite API to find and displays events nearby the user.','2019-12-09 23:58:32',3),(6,'Xbox GamePass','Xbox Game Pass is a video game subscription service for use with the Xbox One console and Windows 10. ','2019-12-09 23:59:44',4),(7,'Overwatch Memory Match','Match your favorite Overwatch characters in this game based on Blizzard’s hit first person shooter.','2019-12-10 00:00:13',4),(8,'Gemstone Mining','A re-creation of the Disney Gemstone Mining game written in Javascript OOP.','2019-12-10 00:00:49',3),(10,'Balance Health','Tracking what you did what you eat and how long you sleep to give you the recommendation.','2019-12-10 00:01:55',2),(11,'Travel buddy','Let you know the weather in the area and the top 5 restaurant in that area.','2019-12-10 00:02:28',2),(12,'openTicket','A React based issue and feature tracking system for web development projects. Built for developers by developers. word word.','2019-12-10 00:07:19',4);
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +135,7 @@ CREATE TABLE `tickets` (
   `createdBy` int(11) NOT NULL,
   `updateAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +144,6 @@ CREATE TABLE `tickets` (
 
 LOCK TABLES `tickets` WRITE;
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-INSERT INTO `tickets` VALUES (1,'Cards Not Flipping','The cards are not flipping',NULL,3,1,1,1,2,'2019-11-27 22:19:44',1,'2019-11-27 22:19:44'),(2,'Average Grade Not Calculating','The average grade is not calculating correctly. It is too high.',NULL,1,2,1,1,4,'2019-11-27 22:19:44',2,'2019-11-27 22:19:44'),(3,'Checkout','Make the app have the ability to check out the users cart.',NULL,2,3,1,2,1,'2019-11-27 22:21:55',3,'2019-11-27 22:21:55'),(4,'View All Projects','Make it so the user can view all of their projects',NULL,4,4,1,2,3,'2019-11-27 22:22:41',4,'2019-11-27 22:22:41'),(5,'Edit a student','Make is so that a user can edit a student','2019-11-30',1,2,1,2,1,'2019-11-27 22:26:38',4,'2019-11-27 22:26:38'),(6,'Error viewing cart','The wrong data is showing up in the cart','2019-11-28',2,1,1,1,2,'2019-11-27 22:26:38',3,'2019-11-27 22:26:38'),(7,'Sound play when cards clicked','Make it so that sounds will play when cards are clicked','2019-11-21',3,4,1,2,3,'2019-11-27 22:28:40',2,'2019-11-27 22:28:40'),(8,'Planning','Plan for the whole project.','2019-12-06',5,1,2,2,2,'2019-12-04 01:02:56',2,'2019-12-04 01:02:56'),(9,'Break Into Component','Look over pieces of project and break down into components.','2019-12-07',5,1,1,1,2,'2019-12-04 01:04:33',2,'2019-12-04 01:04:33'),(10,'Finish the Project','Complete the project and turn into teacher.','2019-12-11',5,3,3,2,2,'2019-12-04 01:05:35',2,'2019-12-04 01:05:35'),(11,'Create Cards Dynamically','Create the cards using javascript and jQuery.','2019-12-06',3,2,2,1,2,'2019-12-04 01:07:40',2,'2019-12-04 01:07:40'),(12,'Change Image on Cards','Change the image on the cards to fit the theme.','2019-12-09',3,2,2,2,2,'2019-12-04 01:09:38',2,'2019-12-04 01:09:38'),(13,'Finish Back End','Finish PHP for the back end of Wicked Sales.','2019-12-05',2,2,2,2,2,'2019-12-04 01:10:59',2,'2019-12-04 01:10:59'),(14,'Create Detail View','Allow user to view products full details.','2019-12-13',2,1,1,2,2,'2019-12-04 01:12:00',2,'2019-12-04 01:12:00');
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +183,7 @@ CREATE TABLE `userProjects` (
   `projectId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +192,7 @@ CREATE TABLE `userProjects` (
 
 LOCK TABLES `userProjects` WRITE;
 /*!40000 ALTER TABLE `userProjects` DISABLE KEYS */;
-INSERT INTO `userProjects` VALUES (1,1,1),(2,4,1),(3,2,2),(4,3,2),(5,3,3),(6,4,3),(7,1,4),(8,5,2);
+INSERT INTO `userProjects` VALUES (1,1,1),(2,2,1),(3,3,1),(4,3,2),(5,3,3),(6,3,4),(7,4,1),(8,4,3),(9,4,2),(10,4,4),(11,5,3),(12,5,1),(13,5,2),(14,5,4),(15,6,4),(16,6,1),(17,6,2),(18,6,3),(19,7,4),(20,8,3),(21,8,2),(22,8,1),(23,8,4),(26,9,1),(27,9,4),(28,10,2),(29,11,2),(30,12,4),(31,12,2),(32,12,1),(33,12,3);
 /*!40000 ALTER TABLE `userProjects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +219,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Roger','a@b.com','$2y$10$RYFLAsrs5uG9w9QyPs6PhOeQ8abPCZMyQ4SdWt63OGhd43kMvWuuq','UR4ER5WVA'),(2,'Khoa','a@b.com','$2y$10$RYFLAsrs5uG9w9QyPs6PhOeQ8abPCZMyQ4SdWt63OGhd43kMvWuuq','UR6F7NUM6'),(3,'Jacob','a@b.com','$2y$10$RYFLAsrs5uG9w9QyPs6PhOeQ8abPCZMyQ4SdWt63OGhd43kMvWuuq','UQV1FDZ51'),(4,'Ziyaad','a@b.com','$2y$10$RYFLAsrs5uG9w9QyPs6PhOeQ8abPCZMyQ4SdWt63OGhd43kMvWuuq','UQYH6HCHF');
+INSERT INTO `users` VALUES (1,'roger','a@b.com','$2y$10$.Ywd5zUhyxWPu6yBij4XG.MeW7q/iUK6DbMjfoE2PqQ1l1T2271nK','UR4ER5WVA'),(2,'khoa','a@b.com','$2y$10$t4qjs..RhVOL/FY8p7ZOFeKBSDqER25AD4Ilar3PZnmE1k1OZBEly','UR6F7NUM6'),(3,'jake','a@b.com','$2y$10$KILR.RH95awv.K8ZnOvbE.9HYC7WFqw3qvMS6lG89icZxvgxd6S5W','UQV1FDZ51'),(4,'ziyaad','a@b.com','$2y$10$6VjCVzQqbvbTckZZ/t12DueajO7/6dPSn2biMwsVPV7IYABFe6.ai','UQYH6HCHF');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -234,4 +232,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-06  0:01:10
+-- Dump completed on 2019-12-10  0:17:13

@@ -149,7 +149,7 @@ export default class Create extends React.Component {
             <div className="form-group w-75">
               <label>
               Description:
-                <textarea className="form-control" name='description' value={descriptionValue} onChange={this.handleChange} />
+                <textarea className="form-control" maxLength="124" name='description' value={descriptionValue} onChange={this.handleChange} />
               </label>
             </div>
             <div className="form-group w-75">
@@ -222,7 +222,7 @@ export default class Create extends React.Component {
           </div>
           <label>
             Description:
-            <textarea className="form-control" name='description' value={descriptionValue} onChange={this.handleChange} />
+            <textarea maxLength="124" className="form-control" name='description' value={descriptionValue} onChange={this.handleChange} />
           </label>
           <div className="form-group">
             <label>
