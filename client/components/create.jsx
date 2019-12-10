@@ -143,7 +143,7 @@ export default class Create extends React.Component {
             <div className="form-group w-75">
               <label>
               Title:
-                <input className="form-control" name='title' type="text" value={titleValue} onChange={this.handleChange} />
+                <input className="form-control" maxLength="30" name='title' type="text" value={titleValue} onChange={this.handleChange} />
               </label>
             </div>
             <div className="form-group w-75">
@@ -217,7 +217,7 @@ export default class Create extends React.Component {
           <div className="form-group">
             <label>
               Title:
-              <input className="form-control" name='title' type="text" value={titleValue} onChange={this.handleChange} />
+              <input maxLength="30" className="form-control" name='title' type="text" value={titleValue} onChange={this.handleChange} />
             </label>
           </div>
           <label>
