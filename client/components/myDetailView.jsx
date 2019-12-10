@@ -68,7 +68,7 @@ export default class MyDetailView extends React.Component {
 
           <div className="row">
             <div className="col-sm">
-              <small>Due Date: <input name="dueDate" onChange={this.handleChange} maxLength="10" className="form-control" defaultValue={this.state.dueDate}></input></small>
+              <small>Due Date: <input type="date" name="dueDate" onChange={this.handleChange} maxLength="10" className="form-control" defaultValue={this.state.dueDate}></input></small>
             </div>
             <div className="col-sm">
               <small>Created At: {this.state.createdAt}</small>
