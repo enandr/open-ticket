@@ -7,7 +7,9 @@ $request = [
   'path' => parse_url($_SERVER['REQUEST_URI'])['path'],
   'headers' => getallheaders(),
   'query' => $_GET,
-  'body' => json_decode(file_get_contents('php://input'), true) ?? []
+  'body' => json_decode(file_get_contents('php://input'), true) ?? [],
+  'form' => $_POST,
+  'files' => $_FILES
 ];
 
 $response = [
@@ -85,3 +87,7 @@ register_shutdown_function(function () {
   ];
   send($response);
 });
+
+function terminal_log($value){
+  error_log(print_r($value,true));
+}

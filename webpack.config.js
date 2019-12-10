@@ -24,6 +24,12 @@ module.exports = {
             ]
           }
         }
+      },
+      {
+        test: /\.(jpg|png)$/,
+        use: {
+          loader: 'url-loader'
+        }
       }
     ]
   },
@@ -34,6 +40,11 @@ module.exports = {
     contentBase: publicPath,
     historyApiFallback: true,
     watchContentBase: true,
+    watchOptions: {
+      ignored: [
+        path.resolve(__dirname, 'server/public/images')
+      ]
+    },
     stats: 'minimal',
     proxy: {
       '/api': {

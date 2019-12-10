@@ -11,7 +11,7 @@ CREATE TICKETS
     {
       title: string,
       description: text,
-      createdBy: #
+      users: []
     }
   
   

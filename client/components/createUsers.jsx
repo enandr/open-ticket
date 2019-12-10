@@ -1,0 +1,97 @@
+import React from 'react';
+import BackIcon from './backIcon';
+
+export default class CreateUsers extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      slackId: '',
+      status: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.checkEmpty = this.checkEmpty.bind(this);
+    this.createUser = this.createUser.bind(this);
+  }
+
+  handleChange(event) {
+    const newState = {};
+    newState[event.target.name] = event.target.value;
+    this.setState(newState);
+  }
+
+  checkEmpty(event) {
+    event.preventDefault();
+    if (!this.state.name || !this.state.password || !this.state.email) {
+      return this.setState({ status: 'Please enter all the require *' });
+    } else {
+      this.createUser();
+    }
+  }
+
+  createUser() {
+    const sendObject = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      slackId: this.state.slackId
+    };
+    fetch('/api/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(sendObject)
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data === 'Already Exits') {
+          this.setState({ status: 'Username Already Exits' });
+        } else {
+          this.props.setView('logIn');
+        }
+      })
+      .catch(error => console.error(error));
+  }
+
+  render() {
+    return (
+      <div>
+        <div onClick={() => this.props.setView('logIn')}>
+          <BackIcon/>
+        </div>
+
+        <div className="d-flex justify-content-center">
+          <div className="card card col-sm-3 col-lg-3 col-9">
+            <article className="card-body">
+              <h4 className="card-title mb-4 mt-1">Sign Up</h4>
+              <form onSubmit={this.checkEmpty}>
+                <div className="form-group">
+                  <label>*Username:</label>
+                  <input className="form-control col-sm" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                  <label>*Your password:</label>
+                  <input className="form-control" type="password" placeholder="Password" name="password" value={this.state.pass} onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                  <label>*Email:</label>
+                  <input className="form-control" placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                  <label>SlackID:</label>
+                  <input className="form-control" placeholder="SlackID" name="slackId" value={this.state.slackId} onChange={this.handleChange}/>
+                </div>
+                <p className="text-danger">* require</p>
+                <p className="text-danger">{this.state.status}</p>
+                <div className="form-group">
+                  <button type="submit" className="btn btn-primary btn-block"> Sign Up</button>
+                </div>
+              </form>
+            </article>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
