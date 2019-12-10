@@ -227,7 +227,7 @@ export default class Create extends React.Component {
           <div className="form-group">
             <label>
               Due Date:
-              <input placeholder="yyyy-mm-dd" maxLength="10" className="form-control" name='dueDate' type="text" value={dueDateValue} onChange={this.handleChange} />
+              <input placeholder="yyyy-mm-dd" maxLength="10" className="form-control" name='dueDate' type="date" value={dueDateValue} onChange={this.handleChange} />
             </label>
           </div>
           <div className="form-group">

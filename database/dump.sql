@@ -27,7 +27,7 @@ CREATE TABLE `files` (
   `ticketId` int(11) NOT NULL,
   `fileUrl` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `files` (
 
 LOCK TABLES `files` WRITE;
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
-INSERT INTO `files` VALUES (1,1,'/images/.'),(2,2,'/images/.'),(3,3,'/images/.'),(4,4,'/images/.'),(5,5,'/images/.'),(6,6,'/images/.'),(7,7,'/images/.'),(8,8,'/images/.'),(9,9,'/images/.'),(10,10,'/images/.'),(11,11,'/images/0cb04f8a6192b7167c0795dda7c9535b.jpg');
+INSERT INTO `files` VALUES (1,1,'/images/.'),(2,2,'/images/.'),(3,3,'/images/.'),(4,4,'/images/.'),(5,5,'/images/.'),(6,6,'/images/.'),(7,7,'/images/.'),(8,8,'/images/.'),(9,9,'/images/.'),(10,10,'/images/.'),(11,11,'/images/0cb04f8a6192b7167c0795dda7c9535b.jpg'),(12,12,'/images/101e8791e568bbe40609f9d2595f8c3c.jpg'),(13,13,'/images/78234d87c35380beba8249edceee5442.jpg'),(14,14,'/images/.'),(15,15,'/images/.'),(16,16,'/images/.'),(17,17,'/images/.'),(18,18,'/images/.'),(19,19,'/images/.');
 /*!40000 ALTER TABLE `files` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +136,7 @@ CREATE TABLE `tickets` (
   `createdBy` int(11) NOT NULL,
   `updateAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `tickets` (
 
 LOCK TABLES `tickets` WRITE;
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-INSERT INTO `tickets` VALUES (1,'Create Cards Dynamically','Allow the cards to be created dynamically using jQuery.','2019-12-09',15,4,2,2,3,'2019-12-10 00:32:16',3,'2019-12-10 00:32:16'),(2,'Randomize Cards','Take the array of cards and randomize them at the start of each match.','2019-12-21',15,3,1,2,3,'2019-12-10 00:35:32',3,'2019-12-10 00:35:32'),(3,'Finish MVP','Finish the basic functionality of the application. Statistics, cards, game board, etc.','2019-12-07',15,2,3,2,3,'2019-12-10 00:37:23',3,'2019-12-10 00:37:23'),(4,'Basic CSS - Front End','Complete the basic styling of the app, including a theme.','2019-12-07',15,3,3,2,3,'2019-12-10 00:38:30',3,'2019-12-10 00:38:30'),(5,'Add Card Flip Transitions','Allow the cards to flip over, revealing the card face.','2019-12-11',15,4,2,1,3,'2019-12-10 00:39:34',3,'2019-12-10 00:39:34'),(6,'Clicking Same Card Twice','Selecting the same card twice will count as a match within the game.','2019-12-20',15,4,1,1,3,'2019-12-10 00:42:11',3,'2019-12-10 00:42:11'),(7,'Add Red Dead Redemption 2','Add Red Dead Redemption 2 to available Game Pass catalog, test with QA, and then merge to production.','2020-10-10',6,3,1,2,4,'2019-12-10 00:57:26',4,'2019-12-10 00:57:26'),(8,'Halo: MCC Crossplay','Add crossplay for Halo: Master Chief Collection for Xbox One and PC players to play regardless of system.','2019-12-12',6,1,1,2,4,'2019-12-10 01:00:14',4,'2019-12-10 01:00:14'),(9,'Dashboard crashes','Dashboard crashes when accessing multiple menus from within Xbox menu and running a CPU intensive game.','2020-02-05',6,4,1,1,4,'2019-12-10 01:01:53',4,'2019-12-10 01:01:53'),(10,'Add Bioshock to GamePass','Add Bioshock Collection to GamePass back catalog. Test with QA, and merge to production.','2019-01-05',6,4,3,2,4,'2019-12-10 01:03:20',4,'2019-12-10 01:03:20'),(11,'Convert Live to GamePass Ult','Convert existing accounts from regular Live enabled to GamePass Unlimited.','2020-10-10',6,4,2,1,4,'2019-12-10 01:06:58',4,'2019-12-10 01:06:58');
+INSERT INTO `tickets` VALUES (1,'Create Cards Dynamically','Allow the cards to be created dynamically using jQuery.','2019-12-09',15,4,2,2,3,'2019-12-10 00:32:16',3,'2019-12-10 00:32:16'),(2,'Randomize Cards','Take the array of cards and randomize them at the start of each match.','2019-12-21',15,3,1,2,3,'2019-12-10 00:35:32',3,'2019-12-10 00:35:32'),(3,'Finish MVP','Finish the basic functionality of the application. Statistics, cards, game board, etc.','2019-12-07',15,2,3,2,3,'2019-12-10 00:37:23',3,'2019-12-10 00:37:23'),(4,'Basic CSS - Front End','Complete the basic styling of the app, including a theme.','2019-12-07',15,3,3,2,3,'2019-12-10 00:38:30',3,'2019-12-10 00:38:30'),(5,'Add Card Flip Transitions','Allow the cards to flip over, revealing the card face.','2019-12-11',15,4,2,1,3,'2019-12-10 00:39:34',3,'2019-12-10 00:39:34'),(6,'Clicking Same Card Twice','Selecting the same card twice will count as a match within the game.','2019-12-20',15,4,1,1,3,'2019-12-10 00:42:11',3,'2019-12-10 00:42:11'),(7,'Add Red Dead Redemption 2','Add Red Dead Redemption 2 to available Game Pass catalog, test with QA, and then merge to production.','2020-10-10',6,3,1,2,4,'2019-12-10 00:57:26',4,'2019-12-10 00:57:26'),(8,'Halo: MCC Crossplay','Add crossplay for Halo: Master Chief Collection for Xbox One and PC players to play regardless of system.','2019-12-12',6,1,1,2,4,'2019-12-10 01:00:14',4,'2019-12-10 01:00:14'),(9,'Dashboard crashes','Dashboard crashes when accessing multiple menus from within Xbox menu and running a CPU intensive game.','2020-02-05',6,4,1,1,4,'2019-12-10 01:01:53',4,'2019-12-10 01:01:53'),(10,'Add Bioshock to GamePass','Add Bioshock Collection to GamePass back catalog. Test with QA, and merge to production.','2019-01-05',6,4,3,2,4,'2019-12-10 01:03:20',4,'2019-12-10 01:03:20'),(11,'Convert Live to GamePass Ult','Convert existing accounts from regular Live enabled to GamePass Unlimited.','2020-10-10',6,4,2,1,4,'2019-12-10 01:06:58',4,'2019-12-10 01:06:58'),(12,'Different response from API','API did not send the same response for each request. ','2019-12-21',11,3,1,1,2,'2019-12-10 01:25:12',2,'2019-12-10 01:25:12'),(13,'Yelp API missing key','don\'t have a key for Yelp API. ','2019-12-15',11,2,1,1,2,'2019-12-10 01:26:52',2,'2019-12-10 01:26:52'),(14,'header for Yelp API','Don\'t know how to build a header for Yelp API.','2019-12-16',11,3,1,1,2,'2019-12-10 01:28:40',2,'2019-12-10 01:28:40'),(15,'Error when get the data ','Get the wrong data with the API and error from the server-side.','2019-12-17',11,1,1,1,2,'2019-12-10 01:29:58',2,'2019-12-10 01:29:58'),(16,'Boostrap Problems','The boostrap mess up with CSS, and not responsive','2019-12-18',11,1,1,1,2,'2019-12-10 01:32:24',2,'2019-12-10 01:32:24'),(17,'Calculate the sleeping time','Add feature to calculate and compare with what you eat. ','2019-12-22',10,3,1,2,2,'2019-12-10 01:34:46',2,'2019-12-10 01:34:46'),(18,'Don\'t get infos from users','Don\'t have input from users. Tester report problem.','2019-12-27',10,3,1,1,2,'2019-12-10 01:36:42',2,'2019-12-10 01:36:42'),(19,'Don\'t have any recommendation ','Need to update recommendations for users.  ','2019-12-30',10,1,1,2,2,'2019-12-10 01:37:48',2,'2019-12-10 01:37:48');
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,4 +234,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-10  1:11:57
+-- Dump completed on 2019-12-09 17:38:20
