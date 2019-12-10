@@ -12,7 +12,7 @@ import TeamProjectListNav from './teamProjectListNav';
 import MyTicketListNav from './myTicketListNav';
 import MyTicketListFooter from './myTicketListFooter';
 import TeamTicketListNav from './teamTicketListNav';
-import TeamTicketListFooter from './teamTicketListfooter';
+import TeamTicketListFooter from './teamTicketListFooter';
 import CreateProjectNavBar from './createProjectNavBar';
 import Create from './create';
 import MyDetailNav from './myDetailNav';
