@@ -36,7 +36,7 @@ export default class TeamTicketList extends React.Component {
 
   render() {
     const teamTicketArray = this.state.teamTickets.map((value, index) => {
-      if (value[this.state.searchType].toLowerCase().includes(this.state.search.toLowerCase())) {
+      if (value[this.props.searchType].toLowerCase().includes(this.props.search.toLowerCase())) {
         return (<TeamTicket key={index} value={value} setView={this.props.setView} setTicketId={this.props.setTicketId} />);
       }
     });
@@ -48,17 +48,6 @@ export default class TeamTicketList extends React.Component {
     } else {
       return (
         <div>
-          <select name="statusCode" onChange={this.searchOrFilter}>
-            <option value="">All</option>
-            <option value="Open" >Open</option>
-            <option value="In-Progress" >In-Progress</option>
-            <option value="Closed" >Closed</option>
-          </select>
-          <select name="ticketType" onChange={this.searchOrFilter}>
-            <option value="">All</option>
-            <option value="Feature">Feature</option>
-            <option value="Issue" >Issue</option>
-          </select>
           <input className="form-control " name="ticketTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
           <table className="table table-bordered">
             <tbody>{teamTicketArray}</tbody>
