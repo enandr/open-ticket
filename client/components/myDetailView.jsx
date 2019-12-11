@@ -192,7 +192,7 @@ export default class MyDetailView extends React.Component {
 
         </div>
         <br></br>
-        <p className="text-center">{this.state.description}</p>
+        <p className="text-center">Description: {this.state.description}</p>
         <img src={details.fileUrl} className="img-fluid" alt="Responsive image"></img>
 
       </div>

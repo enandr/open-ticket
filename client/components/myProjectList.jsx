@@ -1,11 +1,12 @@
 import React from 'react';
 import MyProject from './myProject';
-
+import AlertIcon from './AlertIcon';
 export default class MyProjectList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       projects: [],
+      loaded: 'false',
       search: '',
       searchType: 'projectTitle'
     };
@@ -24,7 +25,7 @@ export default class MyProjectList extends React.Component {
       .then(res => res.json())
       .then(data => {
         const reverseData = data.reverse();
-        this.setState({ projects: reverseData });
+        this.setState({ projects: reverseData, loaded: 'true' });
 
       })
       .catch(err => console.error('Fetch failed!', err));
@@ -51,15 +52,29 @@ export default class MyProjectList extends React.Component {
 
     });
 
-    return (
-      <div>
-        <input className="form-control" name="projectTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
-        <table className="table table-bordered clickable">
-          <tbody>
-            {array}
-          </tbody>
-        </table>
-      </div>
-    );
+    if (!this.state.projects[0] && this.state.loaded === 'true') {
+      return (
+        <div className="container">
+          <div className="text-center align-items-center">
+            <AlertIcon/>
+            <h3>No Projects Available</h3>
+            <h5>Please create one.</h5>
+          </div>
+        </div>
+      );
+    } else {
+
+      return (
+
+        <div>
+          <input className="form-control" name="projectTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
+          <table className="table table-bordered clickable">
+            <tbody>
+              {array}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
   }
 }
