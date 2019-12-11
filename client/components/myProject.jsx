@@ -1,20 +1,34 @@
 import React from 'react';
+import { ChevronRight } from 'react-feather';
 
 export default function MyProject(props) {
 
   return (
+
     <tr className="projectRows"
       onClick={() => {
         props.setView('myTicketList');
         props.setProjectId(props.value.projectId);
       }}
     >
+
       <td className="projectData align-middle">
-        <strong className="projecTitleFont">{props.value.projectTitle}</strong>
-        <p className="projectDescriptionFont my-0">
-          {props.value.description}
-        </p>
+        <div className="container">
+          <div className="row">
+            <div className="col-10">
+              <strong className="projecTitleFont">{props.value.projectTitle}</strong>
+              <p className="projectDescriptionFont my-0">
+                {props.value.description}
+              </p>
+            </div>
+            <div className="col d-flex justify-content-center align-items-center">
+              <ChevronRight />
+            </div>
+          </div>
+        </div>
       </td>
+
     </tr>
+
   );
 }
