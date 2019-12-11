@@ -149,6 +149,7 @@ require 'slack.php';
         $newName = hash_file('md5',$tempPath).'.'. $imageFileType;
         $filePath = "../public/images/".$newName;
         move_uploaded_file($tempPath, $filePath);
+        terminal_log($filePath);
         return '/images/'. $newName;
     }
     function getBodyInfoPost($request){
