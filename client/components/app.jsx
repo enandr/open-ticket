@@ -6,13 +6,10 @@ import TeamProjectList from './teamProjectList';
 import TeamTicketList from './teamTicketList';
 import TeamDetailView from './teamDetailView';
 import MyProjectListNav from './myProjectListNav';
-import MyProjectListFooter from './myProjectListFooter';
-import TeamProjectListFooter from './teamProjectListFooter';
+import Footer from './footer';
 import TeamProjectListNav from './teamProjectListNav';
 import MyTicketListNav from './myTicketListNav';
-import MyTicketListFooter from './myTicketListFooter';
 import TeamTicketListNav from './teamTicketListNav';
-import TeamTicketListFooter from './teamTicketListFooter';
 import CreateProjectNavBar from './createProjectNavBar';
 import Create from './create';
 import MyDetailNav from './myDetailNav';
@@ -96,7 +93,7 @@ export default class App extends React.Component {
         <div>
           <MyProjectListNav setView={this.setView}/>
           <MyProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.state.userId}/>
-          <MyProjectListFooter setView={this.setView}/>
+          <Footer view={this.state.view} setView={this.setView}/>
 
         </div>
       );
@@ -110,7 +107,7 @@ export default class App extends React.Component {
             setTicketId={this.setTicketId}
             userId={this.state.userId}
           />
-          <MyTicketListFooter setView={this.setView} />
+          <Footer view={this.state.view} setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'myDetailView') {
@@ -125,7 +122,7 @@ export default class App extends React.Component {
         <div>
           <TeamProjectListNav setView={this.setView} />
           <TeamProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.state.userId}/>
-          <TeamProjectListFooter setView={this.setView} />
+          <Footer view={this.state.view} setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'teamTicketList') {
@@ -133,7 +130,7 @@ export default class App extends React.Component {
         <div>
           <TeamTicketListNav setView={this.setView} onChange={this.searchOrFilter}/>
           <TeamTicketList search={this.state.search} searchType={this.state.searchType} setView={this.setView} userId={this.state.userId} projectId={this.state.projectId} setTicketId={this.setTicketId}/>
-          <TeamTicketListFooter setView={this.setView} />
+          <Footer view={this.state.view} setView={this.setView} />
         </div>
       );
     } else if (this.state.view === 'teamDetailView') {
