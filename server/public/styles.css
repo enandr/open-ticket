@@ -1,13 +1,14 @@
 .color {
-            background-color: #FFA800
+            background-color: orange;
         }
-
+.color2 {
+  background-color: purple;
+}
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  background: orange;
 
 }
 body{
@@ -56,12 +57,12 @@ label{
 }
 
 .navbar{
-  margin: auto !important;
-  width: 100% !important;
+  margin: auto ;
+  width: 100% ;
 }
 
 .navText{
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 
 .projecTitleFont{

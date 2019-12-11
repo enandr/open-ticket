@@ -1,5 +1,6 @@
 import React from 'react';
 
+import CircleIcon from './circleIcon';
 export default class MyDetailView extends React.Component {
   constructor(props) {
     super(props);
@@ -49,8 +50,11 @@ export default class MyDetailView extends React.Component {
     const details = this.state.ticketDetails;
     return (
       <div>
+
         <h1 className="text-center">{details.title}</h1>
+
         <div className="container text-center detailText">
+
           <div className="row">
             <div className="col-sm">
               <small>Assignee: {details.assigneeName}</small>
@@ -159,6 +163,7 @@ export default class MyDetailView extends React.Component {
     return (
       <div>
         <h1 className="text-center">{details.title}</h1>
+        <CircleIcon />
         <div className="container text-center detailText">
           <div className="row">
             <div className="col-sm">
@@ -187,7 +192,7 @@ export default class MyDetailView extends React.Component {
 
         </div>
         <br></br>
-        <p className="text-center">{this.state.description}</p>
+        <p className="text-center">Description: {this.state.description}</p>
         <img src={details.fileUrl} className="img-fluid" alt="Responsive image"></img>
 
       </div>
