@@ -92,6 +92,7 @@ export default class Create extends React.Component {
   }
 
   handleSubmit(event) {
+    this.setState({ disabledBtn: true });
     event.preventDefault();
     const formData = new FormData(event.target);
     formData.append('users', this.state.linkedUsers);
