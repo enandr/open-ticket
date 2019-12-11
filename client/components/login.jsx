@@ -3,8 +3,8 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: 'roger',
-      pass: '12345',
+      userName: '',
+      pass: '',
       status: ''
     };
 
@@ -49,7 +49,7 @@ export default class Login extends React.Component {
           <h1>OpenTicket</h1>
         </div>
         <div className="d-flex justify-content-center">
-          <div className="card card col-12 col-sm-5 col-md-3 col-lg-3 col-xl-2">
+          <div className="card sign-in col-8 col-sm-5 col-md-3 col-lg-5 col-xl-2">
             <article className="card-body">
               <a className="float-right btn btn-outline-primary" onClick={this.handleChangeView}>Sign up</a>
               <h4 className="card-title mb-4 mt-1">Sign in</h4>
