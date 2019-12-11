@@ -31,18 +31,28 @@ export default class App extends React.Component {
       view: 'logIn',
       backPage: null,
       userId: null,
-      editTicketMode: false
-
+      editTicketMode: false,
+      search: '',
+      searchType: 'ticketTitle'
     };
     this.setProjectId = this.setProjectId.bind(this);
     this.setTicketId = this.setTicketId.bind(this);
     this.setView = this.setView.bind(this);
     this.setUserId = this.setUserId.bind(this);
     this.edit = this.edit.bind(this);
+    this.searchOrFilter = this.searchOrFilter.bind(this);
   }
 
   componentDidMount() {
 
+  }
+
+  searchOrFilter(event) {
+    const newState = {};
+    newState.search = event.target.value;
+    newState.searchType = event.target.name;
+
+    this.setState(newState);
   }
 
   setUserId(id) {
@@ -97,11 +107,8 @@ export default class App extends React.Component {
           <MyTicketList
             setView={this.setView}
             projectId={this.state.projectId}
-
             setTicketId={this.setTicketId}
-
             userId={this.state.userId}
-
           />
           <MyTicketListFooter setView={this.setView} />
         </div>
@@ -124,8 +131,8 @@ export default class App extends React.Component {
     } else if (this.state.view === 'teamTicketList') {
       return (
         <div>
-          <TeamTicketListNav setView={this.setView}/>
-          <TeamTicketList setView={this.setView} userId={this.state.userId} projectId={this.state.projectId} setTicketId={this.setTicketId}/>
+          <TeamTicketListNav setView={this.setView} onChange={this.searchOrFilter}/>
+          <TeamTicketList search={this.state.search} searchType={this.state.searchType} setView={this.setView} userId={this.state.userId} projectId={this.state.projectId} setTicketId={this.setTicketId}/>
           <TeamTicketListFooter setView={this.setView} />
         </div>
       );
