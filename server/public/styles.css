@@ -1,6 +1,9 @@
 .color {
             background-color: orange;
         }
+        .color1 {
+            background-color: white;
+        }
 .color2 {
   background-color: purple;
 }
@@ -8,8 +11,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
-
+  box-shadow: -1px -1px 10px rgba(0, 0, 0, 0.356);
 }
 body{
   padding-top: 73.48px;
@@ -21,9 +23,7 @@ body{
 .teamProject{
   background-color: purple;
 }
-.whiteText{
-  color: white !important;
-}
+
 .clickable{
   cursor: pointer;
 }
@@ -97,7 +97,7 @@ label{
 }
 
 .navTitle{
-  font-size: 32px;
+  font-size: 3vh;
 }
 
 .detailText{
