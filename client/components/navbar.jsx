@@ -1,5 +1,4 @@
 import React from 'react';
-import LogOut from './logoutIcon';
 import MenuIcon from './menuIcon';
 import BackIcon from './backIcon';
 
@@ -25,27 +24,63 @@ export default class NavBar extends React.Component {
 
   renderTeamTicketList() {
     return (
-      <nav className="navbar  teamProject fixed-top">
-        <a className="nav-link"><MenuIcon /></a>
-        <a className="navTitle text-white mx-auto ">Team Tickets</a>
-        <div className="nav-item dropdown">
-          <a className="nav-link text-white" href="#" id="navbardrop" data-toggle="dropdown">
-            <MenuIcon />
-          </a>
-          <div className="dropdown-menu dropdown-menu-right">
-            <div className="dropdown-header">Filter by Priority:</div>
-            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'statusCode'); }}>All</a>
-            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Open', 'statusCode'); }}>Open</a>
-            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('In-Progress', 'statusCode'); }}>In-Progress</a>
-            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Closed', 'statusCode'); }}>Closed</a>
-            <div className="dropdown-divider"></div>
-            <div className="dropdown-header">Filter by Type:</div>
-            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'ticketType'); }}>All</a>
-            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Feature', 'ticketType'); }}>Feature</a>
-            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Issue', 'ticketType'); }}>Issue</a>
+      <nav className="navbar teamProject fixed-top navHeight">
+        <div className="container">
+          <div className="row">
+            <div className="col-2 align-items-center">
+              <div className="clickable text-white text-center" onClick={() => {
+                this.props.setView(this.props.backpage);
+              }}><BackIcon /></div>
+            </div>
+            <div className="col-8 text-center">
+              <a className="navTitle text-white mx-auto ">Team Tickets</a>
+            </div>
+            <div className="col-2">
+              <div className="nav-item dropdown">
+                <a className="nav-link text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                  <MenuIcon />
+                </a>
+                <div className="dropdown-menu dropdown-menu-right">
+                  <div className="dropdown-header">Filter by Priority:</div>
+                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'statusCode'); }}>All</a>
+                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Open', 'statusCode'); }}>Open</a>
+                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('In-Progress', 'statusCode'); }}>In-Progress</a>
+                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Closed', 'statusCode'); }}>Closed</a>
+                  <div className="dropdown-divider"></div>
+                  <div className="dropdown-header">Filter by Type:</div>
+                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'ticketType'); }}>All</a>
+                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Feature', 'ticketType'); }}>Feature</a>
+                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Issue', 'ticketType'); }}>Issue</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
+
+    // <nav className="navbar  teamProject fixed-top">
+    //   <div className="clickable text-white" onClick={() => {
+    //     this.props.setView(this.props.backpage);
+    //   }}><BackIcon /></div>
+    //   <a className="navTitle text-white mx-auto ">Team Tickets</a>
+    //   <div className="nav-item dropdown">
+    //     <a className="nav-link text-white" href="#" id="navbardrop" data-toggle="dropdown">
+    //       <MenuIcon />
+    //     </a>
+    //     <div className="dropdown-menu dropdown-menu-right">
+    //       <div className="dropdown-header">Filter by Priority:</div>
+    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'statusCode'); }}>All</a>
+    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Open', 'statusCode'); }}>Open</a>
+    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('In-Progress', 'statusCode'); }}>In-Progress</a>
+    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Closed', 'statusCode'); }}>Closed</a>
+    //       <div className="dropdown-divider"></div>
+    //       <div className="dropdown-header">Filter by Type:</div>
+    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'ticketType'); }}>All</a>
+    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Feature', 'ticketType'); }}>Feature</a>
+    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Issue', 'ticketType'); }}>Issue</a>
+    //     </div>
+    //   </div>
+    // </nav>
     );
   }
 
@@ -59,12 +94,14 @@ export default class NavBar extends React.Component {
 
   renderMyTickets() {
     return (
-      <nav className="navbar color fixed-top">
-        <a className="nav-link"><MenuIcon /></a>
+      <nav className="navbar navHeight color fixed-top">
+        <div className="clickable" onClick={() => {
+          this.props.setView(this.props.backpage);
+        }}><BackIcon /></div>
         <a className="navTitle mx-auto ">My Tickets</a>
         <div className="nav-item dropdown">
-          <a className="nav-link" href="#" id="navbardrop" data-toggle="dropdown">
-            <MenuIcon />
+          <a className="nav-link text-dark" href="#" id="navbardrop" data-toggle="dropdown">
+            <MenuIcon/>
           </a>
           <div className="dropdown-menu dropdown-menu-right">
             <div className="dropdown-header">Filter by Priority:</div>
@@ -85,16 +122,15 @@ export default class NavBar extends React.Component {
 
   renderMyProjects() {
     return (
-      <nav className="navbar navHeight color fixed-top">
+      <nav className="navbar navHeight color fixed-top justify-content-center">
         <a className="navTitle">Projects</a>
-        <LogOut setView={this.props.setView} />
       </nav>
     );
   }
 
   renderCreate() {
     return (
-      <nav className="navbar createProjectNavBarColor fixed-top">
+      <nav className="navbar createProjectNavBarColor fixed-top navHeight">
         <div className="clickable" onClick={() => {
           this.props.setView(this.props.backpage);
         }}><BackIcon /></div>
@@ -105,7 +141,7 @@ export default class NavBar extends React.Component {
 
   renderTeamDetail() {
     return (
-      <nav className="navbar navbar-expand-lg teamProject fixed-top">
+      <nav className="navbar navbar-expand-lg teamProject fixed-top navHeight">
         <div className="clickable text-white" onClick={() => {
           this.props.setView('teamTicketList');
         }}><BackIcon /></div>
@@ -116,12 +152,20 @@ export default class NavBar extends React.Component {
 
   renderMyDetail() {
     return (
-      <nav className="navbar navbar-expand-lg color fixed-top">
+      <nav className="navbar navbar-expand-lg color fixed-top navHeight">
         <div className="clickable" onClick={() => {
           this.props.setView('myTicketList');
         }}><BackIcon /></div>
         <a className="navbar-brand">Ticket Details</a>
         <a className="navbar-brand clickable" onClick={this.handleClick}>{this.state.editing}</a>
+      </nav>
+    );
+  }
+
+  renderAccount() {
+    return (
+      <nav className="navbar navHeight color fixed-top justify-content-center">
+        <a className="navTitle">Account</a>
       </nav>
     );
   }
@@ -144,6 +188,9 @@ export default class NavBar extends React.Component {
     }
     if (this.props.view.match(/create/i)) {
       return this.renderCreate();
+    }
+    if (this.props.view.match(/account/i)) {
+      return this.renderAccount();
     }
     return this.renderMyProjects();
 
