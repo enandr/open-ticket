@@ -52,7 +52,7 @@ export default class App extends React.Component {
   }
 
   setView(newView, backPage = null) {
-    this.setState({ view: newView, backPage: backPage });
+    this.setState({ view: newView, backPage: backPage, search: '', searchType: 'ticketTitle' });
   }
 
   setProjectId(id) {
