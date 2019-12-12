@@ -44,10 +44,10 @@ export default class App extends React.Component {
 
   }
 
-  searchOrFilter(event) {
+  searchOrFilter(value, type) {
     const newState = {};
-    newState.search = event.target.value;
-    newState.searchType = event.target.name;
+    newState.search = value;
+    newState.searchType = type;
 
     this.setState(newState);
   }
