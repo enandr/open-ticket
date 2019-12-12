@@ -29,7 +29,7 @@ export default function MyTicket(props) {
 
               <div className="row">
                 <div className="col-sm">
-                  <small className="ticketInfo">Assignee: {props.value.assigneeName}</small>
+                  <small className="ticketInfo">Assignee: <strong>{props.value.assigneeName}</strong></small>
                 </div>
                 <div className="col-sm">
                   <small className="ticketInfo">Priority: {props.value.priorityLevel}</small>
