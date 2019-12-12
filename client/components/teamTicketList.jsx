@@ -37,7 +37,9 @@ export default class TeamTicketList extends React.Component {
   render() {
     const teamTicketArray = this.state.teamTickets.map((value, index) => {
       if (value[this.props.searchType].toLowerCase().includes(this.props.search.toLowerCase())) {
-        return (<TeamTicket key={index} value={value} setView={this.props.setView} setTicketId={this.props.setTicketId} />);
+        if (value[this.state.searchType].toLowerCase().includes(this.state.search.toLowerCase())) {
+          return (<TeamTicket key={index} value={value} setView={this.props.setView} setTicketId={this.props.setTicketId} />);
+        }
       }
     });
 
