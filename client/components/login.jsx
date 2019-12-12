@@ -45,9 +45,9 @@ export default class Login extends React.Component {
   render() {
     return (
       <div>
-        <div className="appName">
-          <h1>OpenTicket</h1>
-        </div>
+
+        {/*     <h1 className="text-center">OpenTicket</h1>
+
         <div className="d-flex justify-content-center">
           <div className="card sign-in col-8 col-sm-5 col-md-3 col-lg-5 col-xl-2">
             <article className="card-body">
@@ -69,7 +69,28 @@ export default class Login extends React.Component {
               </form>
             </article>
           </div>
-        </div>
+        </div>  */}
+
+        <body className="text-center body-signIn">
+          <h1>OpenTicket</h1>
+          <form onSubmit={this.handleSubmit}>
+            <label>Username:</label>
+            <div className="form-group d-flex justify-content-center">
+              <input className="form-control col-6" placeholder="Username" type="text" value={this.state.name} onChange={this.handleChangeUserName}/>
+            </div>
+            <label>Your password</label>
+            <div className="form-group d-flex justify-content-center">
+              <input className="form-control col-6" placeholder="******" type="password" value={this.state.password} onChange={this.handleChangePass}/>
+            </div>
+            <p className="text-danger">{this.state.status}</p>
+            <div className="form-group d-flex justify-content-center">
+              <button type="submit" className="btn btn-primary btn-block col-3"> Login</button>
+            </div>
+            <div className="form-group d-flex justify-content-center">
+              <button className="btn btn-success btn-block col-3" onClick={this.handleChangeView}>Sign up</button>
+            </div>
+          </form>
+        </body>
       </div>
     );
   }
