@@ -2,6 +2,7 @@ import React from 'react';
 import CheckIcon from './CheckIcon';
 import PlusCircleIcon from './PlusCircleIcon';
 import GridIcon from './GridIcon';
+import AccountIcon from './accountIcon';
 
 export default class Footer extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class Footer extends React.Component {
     let myTasksColor = 'black';
     const createColor = 'black';
     let boardColor = 'black';
+    let accountColor = 'black';
     if (this.props.view.match(/(project)/i)) {
       if (this.props.view.match(/(my)/i)) {
         backView = 'myProjectList';
@@ -25,7 +27,7 @@ export default class Footer extends React.Component {
         backView = 'teamProjectList';
         boardColor = 'orange';
       }
-    } else {
+    } else if (this.props.view.match(/(ticket)/i)) {
       if (this.props.view.match(/(my)/i)) {
         backView = 'myTicketList';
         myTasksColor = 'orange';
@@ -33,22 +35,33 @@ export default class Footer extends React.Component {
         backView = 'teamTicketList';
         boardColor = 'orange';
       }
-
+    } else if (this.props.view.match(/(account)/i)) {
+      if (this.props.view.match(/(account)/i)) {
+        backView = 'myTicketList';
+        accountColor = 'orange';
+      } else {
+        backView = 'teamTicketList';
+        accountColor = 'orange';
+      }
     }
     return (
       <footer className={footerClass}>
         <div className="row navbar">
-          <div className="col-4 text-center clickable" onClick={() => this.props.setView('myProjectList')}>
+          <div className="col-3 text-center clickable" onClick={() => this.props.setView('myProjectList')}>
             <CheckIcon color={myTasksColor}/>
-            <p className="navText">My Tickets</p>
+            <p className="navText">Tickets</p>
           </div>
-          <div className="col-4 text-center clickable" onClick={() => this.props.setView('create', backView)}>
+          <div className="col-3 text-center clickable" onClick={() => this.props.setView('create', backView)}>
             <PlusCircleIcon color={createColor}/>
             <p className="navText">Create</p>
           </div>
-          <div className="col-4 text-center clickable" onClick={() => this.props.setView('teamProjectList')}>
+          <div className="col-3 text-center clickable" onClick={() => this.props.setView('teamProjectList')}>
             <GridIcon color={boardColor}/>
             <p className="navText">Board</p>
+          </div>
+          <div className="col-3 text-center clickable" onClick={() => this.props.setView('account')}>
+            <AccountIcon color={accountColor} />
+            <p className="navText">Account</p>
           </div>
         </div>
       </footer>

@@ -1,5 +1,4 @@
 import React from 'react';
-import LogOut from './logoutIcon';
 import MenuIcon from './menuIcon';
 import BackIcon from './backIcon';
 
@@ -25,7 +24,7 @@ export default class NavBar extends React.Component {
 
   renderTeamTicketList() {
     return (
-      <nav className="navbar teamProject fixed-top">
+      <nav className="navbar teamProject fixed-top navHeight">
         <div className="container">
           <div className="row">
             <div className="col-2 align-items-center">
@@ -95,7 +94,7 @@ export default class NavBar extends React.Component {
 
   renderMyTickets() {
     return (
-      <nav className="navbar color fixed-top">
+      <nav className="navbar navHeight color fixed-top">
         <div className="clickable" onClick={() => {
           this.props.setView(this.props.backpage);
         }}><BackIcon /></div>
@@ -123,16 +122,15 @@ export default class NavBar extends React.Component {
 
   renderMyProjects() {
     return (
-      <nav className="navbar navHeight color fixed-top">
+      <nav className="navbar navHeight color fixed-top justify-content-center">
         <a className="navTitle">Projects</a>
-        <LogOut setView={this.props.setView} />
       </nav>
     );
   }
 
   renderCreate() {
     return (
-      <nav className="navbar createProjectNavBarColor fixed-top">
+      <nav className="navbar createProjectNavBarColor fixed-top navHeight">
         <div className="clickable" onClick={() => {
           this.props.setView(this.props.backpage);
         }}><BackIcon /></div>
@@ -143,7 +141,7 @@ export default class NavBar extends React.Component {
 
   renderTeamDetail() {
     return (
-      <nav className="navbar navbar-expand-lg teamProject fixed-top">
+      <nav className="navbar navbar-expand-lg teamProject fixed-top navHeight">
         <div className="clickable text-white" onClick={() => {
           this.props.setView('teamTicketList');
         }}><BackIcon /></div>
@@ -154,12 +152,20 @@ export default class NavBar extends React.Component {
 
   renderMyDetail() {
     return (
-      <nav className="navbar navbar-expand-lg color fixed-top">
+      <nav className="navbar navbar-expand-lg color fixed-top navHeight">
         <div className="clickable" onClick={() => {
           this.props.setView('myTicketList');
         }}><BackIcon /></div>
         <a className="navbar-brand">Ticket Details</a>
         <a className="navbar-brand clickable" onClick={this.handleClick}>{this.state.editing}</a>
+      </nav>
+    );
+  }
+
+  renderAccount() {
+    return (
+      <nav className="navbar navHeight color fixed-top justify-content-center">
+        <a className="navTitle">Account</a>
       </nav>
     );
   }
@@ -182,6 +188,9 @@ export default class NavBar extends React.Component {
     }
     if (this.props.view.match(/create/i)) {
       return this.renderCreate();
+    }
+    if (this.props.view.match(/account/i)) {
+      return this.renderAccount();
     }
     return this.renderMyProjects();
 

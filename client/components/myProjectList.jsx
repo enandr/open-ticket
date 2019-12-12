@@ -56,7 +56,7 @@ export default class MyProjectList extends React.Component {
       return (
         <div>
           <input className="form-control" name="projectTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
-          <table className="table table-bordered clickable">
+          <table className="table table-bordered clickable table-hover">
             <tbody>
               {array}
             </tbody>
