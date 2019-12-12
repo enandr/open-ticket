@@ -202,7 +202,7 @@ require 'slack.php';
         Description: $description
         Due Date: $dueDate
         ");
-        postSlack($assigneeId,"<@$creatorId> has assigneed you to a new ticket!");
+        postSlack($assigneeId,"<@$creatorId> has assigneed you to a new ticket. Go to $title to view it.");
             return $insertId;
         }
     }
