@@ -71,7 +71,7 @@ export default class Login extends React.Component {
           </div>
         </div>  */}
 
-        <body className="text-center body-signIn">
+        <div className="text-center body-signIn">
           <h1>OpenTicket</h1>
           <form onSubmit={this.handleSubmit}>
             <label>Username:</label>
@@ -90,7 +90,7 @@ export default class Login extends React.Component {
               <button className="btn btn-success btn-block col-3" onClick={this.handleChangeView}>Sign up</button>
             </div>
           </form>
-        </body>
+        </div>
       </div>
     );
   }
