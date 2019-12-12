@@ -1,5 +1,4 @@
 import React from 'react';
-
 import CircleIcon from './circleIcon';
 export default class MyDetailView extends React.Component {
   constructor(props) {
@@ -186,8 +185,8 @@ export default class MyDetailView extends React.Component {
 
             <div className="row">
               <div className="col-sm">
-                <small>Status: {this.state.status}</small>
-                <CircleIcon />
+                <small>Status: {this.state.status} </small>
+                <CircleIcon fill={this.state.status}/>
               </div>
 
             </div>
