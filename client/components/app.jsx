@@ -5,7 +5,7 @@ import MyDetailView from './myDetailView';
 import TeamProjectList from './teamProjectList';
 import TeamTicketList from './teamTicketList';
 import TeamDetailView from './teamDetailView';
-import MyProjectListNav from './myProjectListNav';
+import NavBar from './navbar';
 import Footer from './footer';
 import TeamProjectListNav from './teamProjectListNav';
 import MyTicketListNav from './myTicketListNav';
@@ -91,7 +91,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'myProjectList') {
       return (
         <div>
-          <MyProjectListNav setView={this.setView}/>
+          <NavBar setView={this.setView}/>
           <MyProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.state.userId}/>
           <Footer view={this.state.view} setView={this.setView}/>
 

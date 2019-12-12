@@ -13,38 +13,41 @@ export default class Footer extends React.Component {
 
   render() {
     let backView = '';
-    let footerClass = 'footer d-flex justify-content-around ';
+    const footerClass = 'footer text-center d-flex justify-content-around color1';
+    let myTasksColor = 'black';
+    const createColor = 'black';
+    let boardColor = 'black';
     if (this.props.view.match(/(project)/i)) {
       if (this.props.view.match(/(my)/i)) {
         backView = 'myProjectList';
-        footerClass += 'color';
+        myTasksColor = 'orange';
       } else {
         backView = 'teamProjectList';
-        footerClass += 'color2 text-white';
+        boardColor = 'orange';
       }
     } else {
       if (this.props.view.match(/(my)/i)) {
         backView = 'myTicketList';
-        footerClass += 'color';
+        myTasksColor = 'orange';
       } else {
         backView = 'teamTicketList';
-        footerClass += 'color2 text-white';
+        boardColor = 'orange';
       }
 
     }
     return (
       <footer className={footerClass}>
         <div className="row navbar">
-          <div className="col-4 text-center" onClick={() => this.props.setView('myProjectList')}>
-            <CheckIcon />
+          <div className="col-4 text-center clicable" onClick={() => this.props.setView('myProjectList')}>
+            <CheckIcon color={myTasksColor}/>
             <p className="navText">My Tasks</p>
           </div>
-          <div className="col-4 text-center" onClick={() => this.props.setView('create', backView)}>
-            <PlusCircleIcon />
+          <div className="col-4 text-center clickable" onClick={() => this.props.setView('create', backView)}>
+            <PlusCircleIcon color={createColor}/>
             <p className="navText">Create</p>
           </div>
-          <div className="col-4 text-center" onClick={() => this.props.setView('teamProjectList')}>
-            <GridIcon />
+          <div className="col-4 text-center clickable" onClick={() => this.props.setView('teamProjectList')}>
+            <GridIcon color={boardColor}/>
             <p className="navText">Board</p>
           </div>
         </div>
