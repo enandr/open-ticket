@@ -1,11 +1,12 @@
 import React from 'react';
 import MyTicket from './myTicket';
-
+import AlertIcon from './AlertIcon';
 export default class MyTicketList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       myTickets: [],
+      loaded: 'false',
       search: '',
       searchType: 'ticketTitle'
     };
@@ -23,7 +24,7 @@ export default class MyTicketList extends React.Component {
 
     fetch(request)
       .then(res => res.json())
-      .then(data => this.setState({ myTickets: data }))
+      .then(data => this.setState({ myTickets: data, loaded: 'true' }))
       .catch(err => console.error('Fetch failed!', err));
   }
 
@@ -43,13 +44,26 @@ export default class MyTicketList extends React.Component {
       }
     });
 
-    return (
-      <div>
-        <input className="form-control" name="ticketTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
-        <table className="table table-bordered clickable">
-          <tbody>{ticketArray}</tbody>
-        </table>
-      </div>
-    );
+    if (!this.state.myTickets[0] && this.state.loaded === 'true') {
+      return (
+        <div className="container h-100">
+          <div className="text-center align-items-center">
+            <AlertIcon />
+            <h3>No Tickets Available</h3>
+            <h5>Please create one.</h5>
+          </div>
+        </div>
+      );
+    } else {
+
+      return (
+        <div>
+          <input className="form-control" name="ticketTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
+          <table className="table table-bordered clickable table-hover">
+            <tbody>{ticketArray}</tbody>
+          </table>
+        </div>
+      );
+    }
   }
 }

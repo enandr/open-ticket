@@ -1,7 +1,7 @@
 import React from 'react';
 import TeamTicket from './teamTicket';
-import NoTickets from '../../server/public/images/NoTickets.png';
 
+import AlertIcon from './AlertIcon';
 export default class TeamTicketList extends React.Component {
   constructor(props) {
     super(props);
@@ -43,7 +43,13 @@ export default class TeamTicketList extends React.Component {
 
     if (!this.state.teamTickets[0] && this.state.loaded === 'true') {
       return (
-        <img src={NoTickets} width='350' height='600' />
+        <div className="container h-100">
+          <div className="text-center align-items-center">
+            <AlertIcon />
+            <h3>No Tickets Available</h3>
+            <h5>Please create one.</h5>
+          </div>
+        </div>
       );
     } else {
       return (
