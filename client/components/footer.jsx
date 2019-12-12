@@ -38,7 +38,7 @@ export default class Footer extends React.Component {
     return (
       <footer className={footerClass}>
         <div className="row navbar">
-          <div className="col-4 text-center clicable" onClick={() => this.props.setView('myProjectList')}>
+          <div className="col-4 text-center clickable" onClick={() => this.props.setView('myProjectList')}>
             <CheckIcon color={myTasksColor}/>
             <p className="navText">My Tasks</p>
           </div>

@@ -7,10 +7,6 @@ import TeamTicketList from './teamTicketList';
 import TeamDetailView from './teamDetailView';
 import NavBar from './navbar';
 import Footer from './footer';
-import TeamProjectListNav from './teamProjectListNav';
-import MyTicketListNav from './myTicketListNav';
-import TeamTicketListNav from './teamTicketListNav';
-import CreateProjectNavBar from './createProjectNavBar';
 import Create from './create';
 import MyDetailNav from './myDetailNav';
 import Login from './login';
@@ -91,7 +87,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'myProjectList') {
       return (
         <div>
-          <NavBar setView={this.setView}/>
+          <NavBar view={this.state.view} setView={this.setView} onChange={this.searchOrFilter} />
           <MyProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.state.userId}/>
           <Footer view={this.state.view} setView={this.setView}/>
 
@@ -100,8 +96,10 @@ export default class App extends React.Component {
     } else if (this.state.view === 'myTicketList') {
       return (
         <div>
-          <MyTicketListNav />
+          <NavBar view={this.state.view} setView={this.setView} onChange={this.searchOrFilter} />
           <MyTicketList
+            search={this.state.search}
+            searchType={this.state.searchType}
             setView={this.setView}
             projectId={this.state.projectId}
             setTicketId={this.setTicketId}
@@ -120,7 +118,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'teamProjectList') {
       return (
         <div>
-          <TeamProjectListNav setView={this.setView} />
+          <NavBar view={this.state.view} setView={this.setView} onChange={this.searchOrFilter} />
           <TeamProjectList setView={this.setView} setProjectId={this.setProjectId} userId={this.state.userId}/>
           <Footer view={this.state.view} setView={this.setView} />
         </div>
@@ -128,7 +126,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'teamTicketList') {
       return (
         <div>
-          <TeamTicketListNav setView={this.setView} onChange={this.searchOrFilter}/>
+          <NavBar view={this.state.view} setView={this.setView} onChange={this.searchOrFilter}/>
           <TeamTicketList search={this.state.search} searchType={this.state.searchType} setView={this.setView} userId={this.state.userId} projectId={this.state.projectId} setTicketId={this.setTicketId}/>
           <Footer view={this.state.view} setView={this.setView} />
         </div>
@@ -143,7 +141,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'create') {
       return (
         <div>
-          <CreateProjectNavBar backpage={this.state.backPage} setView={this.setView} />
+          <NavBar backpage={this.state.backPage} view={this.state.view} setView={this.setView} onChange={this.searchOrFilter} />
           <Create backpage={this.state.backPage} setView={this.setView} userId={this.state.userId}/>
         </div>
       );
