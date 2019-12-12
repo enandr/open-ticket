@@ -10,6 +10,7 @@ import Footer from './footer';
 import Create from './create';
 import Login from './login';
 import CreateUsers from './createUsers';
+import Account from './account';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -136,6 +137,14 @@ export default class App extends React.Component {
         <div>
           <NavBar backpage={this.state.backPage} view={this.state.view} setView={this.setView} onChange={this.searchOrFilter} />
           <Create backpage={this.state.backPage} setView={this.setView} userId={this.state.userId}/>
+        </div>
+      );
+    } else if (this.state.view === 'account') {
+      return (
+        <div>
+          <NavBar view={this.state.view} setView={this.setView} onChange={this.searchOrFilter} />
+          <Account setView={this.setView} ticketId={this.state.ticketId} />
+          <Footer view={this.state.view} setView={this.setView} />
         </div>
       );
     }
