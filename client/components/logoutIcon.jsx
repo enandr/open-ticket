@@ -3,7 +3,7 @@ import React from 'react';
 export default function LogOut(props) {
 
   function changeView() {
-    props.click.setView('logIn');
+    props.setView('logIn');
   }
 
   function deleteSession() {
