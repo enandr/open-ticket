@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid } from 'react-feather';
 
-const GridIcon = () => {
-  return <Grid size= "4vh"/>;
+const GridIcon = props => {
+  return <Grid size="4vh" color={props.color}/>;
 };
 
 export default GridIcon;

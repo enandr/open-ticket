@@ -1,5 +1,4 @@
 import React from 'react';
-import BackIcon from './backIcon';
 
 export default class CreateUsers extends React.Component {
   constructor(props) {
@@ -57,11 +56,8 @@ export default class CreateUsers extends React.Component {
   render() {
     return (
       <div>
-        <div onClick={() => this.props.setView('logIn')}>
-          <BackIcon/>
-        </div>
 
-        <div className="d-flex justify-content-center">
+        {/*  <div className="d-flex justify-content-center">
           <div className="card card col-sm-3 col-lg-3 col-9">
             <article className="card-body">
               <h4 className="card-title mb-4 mt-1">Sign Up</h4>
@@ -90,7 +86,37 @@ export default class CreateUsers extends React.Component {
               </form>
             </article>
           </div>
-        </div>
+        </div> */}
+
+        <body className="text-center body-signUp">
+          <form onSubmit={this.checkEmpty}>
+            <h4 className="card-title mb-4 mt-1">Sign Up</h4>
+            <label>*Username:</label>
+            <div className="form-group d-flex justify-content-center">
+              <input className="form-control col-6" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
+            </div>
+            <label>*Your password:</label>
+            <div className="form-group d-flex justify-content-center">
+              <input className="form-control col-6" type="password" placeholder="Password" name="password" value={this.state.pass} onChange={this.handleChange}/>
+            </div>
+            <label>*Email:</label>
+            <div className="form-group d-flex justify-content-center">
+              <input className="form-control col-6" placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange}/>
+            </div>
+            <label>SlackID:</label>
+            <div className="form-group d-flex justify-content-center">
+              <input className="form-control col-6" placeholder="SlackID" name="slackId" value={this.state.slackId} onChange={this.handleChange}/>
+            </div>
+            <p className="text-danger">* require</p>
+            <p className="text-danger">{this.state.status}</p>
+            <div className="form-group d-flex justify-content-center">
+              <button type="submit" className="btn btn-primary btn-block col-3"> Sign Up</button>
+            </div>
+            <div className="form-group d-flex justify-content-center">
+              <button className="btn btn-outline-danger btn-block col-3" onClick={() => this.props.setView('logIn')} >Cancel</button>
+            </div>
+          </form>
+        </body>
       </div>
     );
   }
