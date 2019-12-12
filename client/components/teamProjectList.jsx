@@ -1,51 +1,68 @@
 import React from 'react';
 import TeamProject from './teamProject';
+import AlertIcon from './AlertIcon';
 
 export default class TeamProjectList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: []
+      projects: [],
+      loaded: 'false',
+      search: '',
+      searchType: 'projectTitle'
     };
+    this.searchOrFilter = this.searchOrFilter.bind(this);
   }
 
   componentDidMount() {
-    /*     fetch('/api/health-check')
-      .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isTesting: false })); */
     this.getTeamProjects();
   }
 
   getTeamProjects() {
     fetch(`/api/project?userId=${this.props.userId}`)
       .then(res => res.json())
-      .then(data => this.setState({ projects: data }))
+      .then(data => {
+        const reverseData = data.reverse();
+        this.setState({ projects: reverseData, loaded: 'true' });
+      })
       .catch(err => console.error('Fetch failed!', err));
   }
 
+  searchOrFilter(event) {
+    const newState = {};
+    newState.search = event.target.value;
+    newState.searchType = event.target.name;
+    this.setState(newState);
+  }
+
   render() {
-    const reverseArray = this.state.projects.reverse();
-    const teamArray = reverseArray.map((value, index) => <TeamProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId} />);
-    return (
-      <table className="table table-bordered">
-        <tbody >
-          {teamArray}
-        </tbody>
-      </table>
-    );
-    // return (
-    //   <div className="container">
-    //     <div className="row">
-    //       <TeamProject setView={this.props.setView} />
-    //       <button onClick={() => this.props.setView('myProjectList')}>
-    //         My Projects
-    //       </button>
-    //       <button onClick={() => this.props.setView('teamProjectList')}>
-    //         Team Projects
-    //       </button>
-    //     </div>
-    //   </div>
+    const teamArray = this.state.projects.map((value, index) => {
+      if (value[this.state.searchType].toLowerCase().includes(this.state.search.toLowerCase())) {
+        return (<TeamProject key={index} value={value} setView={this.props.setView} setProjectId={this.props.setProjectId} />);
+      }
+    });
+
+    if (!this.state.projects[0] && this.state.loaded === 'true') {
+      return (
+        <div className="container h-100">
+          <div className="text-center align-items-center">
+            <AlertIcon />
+            <h3>No Projects Available</h3>
+            <h5>Please create one.</h5>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <input className="form-control" name="projectTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
+          <table className="table table-bordered clickable">
+            <tbody>
+              {teamArray}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
   }
 }
