@@ -188,19 +188,21 @@ export default class Create extends React.Component {
     }
     );
     return (
-      <form id="createForm" onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          <label>
+      <div className="container">
+        <form id="createForm card" onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label>
             Choose A Project:
-            <select className="form-control clickable" name="projectId" onChange={this.handleChange}>
-              <option value='0' >Choose Project</option>
-              {projects}
-            </select>
-          </label>
-          {this.renderTicketChosenProject()}
-        </div>
+              <select className="form-control clickable" name="projectId" onChange={this.handleChange}>
+                <option value='0' >Choose Project</option>
+                {projects}
+              </select>
+            </label>
+            {this.renderTicketChosenProject()}
+          </div>
 
-      </form>
+        </form>
+      </div>
     );
   }
 

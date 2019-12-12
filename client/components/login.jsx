@@ -44,33 +44,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div>
-
-        {/*     <h1 className="text-center">OpenTicket</h1>
-
-        <div className="d-flex justify-content-center">
-          <div className="card sign-in col-8 col-sm-5 col-md-3 col-lg-5 col-xl-2">
-            <article className="card-body">
-              <a className="float-right btn btn-outline-primary" onClick={this.handleChangeView}>Sign up</a>
-              <h4 className="card-title mb-4 mt-1">Sign in</h4>
-              <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                  <label>Username:</label>
-                  <input className="form-control col-sm" placeholder="Username" type="text" value={this.state.name} onChange={this.handleChangeUserName}/>
-                </div>
-                <div className="form-group">
-                  <label>Your password</label>
-                  <input className="form-control" placeholder="******" type="password" value={this.state.password} onChange={this.handleChangePass}/>
-                </div>
-                <p className="text-danger">{this.state.status}</p>
-                <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-block"> Login</button>
-                </div>
-              </form>
-            </article>
-          </div>
-        </div>  */}
-
+      <div className="container">
         <div className="text-center body-signIn">
           <h1>OpenTicket</h1>
           <form onSubmit={this.handleSubmit}>
@@ -84,10 +58,13 @@ export default class Login extends React.Component {
             </div>
             <p className="text-danger">{this.state.status}</p>
             <div className="form-group d-flex justify-content-center">
-              <button type="submit" className="btn btn-primary btn-block col-3"> Login</button>
-            </div>
-            <div className="form-group d-flex justify-content-center">
-              <button className="btn btn-success btn-block col-3" onClick={this.handleChangeView}>Sign up</button>
+              <div className="loginBtns px-1">
+                <button type="submit" className="btn btn-primary btn-block"> Login</button>
+
+              </div>
+              <div className="loginBtns px-1">
+                <button className="btn btn-success btn-block" onClick={this.handleChangeView}>Sign up</button>
+              </div>
             </div>
           </form>
         </div>
