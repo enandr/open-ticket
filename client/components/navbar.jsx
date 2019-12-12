@@ -1,5 +1,4 @@
 import React from 'react';
-import LogOut from './logoutIcon';
 import MenuIcon from './menuIcon';
 import BackIcon from './backIcon';
 
@@ -123,9 +122,8 @@ export default class NavBar extends React.Component {
 
   renderMyProjects() {
     return (
-      <nav className="navbar navHeight color fixed-top">
+      <nav className="navbar navHeight color fixed-top justify-content-center">
         <a className="navTitle">Projects</a>
-        <LogOut setView={this.props.setView} />
       </nav>
     );
   }
@@ -164,6 +162,14 @@ export default class NavBar extends React.Component {
     );
   }
 
+  renderAccount() {
+    return (
+      <nav className="navbar navHeight color fixed-top justify-content-center">
+        <a className="navTitle">Account</a>
+      </nav>
+    );
+  }
+
   render() {
     if (this.props.view.match(/team/i) && this.props.view.match(/ticket/i)) {
       return this.renderTeamTicketList();
@@ -182,6 +188,9 @@ export default class NavBar extends React.Component {
     }
     if (this.props.view.match(/create/i)) {
       return this.renderCreate();
+    }
+    if (this.props.view.match(/account/i)) {
+      return this.renderAccount();
     }
     return this.renderMyProjects();
 

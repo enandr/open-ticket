@@ -12,6 +12,6 @@ export default function LogOut(props) {
     changeView();
   }
   return (
-    <div onClick={deleteSession}>Log Out</div>
+    <button type="button" className="btn btn-primary btn-lg clickable" onClick={deleteSession}>Log Out</button>
   );
 }
