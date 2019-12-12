@@ -8,10 +8,8 @@ import TeamDetailView from './teamDetailView';
 import NavBar from './navbar';
 import Footer from './footer';
 import Create from './create';
-import MyDetailNav from './myDetailNav';
 import Login from './login';
 import CreateUsers from './createUsers';
-import TeamDetailNav from './teamDetailNav';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -111,7 +109,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'myDetailView') {
       return (
         <div>
-          <MyDetailNav setView={this.setView} edit={this.edit}/>
+          <NavBar edit={this.edit} view={this.state.view} setView={this.setView} onChange={this.searchOrFilter} />
           <MyDetailView setView={this.setView} edit={this.state.editTicketMode} ticketId={this.state.ticketId}/>
         </div>
       );
@@ -134,7 +132,7 @@ export default class App extends React.Component {
     } else if (this.state.view === 'teamDetailView') {
       return (
         <div>
-          <TeamDetailNav setView={this.setView}/>
+          <NavBar view={this.state.view} setView={this.setView} onChange={this.searchOrFilter} />
           <TeamDetailView setView={this.setView} ticketId={this.state.ticketId}/>
         </div>
       );

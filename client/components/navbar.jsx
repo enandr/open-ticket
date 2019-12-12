@@ -106,10 +106,10 @@ export default class NavBar extends React.Component {
   renderTeamDetail() {
     return (
       <nav className="navbar navbar-expand-lg teamProject fixed-top">
-        <div className="clickable whiteText" onClick={() => {
+        <div className="clickable text-white" onClick={() => {
           this.props.setView('teamTicketList');
         }}><BackIcon /></div>
-        <a className="navbar-brand whiteText">Ticket Detail View</a>
+        <a className="navbar-brand text-white">Ticket Detail View</a>
       </nav>
     );
   }
@@ -137,10 +137,10 @@ export default class NavBar extends React.Component {
       return this.renderMyTickets();
     }
     if (this.props.view.match(/my/i) && this.props.view.match(/detail/i)) {
-      return this.renderMyTickets();
+      return this.renderMyDetail();
     }
     if (this.props.view.match(/team/i) && this.props.view.match(/detail/i)) {
-      return this.renderTeamTickets();
+      return this.renderTeamDetail();
     }
     if (this.props.view.match(/create/i)) {
       return this.renderCreate();
