@@ -83,7 +83,7 @@
         $output = mysqli_fetch_all($response, MYSQLI_ASSOC);
         $insertId = $link->insert_id;
         $slackId = getSlackId($link,$user);
-        postSlack($slackId, "<@$slackId>: you have just been linked to a project. View the project tickets at http://localhost:3000/api/tickets?projectId=$create&userId=$user");
+        postSlack($slackId, "<@$slackId>: you have just been linked to a project.");
         if(empty($insertId)){
             throw new ApiError ("Failed to insert", 400);
         } else {
