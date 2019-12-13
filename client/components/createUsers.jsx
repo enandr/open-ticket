@@ -56,7 +56,6 @@ export default class CreateUsers extends React.Component {
   render() {
     return (
       <div>
-
         <div className="text-center body-signUp">
           <form onSubmit={this.checkEmpty}>
             <h4 className="card-title mb-4 mt-1">Sign Up</h4>

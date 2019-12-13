@@ -44,8 +44,8 @@ export default class MyProjectList extends React.Component {
 
     if (!this.state.projects[0] && this.state.loaded === 'true') {
       return (
-        <div className="container h-100">
-          <div className="text-center align-items-center">
+        <div className="d-flex flex-column justify-content-center align-items-center centerHeight">
+          <div className="text-center">
             <AlertIcon/>
             <h3>No Projects Available</h3>
             <h5>Please create one.</h5>

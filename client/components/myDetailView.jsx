@@ -157,6 +157,7 @@ export default class MyDetailView extends React.Component {
 
   defaultRender() {
     const details = this.state.ticketDetails;
+    const imageUrl = details.fileUrl;
     this.sendEdit();
 
     return (
@@ -195,8 +196,8 @@ export default class MyDetailView extends React.Component {
           <br></br>
           <p className="text-center">Description: {this.state.description}</p>
           {/* <img src={details.fileUrl} className="img-fluid" alt="Responsive image"></img> */}
-          {/* <div className="text-center justify-content-center"style={{ backgroundImage: `url(${imageUrl})`, height: '50vh', backgroundSize: 'contain', backgroundRepeat: 'no-repeat' }}></div> */}
-          <img src={details.fileUrl} className="img-fluid" alt=""></img>
+          <div className="text-center justify-content-center" style={{ backgroundImage: `url(${imageUrl})`, height: '50vh', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div>
+          {/* <img src={details.fileUrl} className="img-fluid" alt=""></img> */}
         </div>
       </div>
     );
