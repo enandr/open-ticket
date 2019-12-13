@@ -46,7 +46,7 @@ export default class Account extends React.Component {
   render() {
     if (this.state.infos && this.state.user) {
       return (
-        <div className="container text-center font-weight-bold ">
+        <div className="container text-center font-weight-bold mt-5">
           <p>Name: {this.state.user.name} </p>
           <p>Email: {this.state.user.email}</p>
           <p>All projects: {this.state.infos.projects}</p>
