@@ -24,63 +24,29 @@ export default class NavBar extends React.Component {
 
   renderTeamTicketList() {
     return (
-      <nav className="navbar teamProject fixed-top navHeight">
-        <div className="container">
-          <div className="row">
-            <div className="col-2 align-items-center">
-              <div className="clickable text-white text-center" onClick={() => {
-                this.props.setView(this.props.backpage);
-              }}><BackIcon /></div>
-            </div>
-            <div className="col-8 text-center">
-              <a className="navTitle text-white mx-auto ">Team Tickets</a>
-            </div>
-            <div className="col-2">
-              <div className="nav-item dropdown">
-                <a className="nav-link text-white" href="#" id="navbardrop" data-toggle="dropdown">
-                  <MenuIcon />
-                </a>
-                <div className="dropdown-menu dropdown-menu-right">
-                  <div className="dropdown-header">Filter by Priority:</div>
-                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'statusCode'); }}>All</a>
-                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Open', 'statusCode'); }}>Open</a>
-                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('In-Progress', 'statusCode'); }}>In-Progress</a>
-                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Closed', 'statusCode'); }}>Closed</a>
-                  <div className="dropdown-divider"></div>
-                  <div className="dropdown-header">Filter by Type:</div>
-                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'ticketType'); }}>All</a>
-                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Feature', 'ticketType'); }}>Feature</a>
-                  <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Issue', 'ticketType'); }}>Issue</a>
-                </div>
-              </div>
-            </div>
+      <nav className="navbar navHeight teamProject fixed-top">
+        <div className="clickable text-white" onClick={() => {
+          this.props.setView(this.props.backpage);
+        }}><BackIcon /></div>
+        <a className="navTitle text-white mx-auto ">Team Tickets</a>
+        <div className="nav-item dropdown">
+          <a className="text-white" href="#" id="navbardrop" data-toggle="dropdown">
+            <MenuIcon />
+          </a>
+          <div className="dropdown-menu dropdown-menu-right">
+            <div className="dropdown-header">Filter by Priority:</div>
+            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'statusCode'); }}>All</a>
+            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Open', 'statusCode'); }}>Open</a>
+            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('In-Progress', 'statusCode'); }}>In-Progress</a>
+            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Closed', 'statusCode'); }}>Closed</a>
+            <div className="dropdown-divider"></div>
+            <div className="dropdown-header">Filter by Type:</div>
+            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'ticketType'); }}>All</a>
+            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Feature', 'ticketType'); }}>Feature</a>
+            <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Issue', 'ticketType'); }}>Issue</a>
           </div>
         </div>
       </nav>
-
-    // <nav className="navbar  teamProject fixed-top">
-    //   <div className="clickable text-white" onClick={() => {
-    //     this.props.setView(this.props.backpage);
-    //   }}><BackIcon /></div>
-    //   <a className="navTitle text-white mx-auto ">Team Tickets</a>
-    //   <div className="nav-item dropdown">
-    //     <a className="nav-link text-white" href="#" id="navbardrop" data-toggle="dropdown">
-    //       <MenuIcon />
-    //     </a>
-    //     <div className="dropdown-menu dropdown-menu-right">
-    //       <div className="dropdown-header">Filter by Priority:</div>
-    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'statusCode'); }}>All</a>
-    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Open', 'statusCode'); }}>Open</a>
-    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('In-Progress', 'statusCode'); }}>In-Progress</a>
-    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Closed', 'statusCode'); }}>Closed</a>
-    //       <div className="dropdown-divider"></div>
-    //       <div className="dropdown-header">Filter by Type:</div>
-    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'ticketType'); }}>All</a>
-    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Feature', 'ticketType'); }}>Feature</a>
-    //       <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Issue', 'ticketType'); }}>Issue</a>
-    //     </div>
-    //   </div>
-    // </nav>
     );
   }
 
@@ -100,7 +66,7 @@ export default class NavBar extends React.Component {
         }}><BackIcon /></div>
         <a className="navTitle mx-auto ">My Tickets</a>
         <div className="nav-item dropdown">
-          <a className="nav-link text-dark" href="#" id="navbardrop" data-toggle="dropdown">
+          <a className="text-dark" href="#" id="navbardrop" data-toggle="dropdown">
             <MenuIcon/>
           </a>
           <div className="dropdown-menu dropdown-menu-right">
