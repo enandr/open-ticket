@@ -170,7 +170,7 @@ export default class NavBar extends React.Component {
         <div className="clickable" onClick={() => {
           this.props.setView('myTicketList');
         }}><BackIcon /></div>
-        <a className="navbar-brand">Ticket Details</a>
+        <a className="navbar-brand navTitle">Ticket Details</a>
         <a className="navbar-brand clickable" onClick={this.handleClick}>{this.renderIcon()}</a>
       </nav>
     );
