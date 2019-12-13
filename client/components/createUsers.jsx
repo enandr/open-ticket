@@ -88,7 +88,7 @@ export default class CreateUsers extends React.Component {
           </div>
         </div> */}
 
-        <body className="text-center body-signUp">
+        <div className="text-center body-signUp">
           <form onSubmit={this.checkEmpty}>
             <h4 className="card-title mb-4 mt-1">Sign Up</h4>
             <label>*Username:</label>
@@ -116,7 +116,7 @@ export default class CreateUsers extends React.Component {
               <button className="btn btn-outline-danger btn-block col-3" onClick={() => this.props.setView('logIn')} >Cancel</button>
             </div>
           </form>
-        </body>
+        </div>
       </div>
     );
   }

@@ -113,4 +113,24 @@
       } 
     }
           
+    if($request['method'] === 'PUT') {
+      $getUpdate = getBodyUpdate($link, $request);
+      $response['body'] = $getUpdate;
+      send($response);
+    }
+
+    function getBodyUpdate($link, $request) {
+      if (!isset($request['body']['userId'])) throw new ApiError("'userId' not received", 400);
+      if (!isset($request['body']['slackId'])) throw new ApiError("'slackId' not received", 400);
+
+     $userId = $request['body']['userId'];
+     $slackId = $request['body']['slackId'];
+
+     $updateSlack = "UPDATE `users` SET  `slackId`='$slackId' WHERE `id`=$userId";
+     $res = mysqli_query($link, $updateSlack);
+      $output = true;
+      return $output;
+    }
+
+    
 ?>
