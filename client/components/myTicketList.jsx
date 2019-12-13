@@ -24,7 +24,11 @@ export default class MyTicketList extends React.Component {
 
     fetch(request)
       .then(res => res.json())
-      .then(data => this.setState({ myTickets: data, loaded: 'true' }))
+
+      .then(data => {
+        const reverseData = data.reverse();
+        this.setState({ myTickets: reverseData, loaded: 'true' });
+      })
       .catch(err => console.error('Fetch failed!', err));
   }
 
