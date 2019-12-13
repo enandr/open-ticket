@@ -1,7 +1,8 @@
 import React from 'react';
 import MenuIcon from './menuIcon';
 import BackIcon from './backIcon';
-
+import EditIcon from './EditIcon';
+import SaveIcon from './SaveIcon';
 export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +19,19 @@ export default class NavBar extends React.Component {
     } else {
       this.setState({ editing: 'Edit' });
       this.props.edit(false);
+    }
+  }
+
+  renderIcon() {
+
+    if (this.state.editing === 'Edit') {
+      return (
+        <EditIcon/>
+      );
+    } else {
+      return (
+        <SaveIcon />
+      );
     }
 
   }
@@ -157,7 +171,7 @@ export default class NavBar extends React.Component {
           this.props.setView('myTicketList');
         }}><BackIcon /></div>
         <a className="navbar-brand">Ticket Details</a>
-        <a className="navbar-brand clickable" onClick={this.handleClick}>{this.state.editing}</a>
+        <a className="navbar-brand clickable" onClick={this.handleClick}>{this.renderIcon()}</a>
       </nav>
     );
   }
