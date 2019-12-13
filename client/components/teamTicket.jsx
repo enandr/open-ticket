@@ -19,31 +19,31 @@ export default function TeamTicket(props) {
               <div className="row">
 
                 <div className="col-sm">
-                  <small className="ticketInfo">Status: {props.value.statusCode}</small>
+                  <small className="ticketInfo listText">Status: {props.value.statusCode}</small>
                 </div>
                 <div className="col-sm">
-                  <small className="ticketInfo">Type: {props.value.ticketType}</small>
+                  <small className="ticketInfo listText">Type: {props.value.ticketType}</small>
                 </div>
 
               </div>
 
               <div className="row">
                 <div className="col-sm">
-                  <small className="ticketInfo">Assignee: <strong>{props.value.assigneeName}</strong></small>
+                  <small className="ticketInfo listText">Assignee: <strong>{props.value.assigneeName}</strong></small>
                 </div>
                 <div className="col-sm">
-                  <small className="ticketInfo">Priority: {props.value.priorityLevel}</small>
+                  <small className="ticketInfo listText">Priority: {props.value.priorityLevel}</small>
                 </div>
               </div>
 
               <div className="row">
                 <div className="col-sm">
 
-                  <small className="ticketInfo">Due Date: {props.value.dueDate}</small>
+                  <small className="ticketInfo listText">Due Date: {props.value.dueDate}</small>
 
                 </div>
                 <div className="col-sm">
-                  <small className="ticketInfo">Created At: {props.value.createdAt.slice(0, 10)}</small>
+                  <small className="ticketInfo listText">Created At: {props.value.createdAt.slice(0, 10)}</small>
                 </div>
               </div>
             </div>

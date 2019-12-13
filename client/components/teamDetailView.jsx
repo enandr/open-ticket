@@ -29,6 +29,7 @@ export default class TeamDetailView extends React.Component {
 
   render() {
     const details = this.state.ticketDetails;
+    const imageUrl = details.fileUrl;
 
     return (
       <div className="container pt-2">
@@ -67,7 +68,8 @@ export default class TeamDetailView extends React.Component {
           <p className="text-center">Description: {details.description}</p>
           {/* <img src={details.fileUrl} className="img-fluid" alt="Responsive image"></img> */}
           {/* <div className="text-center justify-content-center"style={{ backgroundImage: `url(${imageUrl})`, height: '50vh', backgroundSize: 'contain', backgroundRepeat: 'no-repeat' }}></div> */}
-          <img src={details.fileUrl} className="img-fluid" alt=""></img>
+          {/* <img src={details.fileUrl} className="img-fluid" alt=""></img> */}
+          <div className="text-center justify-content-center" style={{ backgroundImage: `url(${imageUrl})`, height: '50vh', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div>
         </div>
       </div>
     );
