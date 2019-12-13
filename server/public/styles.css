@@ -85,7 +85,7 @@ label{
   font-size: 20px;
 }
 
-.ticketInfo{
+ listText.ticketInfo{
   font-size: 17px;
 }
 
@@ -101,6 +101,10 @@ label{
   width: 25vw;
 }
 
+
+.listText{
+  font-size: 2vh;
+}
 .centerHeight{
   height: 80vh;
 }
