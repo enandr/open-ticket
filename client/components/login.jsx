@@ -4,8 +4,8 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: 'roger',
-      pass: '12345',
+      userName: '',
+      pass: '',
       status: ''
     };
 
