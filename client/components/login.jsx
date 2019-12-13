@@ -33,7 +33,7 @@ export default class Login extends React.Component {
           this.props.setId(data);
           this.props.setView('myProjectList');
         } else {
-          this.setState({ status: 'Oops! Something Wrong with Username or Password!' });
+          this.setState({ status: 'Oops! Wrong Username or Password!' });
         }
       })
       .catch(error => alert(error));
