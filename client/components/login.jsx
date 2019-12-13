@@ -1,4 +1,5 @@
 import React from 'react';
+import openTicketImage from '../../server/public/images/open-ticket.png';
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +47,8 @@ export default class Login extends React.Component {
     return (
       <div className="container">
         <div className="text-center body-signIn">
-          <h1>OpenTicket</h1>
+          <img src={openTicketImage} alt="open ticket"/>
+          <h1>openTicket</h1>
           <form onSubmit={this.handleSubmit}>
             <label>Username:</label>
             <div className="form-group d-flex justify-content-center">

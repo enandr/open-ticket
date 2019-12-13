@@ -101,8 +101,12 @@ label{
   width: 25vw;
 }
 
+
 .listText{
   font-size: 2vh;
+}
+.centerHeight{
+  height: 80vh;
 }
 
 /* body {

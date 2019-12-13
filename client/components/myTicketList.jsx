@@ -24,7 +24,11 @@ export default class MyTicketList extends React.Component {
 
     fetch(request)
       .then(res => res.json())
-      .then(data => this.setState({ myTickets: data, loaded: 'true' }))
+
+      .then(data => {
+        const reverseData = data.reverse();
+        this.setState({ myTickets: reverseData, loaded: 'true' });
+      })
       .catch(err => console.error('Fetch failed!', err));
   }
 
@@ -48,9 +52,9 @@ export default class MyTicketList extends React.Component {
 
     if (!this.state.myTickets[0] && this.state.loaded === 'true') {
       return (
-        <div className="container h-100">
-          <div className="text-center align-items-center">
-            <AlertIcon />
+        <div className="d-flex flex-column justify-content-center align-items-center centerHeight">
+          <div className="text-center">
+            <AlertIcon className="" />
             <h3>No Tickets Available</h3>
             <h5>Please create one.</h5>
           </div>
