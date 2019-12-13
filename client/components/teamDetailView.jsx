@@ -1,5 +1,5 @@
 import React from 'react';
-
+import CircleIcon from './circleIcon';
 export default class TeamDetailView extends React.Component {
   constructor(props) {
     super(props);
@@ -27,39 +27,44 @@ export default class TeamDetailView extends React.Component {
     const details = this.state.ticketDetails[0];
 
     return (
-      <div>
-        <h1 className="text-center">{details.title}</h1>
-        <div className="container text-center">
-          <div className="row">
-            <div className="col-sm">
-              <small>Created At: {details.createdAt}</small>
+      <div className="container pt-2">
+        <div className="card pt-2">
+          <h1 className="text-center">{details.title}</h1>
+
+          <div className="container text-center detailText">
+            <div className="row">
+              <div className="col-sm">
+                <small>Assignee: {details.assigneeName}</small>
+              </div>
+              <div className="col-sm">
+                <small>Priority: {details.priority}</small>
+              </div>
             </div>
-            <div className="col-sm">
-              <small>Priority: {details.priorityLevel}</small>
+
+            <div className="row">
+              <div className="col-sm">
+                <small>Due Date: {details.dueDate}</small>
+              </div>
+              <div className="col-sm">
+                <small>Created At: {details.createdAt}</small>
+              </div>
             </div>
+
+            <div className="row">
+              <div className="col-sm">
+                <small>Status: {this.state.status} </small>
+                <CircleIcon fill={this.state.status} />
+              </div>
+
+            </div>
+
           </div>
-
-          <div className="row">
-            <div className="col-sm">
-              <small>Due Date: {details.dueDate}</small>
-            </div>
-            <div className="col-sm">
-              <small>Assignee: {details.assigneeName}</small>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-sm">
-              <small>Status: {details.statusCode}</small>
-            </div>
-
-          </div>
-
+          <br></br>
+          <p className="text-center">Description: {this.state.description}</p>
+          {/* <img src={details.fileUrl} className="img-fluid" alt="Responsive image"></img> */}
+          {/* <div className="text-center justify-content-center"style={{ backgroundImage: `url(${imageUrl})`, height: '50vh', backgroundSize: 'contain', backgroundRepeat: 'no-repeat' }}></div> */}
+          <img src={details.fileUrl} className="img-fluid" alt=""></img>
         </div>
-        <br></br>
-        <p className="text-center">{details.description}</p>
-        <img src={details.fileUrl} className="img-fluid" alt="Responsive image"></img>
-
       </div>
     );
   }
