@@ -74,7 +74,7 @@ export default class NavBar extends React.Component {
 
   renderMyTickets() {
     return (
-      <nav className="navbar navHeight color fixed-top">
+      <nav className="navbar navbar-expand-lg color fixed-top navHeight">
         <div className="clickable" onClick={() => {
           this.props.setView(this.props.backpage);
         }}><BackIcon /></div>
@@ -125,7 +125,7 @@ export default class NavBar extends React.Component {
         <div className="clickable text-white" onClick={() => {
           this.props.setView('teamTicketList');
         }}><BackIcon /></div>
-        <a className="navbar-brand text-white">Ticket Detail View</a>
+        <a className="text-white mx-auto">Ticket Detail View</a>
       </nav>
     );
   }
@@ -136,7 +136,7 @@ export default class NavBar extends React.Component {
         <div className="clickable" onClick={() => {
           this.props.setView('myTicketList');
         }}><BackIcon /></div>
-        <a className="navTitle">Ticket Details</a>
+        <a className="navTitle mx-auto">Ticket Details</a>
         <a className="clickable" onClick={this.handleClick}>{this.renderIcon()}</a>
       </nav>
     );
