@@ -52,9 +52,9 @@ export default class MyTicketList extends React.Component {
 
     if (!this.state.myTickets[0] && this.state.loaded === 'true') {
       return (
-        <div className="container h-100">
-          <div className="text-center align-items-center">
-            <AlertIcon />
+        <div className="d-flex flex-column justify-content-center align-items-center centerHeight">
+          <div className="text-center">
+            <AlertIcon className="" />
             <h3>No Tickets Available</h3>
             <h5>Please create one.</h5>
           </div>

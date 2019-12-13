@@ -101,6 +101,10 @@ label{
   width: 25vw;
 }
 
+.centerHeight{
+  height: 80vh;
+}
+
 /* body {
 	margin: 0;
 	width: 100%;
