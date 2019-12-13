@@ -85,7 +85,7 @@ label{
   font-size: 20px;
 }
 
-.ticketInfo{
+ listText.ticketInfo{
   font-size: 17px;
 }
 
@@ -99,6 +99,10 @@ label{
 
 .loginBtns{
   width: 25vw;
+}
+
+.listText{
+  font-size: 2vh;
 }
 
 /* body {
