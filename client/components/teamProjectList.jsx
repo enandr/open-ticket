@@ -44,8 +44,8 @@ export default class TeamProjectList extends React.Component {
 
     if (!this.state.projects[0] && this.state.loaded === 'true') {
       return (
-        <div className="container h-100">
-          <div className="text-center align-items-center">
+        <div className="d-flex flex-column justify-content-center align-items-center centerHeight">
+          <div className="text-center">
             <AlertIcon />
             <h3>No Projects Available</h3>
             <h5>Please create one.</h5>
@@ -56,7 +56,7 @@ export default class TeamProjectList extends React.Component {
       return (
         <div>
           <input className="form-control" name="projectTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
-          <table className="table table-bordered clickable">
+          <table className="table table-bordered table-hover clickable">
             <tbody>
               {teamArray}
             </tbody>

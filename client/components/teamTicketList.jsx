@@ -45,8 +45,8 @@ export default class TeamTicketList extends React.Component {
 
     if (!this.state.teamTickets[0] && this.state.loaded === 'true') {
       return (
-        <div className="container h-100">
-          <div className="text-center align-items-center">
+        <div className="d-flex flex-column justify-content-center align-items-center centerHeight">
+          <div className="text-center">
             <AlertIcon />
             <h3>No Tickets Available</h3>
             <h5>Please create one.</h5>
@@ -57,7 +57,7 @@ export default class TeamTicketList extends React.Component {
       return (
         <div>
           <input className="form-control " name="ticketTitle" type="text" placeholder="Search" aria-label="Search" onChange={this.searchOrFilter}></input>
-          <table className="table table-bordered">
+          <table className="table table-bordered table-hover clickable">
             <tbody>{teamTicketArray}</tbody>
           </table>
         </div>

@@ -56,7 +56,7 @@ export default class Account extends React.Component {
           <label>SlackId: </label>
           <div className='container d-flex justify-content-center row align-content-center'>
             <input defaultValue={this.state.slackId} onChange={this.handleChange} maxLength='9' className="form-control col-5 float-left mr-3" id="exampleInputEmail1"></input>
-            <button onClick={this.updateSlack} className="btn btn-info col-2 d-block">Save</button>
+            <button onClick={this.updateSlack} className="btn btn-info col-3 d-block">Save</button>
           </div>
           <div className='container justify-content-center mt-5'>
             <LogOut setView={this.props.setView}/>
