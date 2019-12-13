@@ -114,7 +114,7 @@ export default class NavBar extends React.Component {
         <div className="clickable" onClick={() => {
           this.props.setView(this.props.backpage);
         }}><BackIcon /></div>
-        <a className="navTitle clickable">Create</a>
+        <a className="navTitle clickable mx-auto">Create</a>
       </nav>
     );
   }
@@ -125,7 +125,7 @@ export default class NavBar extends React.Component {
         <div className="clickable text-white" onClick={() => {
           this.props.setView('teamTicketList');
         }}><BackIcon /></div>
-        <a className="text-white mx-auto">Ticket Detail View</a>
+        <a className="text-white mx-auto navTitle">Ticket Detail View</a>
       </nav>
     );
   }
