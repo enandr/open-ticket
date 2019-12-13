@@ -99,7 +99,7 @@ export default class App extends React.Component {
           <MyTicketList
             search={this.state.search} searchType={this.state.searchType} setView={this.setView} projectId={this.state.projectId} setTicketId={this.setTicketId} userId={this.state.userId}
           />
-          <Footer view={this.state.view} setView={this.setView} />
+          <Footer view={this.state.view} setView={this.setView}/>
         </div>
       );
     } else if (this.state.view === 'myDetailView') {
@@ -143,7 +143,7 @@ export default class App extends React.Component {
       return (
         <div>
           <NavBar view={this.state.view} setView={this.setView} onChange={this.searchOrFilter} />
-          <Account setView={this.setView} ticketId={this.state.ticketId} />
+          <Account setView={this.setView} ticketId={this.state.ticketId} userId={this.state.userId}/>
           <Footer view={this.state.view} setView={this.setView} />
         </div>
       );

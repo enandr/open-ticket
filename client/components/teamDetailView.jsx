@@ -34,10 +34,10 @@ export default class TeamDetailView extends React.Component {
           <div className="container text-center detailText">
             <div className="row">
               <div className="col-sm">
-                <small>Assignee: {details.assigneeName}</small>
+                <small>Assignee: <strong>{details.assigneeName}</strong></small>
               </div>
               <div className="col-sm">
-                <small>Priority: {details.priority}</small>
+                <small>Priority: {details.priorityLevel}</small>
               </div>
             </div>
 
@@ -52,15 +52,15 @@ export default class TeamDetailView extends React.Component {
 
             <div className="row">
               <div className="col-sm">
-                <small>Status: {this.state.status} </small>
-                <CircleIcon fill={this.state.status} />
+                <small>Status: {details.statusCode} </small>
+                <CircleIcon fill={details.statusCode} />
               </div>
 
             </div>
 
           </div>
           <br></br>
-          <p className="text-center">Description: {this.state.description}</p>
+          <p className="text-center">Description: {details.description}</p>
           {/* <img src={details.fileUrl} className="img-fluid" alt="Responsive image"></img> */}
           {/* <div className="text-center justify-content-center"style={{ backgroundImage: `url(${imageUrl})`, height: '50vh', backgroundSize: 'contain', backgroundRepeat: 'no-repeat' }}></div> */}
           <img src={details.fileUrl} className="img-fluid" alt=""></img>

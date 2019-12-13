@@ -167,7 +167,7 @@ export default class MyDetailView extends React.Component {
           <div className="container text-center detailText">
             <div className="row">
               <div className="col-sm">
-                <small>Assignee: {details.assigneeName}</small>
+                <small>Assignee: <strong>{details.assigneeName}</strong></small>
               </div>
               <div className="col-sm">
                 <small>Priority: {this.state.priority}</small>

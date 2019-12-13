@@ -11,6 +11,7 @@ switch ($request['path']) {
   case '/api/login':
   case '/api/uploads':
   case '/api/logout':
+  case '/api/account':
     require_once "..${request['path']}.php";
   default:
     throw new ApiError("Cannot ${request['method']} ${request['path']}", 404);

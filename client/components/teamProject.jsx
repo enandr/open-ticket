@@ -14,7 +14,7 @@ export default function TeamProject(props) {
           <div className="row">
             <div className="col-10">
               <strong className="projecTitleFont">{props.value.projectTitle}</strong>
-              <p className="projectDescriptionFont my-0">
+              <p className="projectDescriptionFont my-0 listText">
                 {props.value.description}
               </p>
             </div>
