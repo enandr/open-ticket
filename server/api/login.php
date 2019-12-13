@@ -1,4 +1,4 @@
-<?php 
+<?php
     $link = get_db_link();
 
     if($request['method'] === 'GET') {
@@ -20,11 +20,10 @@
            return "Wrong Username";
         } else {
           return $output;
-        } 
+        }
     }
 
     function getUserInfos($link, $user, $password, $getHash) {
-        //error_log($getHash);
         if (password_verify($password, $getHash)) {
             unset($_SESSION['user_id']);
             $query = "SELECT `id` FROM `users` WHERE `name`= '$user'";
@@ -37,12 +36,11 @@
                 throw new ApiError ("No user", 400);
             } else {
             $_SESSION['user_id'] = $output;
-              return $output;
-            } 
+                return $output;
+            }
         } else {
             unset($_SESSION['user_id']);
             return "Wrong Password";
         }
     }
 ?>
-

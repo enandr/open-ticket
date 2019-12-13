@@ -57,38 +57,7 @@ export default class CreateUsers extends React.Component {
     return (
       <div>
 
-        {/*  <div className="d-flex justify-content-center">
-          <div className="card card col-sm-3 col-lg-3 col-9">
-            <article className="card-body">
-              <h4 className="card-title mb-4 mt-1">Sign Up</h4>
-              <form onSubmit={this.checkEmpty}>
-                <div className="form-group">
-                  <label>*Username:</label>
-                  <input className="form-control col-sm" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
-                </div>
-                <div className="form-group">
-                  <label>*Your password:</label>
-                  <input className="form-control" type="password" placeholder="Password" name="password" value={this.state.pass} onChange={this.handleChange}/>
-                </div>
-                <div className="form-group">
-                  <label>*Email:</label>
-                  <input className="form-control" placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange}/>
-                </div>
-                <div className="form-group">
-                  <label>SlackID:</label>
-                  <input className="form-control" placeholder="SlackID" name="slackId" value={this.state.slackId} onChange={this.handleChange}/>
-                </div>
-                <p className="text-danger">* require</p>
-                <p className="text-danger">{this.state.status}</p>
-                <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-block"> Sign Up</button>
-                </div>
-              </form>
-            </article>
-          </div>
-        </div> */}
-
-        <body className="text-center body-signUp">
+        <div className="text-center body-signUp">
           <form onSubmit={this.checkEmpty}>
             <h4 className="card-title mb-4 mt-1">Sign Up</h4>
             <label>*Username:</label>
@@ -116,7 +85,7 @@ export default class CreateUsers extends React.Component {
               <button className="btn btn-outline-danger btn-block col-3" onClick={() => this.props.setView('logIn')} >Cancel</button>
             </div>
           </form>
-        </body>
+        </div>
       </div>
     );
   }

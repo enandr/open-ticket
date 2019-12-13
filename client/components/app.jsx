@@ -56,12 +56,10 @@ export default class App extends React.Component {
   }
 
   setProjectId(id) {
-    // alert(id);
     this.setState({ projectId: id });
   }
 
   setTicketId(id) {
-    // alert(id);
     this.setState({ ticketId: id });
   }
 
