@@ -1,7 +1,6 @@
 <?php
 $link = get_db_link();
-    
-    //GET
+
     if($request['method'] === "GET") {
         if (isset($_GET['userId'])){
             $user = $_GET['userId'];
@@ -51,4 +50,6 @@ $link = get_db_link();
         ];
     }
 
+
 ?>
+
