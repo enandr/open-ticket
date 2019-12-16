@@ -24,7 +24,7 @@ export default class CreateUsers extends React.Component {
   checkEmpty(event) {
     event.preventDefault();
     if (!this.state.name || !this.state.password || !this.state.email) {
-      return this.setState({ status: 'Please enter all the require *' });
+      return this.setState({ status: 'Please enter all the required fields *' });
     } else {
       this.createUser();
     }
@@ -45,7 +45,7 @@ export default class CreateUsers extends React.Component {
       .then(response => response.json())
       .then(data => {
         if (data === 'Already Exits') {
-          this.setState({ status: 'Username Already Exits' });
+          this.setState({ status: 'Username Already Exists' });
         } else {
           this.props.setView('logIn');
         }
@@ -75,7 +75,7 @@ export default class CreateUsers extends React.Component {
             <div className="form-group d-flex justify-content-center">
               <input className="form-control col-6" placeholder="SlackID" name="slackId" value={this.state.slackId} onChange={this.handleChange}/>
             </div>
-            <p className="text-danger">* require</p>
+            <p className="text-danger">* required</p>
             <p className="text-danger">{this.state.status}</p>
             <div className="form-group d-flex justify-content-center">
               <button type="submit" className="btn btn-primary btn-block col-3"> Sign Up</button>
