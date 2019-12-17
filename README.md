@@ -27,3 +27,18 @@ https://openticket.rogerenand.com
 
 ## Images
 ![My Tickets Page](https://github.com/enandr/open-ticket/blob/master/Screen%20Shot%202019-12-16%20at%206.22.42%20PM.png "My Tickets Page")
+
+## Development
+1. Clone The Repository
+```
+git clone https://github.com/enandr/open-ticket.git
+cd open-ticket/
+```
+2. Install dependencys
+```
+npm install
+```
+3. Create SQL database
+```
+DATABASE CREATE `openTicket` 
+```
