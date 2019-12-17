@@ -24,5 +24,4 @@ https://openticket.rogerenand.com
 * User can always see their total
 
 ## Images
-![Main Sales Page](https://github.com/enandr/open-ticket/blob/dev/Screen%20Shot%202019-12-16%20at%206.02.40%20PM.png "Main Sales Page")
-![Product Details Page](https://github.com/enandr/open-ticket/blob/dev/Screen%20Shot%202019-12-16%20at%206.02.50%20PM.png "Product Details Page")
+![My Tickets Page](https://github.com/enandr/open-ticket/blob/master/Screen%20Shot%202019-12-16%20at%206.22.42%20PM.png "My Tickets Page")
