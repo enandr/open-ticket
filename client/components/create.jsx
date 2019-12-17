@@ -246,8 +246,6 @@ export default class Create extends React.Component {
               Status Code:
               <select className="form-control clickable" name="statusSelect" onChange={this.handleChange}>
                 <option value='1' >Open</option>
-                <option value='2' >In-Progress</option>
-                <option value='3' >Closed</option>
               </select>
             </label>
 

@@ -48,7 +48,7 @@ export default class NavBar extends React.Component {
             <MenuIcon />
           </a>
           <div className="dropdown-menu dropdown-menu-right">
-            <div className="dropdown-header">Filter by Priority:</div>
+            <div className="dropdown-header">Filter by Status:</div>
             <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'statusCode'); }}>All</a>
             <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Open', 'statusCode'); }}>Open</a>
             <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('In-Progress', 'statusCode'); }}>In-Progress</a>
@@ -84,7 +84,7 @@ export default class NavBar extends React.Component {
             <MenuIcon/>
           </a>
           <div className="dropdown-menu dropdown-menu-right">
-            <div className="dropdown-header">Filter by Priority:</div>
+            <div className="dropdown-header">Filter by Status:</div>
             <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('', 'statusCode'); }}>All</a>
             <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('Open', 'statusCode'); }}>Open</a>
             <a className="dropdown-item" href="#" onClick={() => { this.props.onChange('In-Progress', 'statusCode'); }}>In-Progress</a>
