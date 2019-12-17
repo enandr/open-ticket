@@ -15,13 +15,15 @@ Open Ticket is an issue and feature tracking system for development projects. Bu
 https://openticket.rogerenand.com
 
 ## Features
-* User can see all products
-* User can see their cart
-* User can add items to their cart
-* User can see product information
-* User can remove items from their cart
-* User can place an order
-* User can always see their total
+* User can view all projects
+* User can view all tickets of a project
+* User can add a project
+* User can add a ticket
+* User can assign a project to multiple users
+* User can assign a ticket to a user of a project
+* User can edit a ticket
+* User can view all team tickets
+* User can change slack id
 
 ## Images
 ![My Tickets Page](https://github.com/enandr/open-ticket/blob/master/Screen%20Shot%202019-12-16%20at%206.22.42%20PM.png "My Tickets Page")
